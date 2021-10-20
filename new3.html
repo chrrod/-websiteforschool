@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My to do List</h1>
+    <input type = "text"><button>Add</button>
+    <ul> </ul>
+    <script>
+        /*let itemElm = document.createElement("li");
+        itemElm.textContent = "Learn JS!";
+        let listElm = document.querySelector("ul");
+        listElm.appendChild(itemElm);*/
+        function addToList(content){
+            let itemElm = document.createElement("li");
+            itemElm.textContent = content;
+            let listElm = document.querySelector("ul");
+            listElm.appendChild(itemElm);
+        }
+        //addToList("Learn JS!");
+        //addToList("Use JS!");
+        //addToList("Love JS!");
+        function getUserItem(){
+            let inputElm = document.querySelector("input");
+            addToList(inputElm.value);
+            inputElm.value = "";
+        }
+
+        let buttonElm = document.querySelector("button");
+        buttonElm.onclick = getUserItem;
+
+        //buttonElm.addEventListener("click", getUserItem); another way to do above code
+
+    </script>
+</body>
+</html>
