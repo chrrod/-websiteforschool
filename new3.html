@@ -26,12 +26,18 @@
         //addToList("Love JS!");
         function getUserItem(){
             let inputElm = document.querySelector("input");
-            addToList(inputElm.value);
+            //Only add to the list if not empty
+            if(inputElm.value){
+                addToList(inputElm.value);    
+            }
+            else{
+                alert("You can't add a blank item to the leiest");
+            }
             inputElm.value = "";
         }
 
         let buttonElm = document.querySelector("button");
-        buttonElm.onclick = getUserItem;
+        buttonElm.addEventListener("click", getUserItem);
 
         //buttonElm.addEventListener("click", getUserItem); another way to do above code
 

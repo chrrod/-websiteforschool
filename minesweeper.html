@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+
+    <style>
+        #countbox {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px; 
+            justify-content: center;
+        }
+        p {
+            border-radius: 5px;
+            border: 2px solid blue;
+            padding: 20px;
+            margin: 0;
+            font-size: 24px;
+        }
+        .mine{
+            border-color: black;
+        }
+        .finished {
+            border-style: dashed;
+            border-color: red;
+            text-decoration: line-through solid red;
+            color: black;
+        }
+        .hidden{
+            border-color: blue;
+            color: white;
+        }
+        .line{
+            border: 1px white;
+            border-color: white;
+            font-size: 1px;
+            border-radius: 1px;
+            padding: 1px;
+            gap: 1px;
+        }
+        .firstline{
+
+        }
+        .lastLine{
+
+        }
+        .firstRow{
+
+        }
+        .lastRow{
+
+        }
+        .flag{
+            border-color: green;
+        }
+    </style>
+</head>
+<body>
+    <label>Width:</label><input type = "number" id = "w" min = 3 max = 20 value = 5>
+    <label>Height</label><input type = "number" id = "h" min = 3 max = 20 value = 5>
+    <label>Number Of Mines</label><input type = "number" id = "m" min = 1 max = 40 value = 5> 
+    <button>CREATE</button>
+    <label>Back <a href = ./index.html>Home</a></label>
+    <hr>
+    <div id="countbox">
+
+    </div>
+    <script>
+
+        //function createNumbers(){
+        //let countbox = document.querySelector("div");
+        //countbox.replaceChildren(); //removes all existing children
+        //querySlect by id with the sign(selectElement does the same thing)
+        /*let fromInput = document.querySelector("#from");
+        let from = Number(fromInput.value);
+        let toInput = document.querySelector("#to");
+        let to = Number(toInput.value);
+        let incrementBy = document.querySelector("#increment");
+        let by = Number(incrementBy.value);*/
+        function gameStart(){
+
+            let countbox = document.querySelector("div");
+            countbox.replaceChildren();
+            //const arr = new Array();
+            //let arr = [];
+            let widthInput = document.querySelector("#w");
+            let width = Number(widthInput.value);
+            let heightInput = document.querySelector("#h");
+            let height = Number(heightInput.value);
+            let mineInput = document.querySelector("#m");
+            let mines = Number(mineInput.value);
+            for(let i = 0; i < height; i++){
+                if(mines>width*height){
+                    alert("You must have less mines than total number of squares");
+                    break;
+                }
+                for(let j = 0; j <width; j++){
+                    let numElm = document.createElement("p");
+                    numElm.classList.add("hidden");
+                    if(i === 0){
+                        numElm.classList.add("firstLine");
+                    }
+                    if(i === height-1){
+                        numElm.classList.add("lastLine");
+                    }
+                    if(j === 0){
+                        numElm.classList.add("firstRow");
+                    }
+                    if(j === width-1){
+                        numElm.classList.add("lastRow");
+                    }
+                    //arr.push(numElm);
+                    numElm.addEventListener("mouseup", crossOut);
+                    countbox.appendChild(numElm);
+                    // if(/*Math.floor(Math.Random*19)===1 &&*/ mines>0){
+                    //     if(Math.floor(Math.random()*5)===0){
+                    //         numElm.classList.add("mine");
+                    //         mines--;
+                    //     }
+                    // }
+                }
+                let newLine = document.createElement("p");
+                newLine.style.flexBasis = "100vw";
+                newLine.classList.add(".list");
+                countbox.appendChild(newLine);
+                
+            }
+            const allNumElm = document.querySelectorAll(".hidden");
+            let num = 0;
+            let x = allNumElm.length;
+            let i = mines;
+            while(i>0){
+                let r = Math.floor(Math.random()*x);
+                if(!allNumElm[r].classList.contains("mine")){ 
+                    allNumElm[r].classList.add("mine");
+                    i--;
+                }
+            }
+            for(let i = 0; i<x; i++){
+                num = 0;
+                let z = allNumElm[i];
+                if(!z.classList.contains("firstLine")){
+                    let y = allNumElm[i-width];
+                    if(y.classList.contains("mine")){
+                        num++;
+                    }
+                }
+                if(!z.classList.contains("firstLine")&&!z.classList.contains("lastRow")){
+                    let y = allNumElm[i-width+1];
+                    if(y.classList.contains("mine")){
+                        num++;
+                    }
+                }
+                if(!z.classList.contains("firstLine")&&!z.classList.contains("firstRow")){
+                    let y = allNumElm[i-width-1];
+                    if(y.classList.contains("mine")){
+                        num++;
+                    }
+                }
+                if(!z.classList.contains("firstRow")){
+                    let y = allNumElm[i-1];
+                    if(y.classList.contains("mine")){
+                        num++;
+                    }
+                }
+                if(!z.classList.contains("lastRow")){
+                    let y = allNumElm[i+1];
+                    if(y.classList.contains("mine")){
+                        num++;
+                    }
+                }
+                if(!z.classList.contains("lastLine")){
+                    let y = allNumElm[i+width];
+                    if(y.classList.contains("mine")){
+                        num++;
+                    }
+                }
+                if(!z.classList.contains("lastLine")&&!z.classList.contains("lastRow")){
+                    let y = allNumElm[i+width+1];
+                    if(y.classList.contains("mine")){
+                       num++;
+                    }
+                }
+                if(!z.classList.contains("lastLine")&&!z.classList.contains("firstRow")){
+                    let y = allNumElm[i+width-1];
+                    if(y.classList.contains("mine")){
+                        num++;
+                    }
+                }
+                allNumElm[i].textContent = num;
+                console.log(num)
+            }
+            
+        //for(let i = 0; i< mines; i++){
+            //    arr[Math.Random*98].classList.add("mine");
+            //}
+        } 
+        let button = document.querySelector("button");
+        button.addEventListener("click", gameStart);
+        
+        function crossOut(event){
+            let numElm = event.currentTarget;//event.currentTarget refers to what was clicked
+            //changing the style directly is not ideal
+            //numElm.style.textDecoration = "line-through";
+            if (typeof event === 'object') {
+                switch (event.button) {
+                case 0:
+                    numElm.classList.add("finished");
+                    numElm.classList.toggle("hidden");
+                    if(numElm.classList.contains("mine")){
+                        alert("Game Over");
+                        gameStart();
+                    }
+                    break;
+                case 2:
+                    numElm.classList.toggle("flag");
+                    break;
+                }
+            }
+            const allNumElm = document.querySelectorAll(".hidden");
+            const allMines = document.querySelectorAll(".mine");
+            if(allNumElm.length == allMines.length){
+                alert("You Win!");
+                gameStart();
+            }
+            // numElm.classList.add("finished");
+            // numElm.classList.toggle("hidden");
+            // if(numElm.classList.contains("mine")){
+            //     alert("Game Over");
+            //     gameStart();
+            // }
+        }
+
+    </script>
+</body>
+</html>
