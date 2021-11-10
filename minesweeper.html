@@ -7,6 +7,9 @@
     <title>Minesweeper</title>
 
     <style>
+        body{
+            background-color: aquamarine;
+        }
         #countbox {
             display: flex;
             flex-direction: row;
@@ -14,29 +17,36 @@
             gap: 10px; 
             justify-content: center;
         }
-        p {
+        /* p {
             border-radius: 5px;
             border: 2px solid blue;
             padding: 20px;
             margin: 0;
             font-size: 24px;
-        }
+        } */
         .mine{
             border-color: black;
-        }
-        .finished {
-            border-style: dashed;
-            border-color: red;
-            text-decoration: line-through solid red;
-            color: black;
         }
         .hidden{
             border-color: blue;
             color: white;
         }
-        .line{
+        .box{
+            border-radius: 5px;
+            background-color: white;
+            border: 2px solid blue;
+            padding: 20px;
+            margin: 0;
+            font-size: 24px;
+        }
+        .finished {
+            /* border-style: dashed; */
+            border-color: gold;
+            /* text-decoration: line-through solid red; */
+            color: black;
+        }
+        #line{
             border: 1px white;
-            border-color: white;
             font-size: 1px;
             border-radius: 1px;
             padding: 1px;
@@ -55,7 +65,7 @@
 
         }
         .flag{
-            border-color: green;
+            border-color: red;
         }
     </style>
 </head>
@@ -114,6 +124,7 @@
                         numElm.classList.add("lastRow");
                     }
                     //arr.push(numElm);
+                    numElm.classList.add("box");
                     numElm.addEventListener("mouseup", crossOut);
                     countbox.appendChild(numElm);
                     // if(/*Math.floor(Math.Random*19)===1 &&*/ mines>0){
@@ -125,7 +136,7 @@
                 }
                 let newLine = document.createElement("p");
                 newLine.style.flexBasis = "100vw";
-                newLine.classList.add(".list");
+                newLine.id = "list";
                 countbox.appendChild(newLine);
                 
             }
@@ -143,56 +154,55 @@
             for(let i = 0; i<x; i++){
                 num = 0;
                 let z = allNumElm[i];
-                if(!z.classList.contains("firstLine")){
+                if(!z.classList.contains("firstLine")){//top
                     let y = allNumElm[i-width];
                     if(y.classList.contains("mine")){
                         num++;
                     }
                 }
-                if(!z.classList.contains("firstLine")&&!z.classList.contains("lastRow")){
+                if(!z.classList.contains("firstLine")&&!z.classList.contains("lastRow")){///top right
                     let y = allNumElm[i-width+1];
                     if(y.classList.contains("mine")){
                         num++;
                     }
                 }
-                if(!z.classList.contains("firstLine")&&!z.classList.contains("firstRow")){
+                if(!z.classList.contains("firstLine")&&!z.classList.contains("firstRow")){//top left
                     let y = allNumElm[i-width-1];
                     if(y.classList.contains("mine")){
                         num++;
                     }
                 }
-                if(!z.classList.contains("firstRow")){
+                if(!z.classList.contains("firstRow")){//left
                     let y = allNumElm[i-1];
                     if(y.classList.contains("mine")){
                         num++;
                     }
                 }
-                if(!z.classList.contains("lastRow")){
+                if(!z.classList.contains("lastRow")){//right
                     let y = allNumElm[i+1];
                     if(y.classList.contains("mine")){
                         num++;
                     }
                 }
-                if(!z.classList.contains("lastLine")){
+                if(!z.classList.contains("lastLine")){//bottom
                     let y = allNumElm[i+width];
                     if(y.classList.contains("mine")){
                         num++;
                     }
                 }
-                if(!z.classList.contains("lastLine")&&!z.classList.contains("lastRow")){
+                if(!z.classList.contains("lastLine")&&!z.classList.contains("lastRow")){//bottom right
                     let y = allNumElm[i+width+1];
                     if(y.classList.contains("mine")){
                        num++;
                     }
                 }
-                if(!z.classList.contains("lastLine")&&!z.classList.contains("firstRow")){
+                if(!z.classList.contains("lastLine")&&!z.classList.contains("firstRow")){//bottom left
                     let y = allNumElm[i+width-1];
                     if(y.classList.contains("mine")){
                         num++;
                     }
                 }
-                allNumElm[i].textContent = num;
-                console.log(num)
+                z.textContent = num;
             }
             
         //for(let i = 0; i< mines; i++){
@@ -221,11 +231,11 @@
                     break;
                 }
             }
-            const allNumElm = document.querySelectorAll(".hidden");
+            const allBox = document.querySelectorAll(".box");
+            const allNumElm = document.querySelectorAll(".finished");
             const allMines = document.querySelectorAll(".mine");
-            if(allNumElm.length == allMines.length){
-                alert("You Win!");
-                gameStart();
+            if(allBox.length-allNumElm.length === allMines.length){
+                gameWin();
             }
             // numElm.classList.add("finished");
             // numElm.classList.toggle("hidden");
@@ -233,6 +243,18 @@
             //     alert("Game Over");
             //     gameStart();
             // }
+        }
+
+        function gameWin(){
+            let countbox = document.querySelector("div");
+            countbox.replaceChildren();
+            let imgElm = document.createElement("img");
+            imgElm.src = "image/image/trophy.png";
+            countbox.appendChild(imgElm);
+            setTimeout(function(){
+                alert("You Won!");
+                gameStart();
+            }, 1000);
         }
 
     </script>
