@@ -92,32 +92,28 @@ function update ()
 
     if (cursors.up.isDown)
     {
-        player.setVelocityY(-160);
+        player.setVelocity(0, -160);
     }
     else if (cursors.down.isDown)
     {
-        player.setVelocityY(160);
+        player.setVelocity(0, 160);
     }
     else
     {
-        player.setVelocityY(0);
-
-        player.anims.play('turn');
+        player.setVelocity(0, 0);
     }
 
     if (cursors.w.isDown)
     {
-        player.setVelocityY(-160);
+        player.setVelocity(0, -160);
     }
     else if (cursors.s.isDown)
     {
-        player.setVelocityY(160);
+        player.setVelocity(0, 160);
     }
     else
     {
-        player.setVelocityY(0);
-
-        player.anims.play('turn');
+        player.setVelocity(0, 0);
     }
     if(ball.x === 0){
         ball.setVelocityX(50, ball.y);
@@ -125,12 +121,15 @@ function update ()
         scored();
     }
     if(ball.x === 600){
-        ball.setVelocityX(-50, 50);
+        ball.setVelocityX(-50, ball.y);
         scored(player);
         score++;
     }
-    if(ball.y === 0|| ball.y === 800){
-        ball.setVelocityX(-1*ball.getVelocityY());
+    if(ball.y === 0){
+        ball.setVelocityX(ball.x, 50);
+    }
+    if(ball.y === 800){
+        ball.setVelocityX(ball.x, -50);
     }
 }
 
@@ -148,6 +147,7 @@ function scored ()
         if(score2 === 7){
             score = this.addText(400, 300, 'player2 wins', { fontSize: '100px', fill: '#000' });
         }
+        gameOver === true;
     }
 }
 
