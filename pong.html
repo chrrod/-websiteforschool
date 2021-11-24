@@ -66,8 +66,8 @@ function create ()
     //  Now let's create some ledges
 
     // The player and its settings
-    player = this.add.image(100, 450, 'paddle');
-    player2 = this.add.image(100, 450, 'paddle');
+    player = this.add.image(25, 300, 'paddle');
+    player2 = this.add.image(775, 300, 'paddle');
     ball = this.physics.add.image(400, 300, 'ball');
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
@@ -77,8 +77,6 @@ function create ()
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, ball);
-    this.physics.add.collider(stars, platforms);
-    this.physics.add.collider(bombs, platforms);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     //this.physics.add.overlap(0, ball, p2Score, null, this);
@@ -122,12 +120,12 @@ function update ()
         player.anims.play('turn');
     }
     if(ball.x === 0){
-        ball.setVelocityX(-1*ball.getVelocityX());
+        ball.setVelocityX(50, ball.y);
         score2++;
         scored();
     }
     if(ball.x === 600){
-        ball.setVelocityX(-1*ball.getVelocityX());
+        ball.setVelocityX(-50, 50);
         scored(player);
         score++;
     }
