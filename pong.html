@@ -66,8 +66,8 @@ function create ()
     //  Now let's create some ledges
 
     // The player and its settings
-    player = this.add.image(25, 300, 'paddle');
-    player2 = this.add.image(775, 300, 'paddle');
+    player = this.physics.add.image(25, 300, 'paddle');
+    player2 = this.physics.add.image(775, 300, 'paddle');
     ball = this.physics.add.image(400, 300, 'ball');
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
@@ -92,44 +92,44 @@ function update ()
 
     if (cursors.up.isDown)
     {
-        player.setVelocity(0, -160);
+        player.setVelocityY(160);
     }
     else if (cursors.down.isDown)
     {
-        player.setVelocity(0, 160);
+        player.setVelocityY(160);
     }
     else
     {
-        player.setVelocity(0, 0);
+        player.setVelocityY(0);
     }
 
     if (cursors.w.isDown)
     {
-        player.setVelocity(0, -160);
+        player.setVelocityY(-160);
     }
     else if (cursors.s.isDown)
     {
-        player.setVelocity(0, 160);
+        player.setVelocityY(160);
     }
     else
     {
-        player.setVelocity(0, 0);
+        player.setVelocityY(0);
     }
     if(ball.x === 0){
-        ball.setVelocityX(50, ball.y);
+        ball.setVelocityX(50);
         score2++;
         scored();
     }
     if(ball.x === 600){
-        ball.setVelocityX(-50, ball.y);
+        ball.setVelocityX(-50);
         scored(player);
         score++;
     }
     if(ball.y === 0){
-        ball.setVelocityX(ball.x, 50);
+        ball.setVelocityY(50);
     }
     if(ball.y === 800){
-        ball.setVelocityX(ball.x, -50);
+        ball.setVelocityY(-50);
     }
 }
 
