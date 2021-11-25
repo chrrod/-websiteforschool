@@ -77,8 +77,8 @@ function create ()
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, ball);
-    player2.input.keyboard.on('keydown_W', u, this)
-    player2.input.keyboard.on('keydown_W', d, this)
+    this.input.keyboard.on('keydown_W', u, player2)
+    this.input.keyboard.on('keydown_S', d, player2)
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     //this.physics.add.overlap(0, ball, p2Score, null, this);
