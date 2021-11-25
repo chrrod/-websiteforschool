@@ -77,6 +77,8 @@ function create ()
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, ball);
+    player2.input.keyboard.on('keydown_W', u, this)
+    player2.input.keyboard.on('keydown_W', d, this)
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     //this.physics.add.overlap(0, ball, p2Score, null, this);
@@ -103,18 +105,8 @@ function update ()
         player.setVelocityY(0);
     }
 
-    if (cursors.w.isDown)
-    {
-        player.setVelocityY(-160);
-    }
-    else if (cursors.s.isDown)
-    {
-        player.setVelocityY(160);
-    }
-    else
-    {
-        player.setVelocityY(0);
-    }
+    player2.setVelocityY(0);
+
     if(ball.x === 0){
         ball.setVelocityX(50);
         score2++;
@@ -151,6 +143,13 @@ function scored ()
     }
 }
 
+function w (p){
+    p.setVelocityY(-160);
+}
+
+function s (p){
+    p.setVelocityY(160);
+}
 </script>
 
 </body>
