@@ -94,7 +94,7 @@ function update ()
 
     if (cursors.up.isDown)
     {
-        player.setVelocityY(160);
+        player.setVelocityY(-160);
     }
     else if (cursors.down.isDown)
     {
@@ -143,12 +143,12 @@ function scored ()
     }
 }
 
-function w (p){
-    p.setVelocityY(-160);
+function w (){
+    player2.setVelocityY(-160);
 }
 
-function s (p){
-    p.setVelocityY(160);
+function s (){
+    player2.setVelocityY(160);
 }
 </script>
 
