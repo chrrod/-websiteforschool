@@ -104,19 +104,33 @@ function update ()
     {
         player.setVelocityY(0);
     }
-    code = this.event.KeyCodes;
-    if (Phaser.Input.Keyboard.KeyCodes.W===code)
-    {
-        player2.setVelocityY(-160);
-    }
-    else if (Phaser.Input.Keyboard.KeyCodes.S===code)
-    {
-        player2.setVelocityY(160);
-    }
-    else
-    {
-        player2.setVelocityY(0);
-    }
+    this.input.keyboard.on('keydown', (event) => {
+        if (/*!keys.has(event.code)*/event ==='keydown_W') {
+            /*keys.add(event.code);
+            this.input.keyboard.emit(`keypress_${event.code}`);
+            // or / and
+            this.input.keyboard.emit(`keypress`, event.code);
+            */
+           player2.setVelocityY(-160);
+        } else if(event ==='keydown_S'){
+            player2.setVelocityY(160);
+        } else{
+            player2.setVelocityY(0);
+        }
+    });
+    // code = this.event.KeyCodes;
+    // if (Phaser.Input.Keyboard.KeyCodes.W===code)
+    // {
+    //     player2.setVelocityY(-160);
+    // }
+    // else if (Phaser.Input.Keyboard.KeyCodes.S===code)
+    // {
+    //     player2.setVelocityY(160);
+    // }
+    // else
+    // {
+    //     player2.setVelocityY(0);
+    // }
 
     //player2.setVelocityY(0);
 
