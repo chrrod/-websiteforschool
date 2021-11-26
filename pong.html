@@ -83,6 +83,8 @@ function create ()
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     //this.physics.add.overlap(0, ball, p2Score, null, this);
     //this.physics.add.overlap(600, ball, p1Score, null, this);
+    ball.setVelocityX(-160);
+    ball.setVelocityY(-160);
 }
 
 function update ()
@@ -104,20 +106,28 @@ function update ()
     {
         player.setVelocityY(0);
     }
-    this.input.keyboard.on('keydown', (event) => {
-        if (/*!keys.has(event.code)*/event ==='keydown_W') {
-            /*keys.add(event.code);
-            this.input.keyboard.emit(`keypress_${event.code}`);
-            // or / and
-            this.input.keyboard.emit(`keypress`, event.code);
-            */
-           player2.setVelocityY(-160);
-        } else if(event ==='keydown_S'){
-            player2.setVelocityY(160);
-        } else{
-            player2.setVelocityY(0);
-        }
-    });
+    // this.input.keyboard.on('keydown', (event) => {
+    //     if (/*!keys.has(event.code)*/event ==='keydown_W') {
+    //         /*keys.add(event.code);
+    //         this.input.keyboard.emit(`keypress_${event.code}`);
+    //         // or / and
+    //         this.input.keyboard.emit(`keypress`, event.code);
+    //         */
+    //        player2.setVelocityY(-160);
+    //     } else if(event ==='keydown_S'){
+    //         player2.setVelocityY(160);
+    //     } else{
+    //         player2.setVelocityY(0);
+    //     }
+    // });
+    if(ball.y>player2.y){
+        player2.setVelocityY(-160);
+    }else if(ball.y<player2.y){
+        player2.setVelocityY(160);
+    }else{
+        player2.setVelocityY(0);
+    }
+
     // code = this.event.KeyCodes;
     // if (Phaser.Input.Keyboard.KeyCodes.W===code)
     // {
