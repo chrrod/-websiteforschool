@@ -55,7 +55,7 @@ function create ()
 {
     //  A simple background for our game
     this.add.image(400, 300, 'background');
-
+    game.physics.setBoundsToWorld();
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
 
@@ -84,7 +84,8 @@ function create ()
     //this.physics.add.overlap(0, ball, p2Score, null, this);
     //this.physics.add.overlap(600, ball, p1Score, null, this);
     ball.setVelocityX(-160);
-    ball.setVelocityY(-160);
+    ball.setVelocityY(-80);
+    ball.events.onOutOfBounds.add(ballOut(), this);
 }
 
 function update ()
@@ -143,19 +144,38 @@ function update ()
     // }
 
     //player2.setVelocityY(0);
-
+    if(ball.x === player.x&&ball.y==player.y){
+        ball.setVelocityX(-1*ball.getVelocityX());
+        ball.setVelocityY(-1*ball.getVelocityY());
+    }
+    if(ball.x === player2.x&&ball.y==player2.y){
+        ball.setVelocityX(-1*ball.getVelocityX());
+        ball.setVelocityY(-1*ball.getVelocityY());
+    }
     if(ball.x === 0){
         ball.setVelocityX(50);
         score2++;
         scored();
     }
-    if(ball.x === 600){
+    if(ball.x === 800){
         ball.setVelocityX(-50);
-        scored();
         score++;
+        scored();
     }
     if(ball.y === 0||ball.y===800){
         ball.setVelocityY(-1*ball.getVelocityY());
+    }
+    if(player.y<0){
+        player.y = player.y+160;
+    }
+    if(player.y>600){
+        player.y = player.y-160;
+    }
+    if(player2.y<0){
+        player2.y = player2.y+160;
+    }
+    if(player2.y>600){
+        player2.y = player2.y-160;
     }
 }
 
@@ -175,6 +195,8 @@ function scored ()
         }
         gameOver === true;
     }
+    ball.x = 400;
+    ball.y = 300;
 }
 
 function w (){
@@ -183,6 +205,17 @@ function w (){
 
 function s (){
     player2.setVelocityY(160);
+}
+function ballOut(){
+    ball.setVelocityY(-1*ball.getVelocityY);
+    if(ball.x<0){
+        score2++;
+        scored();
+    }
+    if(ball.x>600){
+        score++;
+        scored();
+    }
 }
 </script>
 
