@@ -73,10 +73,10 @@ function create ()
     cursors = this.input.keyboard.createCursorKeys();
 
     //  The score
-    scoreText = this.add.text(16, 16, 'score: 0:0', { fontSize: '32px', fill: '#000' });
+    scoreText = this.add.text(16, 16, 'score: 0:0', { fontSize: '32px', fill: '#ffffff' });
 
     //  Collide the player and the stars with the platforms
-    this.physics.add.collider(player, ball);
+    this.physics.add.collider(ball, player);
     //this.input.keyboard.on('keydown_W', w, player2)
     //this.input.keyboard.on('keydown_S', s, player2)
 
@@ -121,9 +121,9 @@ function update ()
     //     }
     // });
     if(ball.y>player2.y){
-        player2.setVelocityY(-160);
-    }else if(ball.y<player2.y){
         player2.setVelocityY(160);
+    }else if(ball.y<player2.y){
+        player2.setVelocityY(-160);
     }else{
         player2.setVelocityY(0);
     }
@@ -151,14 +151,11 @@ function update ()
     }
     if(ball.x === 600){
         ball.setVelocityX(-50);
-        scored(player);
+        scored();
         score++;
     }
-    if(ball.y === 0){
-        ball.setVelocityY(50);
-    }
-    if(ball.y === 800){
-        ball.setVelocityY(-50);
+    if(ball.y === 0||ball.y===800){
+        ball.setVelocityY(-1*ball.getVelocityY());
     }
 }
 
@@ -171,10 +168,10 @@ function scored ()
     {
         //  A new batch of stars to collect
         if(score === 7){
-            score = this.addText(400, 300, 'player1 wins', { fontSize: '100px', fill: '#000' });
+            score = this.addText(400, 300, 'player1 wins', { fontSize: '100px', fill: '#ffffff' });
         }
         if(score2 === 7){
-            score = this.addText(400, 300, 'player2 wins', { fontSize: '100px', fill: '#000' });
+            score = this.addText(400, 300, 'player2 wins', { fontSize: '100px', fill: '#ffffff' });
         }
         gameOver === true;
     }
