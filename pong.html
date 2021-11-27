@@ -211,7 +211,12 @@ function s (){
     player2.setVelocityY(160);
 }
 function ballOut(){
-    ball.setVelocityY(-1*ball.getVelocityY);
+    if(ball.x<400){
+        ball.setVelocityX(80);
+    }
+    if(ball.x>400){
+        ball.setVelocityX(-80);
+    }
     if(ball.x<0){
         score2++;
         scored();
