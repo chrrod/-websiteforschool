@@ -153,29 +153,33 @@ function update ()
     //     ball.setVelocityX(-1*ball.getVelocityX());
     //     ball.setVelocityY(-1*ball.getVelocityY());
     // }
-    // if(ball.x === 0){
-    //     ball.setVelocityX(50);
-    //     score2++;
-    //     scored();
-    // }
-    // if(ball.x === 800){
-    //     ball.setVelocityX(-50);
-    //     score++;
-    //     scored();
-    // }
-    if(ball.y === 0||ball.y===800){
-        ball.setVelocityY(-1*ball.getVelocityY());
+    if(ball.x <= 0){
+        ball.setVelocityX(80);
+        score2++;
+        scored();
     }
-    if(player.y<0){
+    if(ball.x >= 800){
+        ball.setVelocityX(-80);
+        score++;
+        scored();
+    }
+    if(ball.y <= 0||ball.y>=800){
+        if(ball.y<=0){
+            ball.setVelocityY(80);
+        }else{
+            ball.setVelocityY(-80);
+        }
+    }
+    if(player.y<=0){
         player.y = player.y+160;
     }
-    if(player.y>600){
+    if(player.y>=600){
         player.y = player.y-160;
     }
-    if(player2.y<0){
+    if(player2.y<=0){
         player2.y = player2.y+160;
     }
-    if(player2.y>600){
+    if(player2.y>=600){
         player2.y = player2.y-160;
     }
 }
