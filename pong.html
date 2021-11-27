@@ -55,7 +55,7 @@ function create ()
 {
     //  A simple background for our game
     this.add.image(400, 300, 'background');
-    game.physics.setBoundsToWorld();
+    //game.physics.setBoundsToWorld();
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
 
@@ -76,7 +76,8 @@ function create ()
     scoreText = this.add.text(16, 16, 'score: 0:0', { fontSize: '32px', fill: '#ffffff' });
 
     //  Collide the player and the stars with the platforms
-    this.physics.add.collider(ball, player);
+    this.physics.add.collider(ball, player, ballOut, null, this);
+    this.physics.add.collider(ball, player2, ballOut, null, this);
     //this.input.keyboard.on('keydown_W', w, player2)
     //this.input.keyboard.on('keydown_S', s, player2)
 
@@ -85,7 +86,7 @@ function create ()
     //this.physics.add.overlap(600, ball, p1Score, null, this);
     ball.setVelocityX(-160);
     ball.setVelocityY(-80);
-    ball.events.onOutOfBounds.add(ballOut(), this);
+    //ball.events.onOutOfBounds.add(ballOut(), this);
 }
 
 function update ()
