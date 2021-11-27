@@ -76,8 +76,8 @@ function create ()
     scoreText = this.add.text(16, 16, 'score: 0:0', { fontSize: '32px', fill: '#ffffff' });
 
     //  Collide the player and the stars with the platforms
-    this.physics.add.collider(ball, player, ballOut, null, this);
-    this.physics.add.collider(ball, player2, ballOut, null, this);
+    this.physics.add.overlap(ball, player, ballOut, null, this);
+    this.physics.add.overlap(ball, player2, ballOut, null, this);
     //this.input.keyboard.on('keydown_W', w, player2)
     //this.input.keyboard.on('keydown_S', s, player2)
 
@@ -193,15 +193,14 @@ function scored ()
     {
         //  A new batch of stars to collect
         if(score === 7){
-            score = this.addText(400, 300, 'player1 wins', { fontSize: '100px', fill: '#ffffff' });
+            scoreText = this.addText(400, 300, 'player1 wins', { fontSize: '100px', fill: '#ffffff' });
         }
         if(score2 === 7){
-            score = this.addText(400, 300, 'player2 wins', { fontSize: '100px', fill: '#ffffff' });
+            scoreText = this.addText(400, 300, 'player2 wins', { fontSize: '100px', fill: '#ffffff' });
         }
         gameOver === true;
     }
-    ball.x = 400;
-    ball.y = 300;
+    ball = this.physics.add.image(400, 300, 'ball');
 }
 
 function w (){
