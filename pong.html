@@ -145,24 +145,24 @@ function update ()
     // }
 
     //player2.setVelocityY(0);
-    if(ball.x === player.x&&ball.y==player.y){
-        ball.setVelocityX(-1*ball.getVelocityX());
-        ball.setVelocityY(-1*ball.getVelocityY());
-    }
-    if(ball.x === player2.x&&ball.y==player2.y){
-        ball.setVelocityX(-1*ball.getVelocityX());
-        ball.setVelocityY(-1*ball.getVelocityY());
-    }
-    if(ball.x === 0){
-        ball.setVelocityX(50);
-        score2++;
-        scored();
-    }
-    if(ball.x === 800){
-        ball.setVelocityX(-50);
-        score++;
-        scored();
-    }
+    // if(ball.x === player.x&&ball.y==player.y){
+    //     ball.setVelocityX(-1*ball.getVelocityX());
+    //     ball.setVelocityY(-1*ball.getVelocityY());
+    // }
+    // if(ball.x === player2.x&&ball.y==player2.y){
+    //     ball.setVelocityX(-1*ball.getVelocityX());
+    //     ball.setVelocityY(-1*ball.getVelocityY());
+    // }
+    // if(ball.x === 0){
+    //     ball.setVelocityX(50);
+    //     score2++;
+    //     scored();
+    // }
+    // if(ball.x === 800){
+    //     ball.setVelocityX(-50);
+    //     score++;
+    //     scored();
+    // }
     if(ball.y === 0||ball.y===800){
         ball.setVelocityY(-1*ball.getVelocityY());
     }
