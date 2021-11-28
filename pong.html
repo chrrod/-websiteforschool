@@ -76,8 +76,8 @@ function create ()
     scoreText = this.add.text(16, 16, 'score: 0:0', { fontSize: '32px', fill: '#ffffff' });
 
     //  Collide the player and the stars with the platforms
-    this.physics.add.collide(ball, player, ballOut, null, this);
-    this.physics.add.collide(ball, player2, ballOut, null, this);
+    this.physics.add.collider(ball, player, ballOut, null, this);
+    this.physics.add.collider(ball, player2, ballOut, null, this);
     //this.input.keyboard.on('keydown_W', w, player2)
     //this.input.keyboard.on('keydown_S', s, player2)
 
