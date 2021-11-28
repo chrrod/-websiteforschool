@@ -260,10 +260,10 @@ function update ()
     lastX = head.body.velocity;
     //lastY = head.getVelocityY();
     if(cursors.up.isDown){
-        head.setVelocity(0, speed);
+        head.setVelocity(0, -1*speed);
     }
     if(cursors.down.isDown){
-        head.setVelocity(0, -1*speed);
+        head.setVelocity(0, speed);
     }
     if(cursors.right.isDown){
         head.setVelocity(speed, 0);
@@ -275,12 +275,12 @@ function update ()
         if(snake[i]!=head){
             tempX = snake[i].body.velocity;
             //tempY = snake[i].getVelocityY();
-            snake[i].setVelocty(lastX);
+            snake[i].setVelocity(lastX);
             lastX = tempX;
             //lastY = tempY;
         }
     }
-    if(head.y>=height||head.y<=0||head.x>=width||head.x<=0){
+    if(head.y>=height-head.height/2||head.y<=0+head.height/2||head.x>=width-head.height/2||head.x<=0+head.height/2){
         gameOver = true;
     }
 }
