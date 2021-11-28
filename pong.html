@@ -29,7 +29,13 @@ var config = {
         create: create,
         update: update
     }
+    
 };
+
+const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+const height = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+
+console.log(width, height);
 
 var player;
 var player2;
@@ -193,10 +199,10 @@ function scored ()
     {
         //  A new batch of stars to collect
         if(score === 7){
-            scoreText = this.addText(400, 300, 'player1 wins', { fontSize: '100px', fill: '#ffffff' });
+            scoreText.setText(400, 300, 'player1 wins', { fontSize: '100px', fill: '#ffffff' });
         }
         if(score2 === 7){
-            scoreText = this.addText(400, 300, 'player2 wins', { fontSize: '100px', fill: '#ffffff' });
+            scoreText.setText(400, 300, 'player2 wins', { fontSize: '100px', fill: '#ffffff' });
         }
         gameOver === true;
     }
