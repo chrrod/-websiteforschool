@@ -15,6 +15,7 @@
 <script type="text/javascript">
 const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 const height = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+console.log(height+" "+ width)
 var config = {
     type: Phaser.AUTO,
     width: width,
@@ -45,8 +46,8 @@ var score = 0;
 var score2 = 0;
 var gameOver = false;
 var scoreText
-var x = -320;
-var y = -170;
+var x = -1*width/4;
+var y = -1*height/8+10;
 
 var game = new Phaser.Game(config);
 
@@ -108,11 +109,11 @@ function update ()
 
     if (cursors.up.isDown)
     {
-        player.setVelocityY(-160);
+        player.setVelocityY(-1*height/8);
     }
     else if (cursors.down.isDown)
     {
-        player.setVelocityY(160);
+        player.setVelocityY(height/8);
     }
     else
     {
@@ -133,9 +134,9 @@ function update ()
     //     }
     // });
     if(ball.y>player2.y){
-        player2.setVelocityY(160);
+        player2.setVelocityY(height/8);
     }else if(ball.y<player2.y){
-        player2.setVelocityY(-160);
+        player2.setVelocityY(-1*height/8);
     }else{
         player2.setVelocityY(0);
     }
@@ -168,14 +169,14 @@ function update ()
         score2++;
         scored();
         if(x>0){
-            x=320;
+            x=width/4;
         }else{
-            x=-1*320;
+            x=-1*width/4;
         }
         if(y>0){
-            y=170;
+            y=height/8+10;
         }else{
-            y=-1*170;
+            y=-1*height/8+10;
         }
         ball.x = width/2;
         ball.y = height/2;
@@ -185,14 +186,14 @@ function update ()
         score++;
         scored();
         if(x>0){
-            x=320;
+            x=width/4;
         }else{
-            x=-1*320;
+            x=-1*width/4;
         }
         if(y>0){
-            y=170;
+            y=height/8;
         }else{
-            y=-1*170;
+            y=-1*height/8;
         }
         ball.x = width/2;
         ball.y = height/2;
@@ -210,16 +211,16 @@ function update ()
     }
     ball.setVelocityY(y);
     if(player.y<=0+player.height/2){
-        player.y = player.y+160;
+        player.y = player.y+player.height/2;
     }
     if(player.y>=height-player.height/2){
-        player.y = player.y-160;
+        player.y = player.y-player.height/2
     }
     if(player2.y<=0+player2.height/2){
-        player2.y = player2.y+160;
+        player2.y = player2.y+player2.height/2;
     }
     if(player2.y>=height-player2.height/2){
-        player2.y = player2.y-160;
+        player2.y = player2.y-player2.height/2;
     }
     scored();
 }
@@ -250,13 +251,13 @@ function scored ()
 function ballOut(){
     if(ball.x<width/2){
         x = -1*x;
-        ball.setVelocityX(320); 
+        ball.setVelocityX(width/4); 
     }
     player2.x = width/12*11;
     player2.setVelocityX(0);
     if(ball.x>width/2){
         x = -1*x;
-        ball.setVelocityX(-320); 
+        ball.setVelocityX(-1*widht/4); 
     }
     if(x>0){
         x+=10;
