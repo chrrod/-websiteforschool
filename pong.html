@@ -219,10 +219,10 @@ function scored ()
     {
         //  A new batch of stars to collect
         if(score === 7){
-            scoreText.setText(width/2, height/2, 'player1 wins', { fontSize: '100px', fill: '#ffffff' });
+            scoreText.setText('You win');
         }
         if(score2 === 7){
-            scoreText.setText(width/2, height/2, 'player2 wins', { fontSize: '100px', fill: '#ffffff' });
+            scoreText.setText('Game wins!');
         }
         gameOver === true;
     }else{
