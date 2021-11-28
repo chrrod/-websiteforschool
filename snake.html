@@ -97,23 +97,11 @@ function create ()
     }
     snake.push(head);
 
-    //  Collide the player and the stars with the platforms
-    // this.physics.add.collider(ball, player, ballOut, null, this);
-    // this.physics.add.collider(ball, player2, ballOut, null, this);
     this.physics.add.collider(apple, head, scored, null, this);
     this.physics.add.collider(head, body, hitSelf, null, this);
     for(var i = 0; i<turn.length; i++){
         this.physics.add.collider(head, turn[i], changeDirection, null, this);
     }
-    //this.input.keyboard.on('keydown_W', w, player2)
-    //this.input.keyboard.on('keydown_S', s, player2)
-    
-    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    //this.physics.add.overlap(0, ball, p2Score, null, this);
-    //this.physics.add.overlap(600, ball, p1Score, null, this);
-    // ball.setVelocityX(x);
-    // ball.setVelocityY(y);
-    //ball.events.onOutOfBounds.add(ballOut(), this);
 }
 
 function update ()
@@ -145,7 +133,7 @@ function update ()
             //lastY = tempY;
         }
     }
-    console.log(head.body.velocity);
+    //console.log(head.body.velocity);{x:y}
     if(head.y>=height-head.height/2||head.y<=0+head.height/2||head.x>=width-head.height/2||head.x<=0+head.height/2){
         scoreText.setText('You Lose!');
         gameOver = true;
@@ -177,16 +165,17 @@ function scored ()
     apple.setVelocity(0, 0);
     var xy;
     var yx;
-    if(snake[snake.length-1].body.velocity[0]>0){
+    var ne = speed*-1;
+    if(snake[snake.length-1].body.velocity==={speed : 0}){
         var xy = snake[snake.length-1].x-head.length/2-5;
-    }else if(snake[snake.length-1].body.velocity[0]<0){
+    }else if(snake[snake.length-1].body.velocity==={ne : 0}){
         var xy = snake[snake.length-1].x+head.length/2+5;
     }else{
         var xy = snake[snake.length-1].x;
     }
-    if(snake[snake.length-1].body.velocity[1]>0){
+    if(snake[snake.length-1].body.velocity==={0 : speed}){
         var yx = snake[snake.length-1].y-head.length/2-5;
-    }else if(snake[snake.length-1].body.velocity[1]<0){
+    }else if(snake[snake.length-1].body.velocity==={0 : ne}){
         var yx = snake[snake.length-1].y+head.length/2+5;
     }else{
         var yx = snake[snake.length-1].y;
@@ -194,7 +183,6 @@ function scored ()
     var n = this.physics.add.image(xy, yx, 'body');
     n.setScale(width/17/head.height);
     snake.push(n);
-    head.setVelocity(lastY);
     //  Add and update the score
     // scoreText.setText('Score: ' + score+':'+score2);
 
