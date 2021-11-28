@@ -280,13 +280,14 @@ function update ()
             //lastY = tempY;
         }
     }
+    console.log(head.body.velocity);
     if(head.y>=height-head.height/2||head.y<=0+head.height/2||head.x>=width-head.height/2||head.x<=0+head.height/2){
         scoreText.setText('You Lose!');
         gameOver = true;
-        return;
         for(var i = 0; i <snake.length; i++){
             snake[i].setVelocity(0);
         }
+        return;
     }
 }
 
@@ -295,13 +296,13 @@ function scored ()
     if(gameOver){
         return;
     }
-    if(snake.length===15*17){
+    if(snake.length===10/*15*17*/){
         scoreText.setText('You Win!');
         gameOver = true;
-        return;
         for(var i = 0; i <snake.length; i++){
             snake[i].setVelocity(0);
         }
+        return;
     }
     score++;
     scoreText.setText('Score: ' + score);
