@@ -201,9 +201,7 @@ function scored ()
     //  Add and update the score
     scoreText.setText('Score: ' + score+':'+score2);
 
-    if (score === 7||score2===7)
-    {
-        //  A new batch of stars to collect
+    if (score === 7||score2===7){
         if(score === 7){
             scoreText.setText('You win');
         }
@@ -215,9 +213,6 @@ function scored ()
         ball.setVelocityY(0);
         ball.setVelocityX(0);
         gameOver = true;
-    }else{
-        ball.x = width/2;
-        ball.y = height/2;// = this.physics.add.image(400, 300, 'ball');   
     }
 }
 
