@@ -1,0 +1,381 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 10</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+    <p><small>A link to the Home page</small> <a href = ./index.html><small>Home</small></a></p>
+<body>
+
+<script type="text/javascript">
+const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+const height = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+console.log(height+" "+ width)
+var config = {
+    type: Phaser.AUTO,
+    width: width,
+    height: height,
+    backgroundColor: '000000',
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: false
+        }
+    },
+    scene: {
+        preload: preload,
+        create: create,
+        update: update
+    }
+    
+};
+
+// width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+// height = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+var snake = [];
+var turn = [];
+var head;
+var body;
+var apple;
+// var player;
+// var player2;
+// var ball;
+// var background;
+var lastX;
+var lastY;
+var tempX;
+var tempY;
+var cursors;
+var score = 0;
+// var score2 = 0;
+var gameOver = false;
+var scoreText
+var speed = width/4
+// var x = -1*width/4;
+// var y = -1*height/5+10;
+
+var game = new Phaser.Game(config);
+
+function preload ()
+{
+    this.load.image('paddle', 'assets/paddle.png');
+    this.load.image('paddle2', 'assets/paddle.png');
+    this.load.image('head', 'assets/snakeHead.png');
+    this.load.image('body', 'assets/snakeBody.png');
+    this.load.image('turn', 'assets/turnpoint.png');
+    this.load.image('apple', 'assets/apple.png');
+}
+
+function create ()
+{
+    //  A simple background for our game
+    //platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    //game.physics.setBoundsToWorld();
+    //  The platforms group contains the ground and the 2 ledges we can jump on
+    // background = this.physics.add.image(width/2, height/2, 'background');
+    // background.setScale(width);
+    //  Here we create the ground.
+    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
+    //platforms.create(400, 568, 'paddle').setScale(2).refreshBody();
+
+    //  Now let's create some ledges
+
+    // The player and its settings
+    // player = this.physics.add.image(width/12, height/2, 'paddle');
+    // player.setScale(height/3/player.height);
+    // player2 = this.physics.add.image(width/12*11, height/2, 'paddle2');
+    // player2.setScale(height/3/player.height);
+    // ball = this.physics.add.image(width/2, height/2, 'ball');
+    // ball.setScale(height/9/ball.height/2);
+    //snake board 15 by 17 just use 15
+    head = this.physics.add.image(width/2, height/2, 'head');
+    head.setScale(width/17/head.height);
+    apple = this.physics.add.image(width/17*(Math.floor(Math.random()*17))+width/34, height/15*(Math.floor(Math.random()*15))+height/30, 'apple');
+    apple.setScale(width/17/head.height);
+    //  Input Events
+    cursors = this.input.keyboard.createCursorKeys();
+
+    //  The score
+    scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
+    
+    var posx = width/34;
+    var posy = height/30;
+    for(var i = 0; i<15; i++){
+        posy+=height/15
+        for(var j = 0; i<17; i++){
+            turn.push(this.physics.add.image(posx, posy, 'turn'));
+            posx+=width/17
+        }
+        posx = width/34
+    }
+    snake.push(head);
+
+    //  Collide the player and the stars with the platforms
+    // this.physics.add.collider(ball, player, ballOut, null, this);
+    // this.physics.add.collider(ball, player2, ballOut, null, this);
+    this.physics.add.collider(apple, head, scored, null, this);
+    this.physics.add.collider(head, body, hitSelf, null, this);
+    this.physics.add.collider(head, turn, changeDirection, null, this);
+    //this.input.keyboard.on('keydown_W', w, player2)
+    //this.input.keyboard.on('keydown_S', s, player2)
+    
+    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
+    //this.physics.add.overlap(0, ball, p2Score, null, this);
+    //this.physics.add.overlap(600, ball, p1Score, null, this);
+    // ball.setVelocityX(x);
+    // ball.setVelocityY(y);
+    //ball.events.onOutOfBounds.add(ballOut(), this);
+}
+
+function update ()
+{
+    if(gameOver){
+        return;
+    }
+
+    // if (cursors.up.isDown)
+    // {
+    //     player.setVelocityY(-1*height/5);
+    // }
+    // else if (cursors.down.isDown)
+    // {
+    //     player.setVelocityY(height/5);
+    // }
+    // else
+    // {
+    //     player.setVelocityY(0);
+    // }
+    // this.input.keyboard.on('keydown', (event) => {
+    //     if (/*!keys.has(event.code)*/event ==='keydown_W') {
+    //         /*keys.add(event.code);
+    //         this.input.keyboard.emit(`keypress_${event.code}`);
+    //         // or / and
+    //         this.input.keyboard.emit(`keypress`, event.code);
+    //         */
+    //        player2.setVelocityY(-160);
+    //     } else if(event ==='keydown_S'){
+    //         player2.setVelocityY(160);
+    //     } else{
+    //         player2.setVelocityY(0);
+    //     }
+    // });
+    // if(ball.y>player2.y){
+    //     player2.setVelocityY(height/5);
+    // }else if(ball.y<player2.y){
+    //     player2.setVelocityY(-1*height/5);
+    // }else{
+    //     player2.setVelocityY(0);
+    // }
+
+    // code = this.event.KeyCodes;
+    // if (Phaser.Input.Keyboard.KeyCodes.W===code)
+    // {
+    //     player2.setVelocityY(-160);
+    // }
+    // else if (Phaser.Input.Keyboard.KeyCodes.S===code)
+    // {
+    //     player2.setVelocityY(160);
+    // }
+    // else
+    // {
+    //     player2.setVelocityY(0);
+    // }
+
+    //player2.setVelocityY(0);
+    // if(ball.x === player.x&&ball.y==player.y){
+    //     ball.setVelocityX(-1*ball.getVelocityX());
+    //     ball.setVelocityY(-1*ball.getVelocityY());
+    // }
+    // if(ball.x === player2.x&&ball.y==player2.y){
+    //     ball.setVelocityX(-1*ball.getVelocityX());
+    //     ball.setVelocityY(-1*ball.getVelocityY());
+    // }
+    // if(ball.x <= 0+ball.width/2){
+    //     x = x*-1;
+    //     score2++;
+    //     scored();
+    //     if(x>0){
+    //         x=width/4;
+    //     }else{
+    //         x=-1*width/4;
+    //     }
+    //     if(y>0){
+    //         y=height/5+10;
+    //     }else{
+    //         y=-1*height/5+10;
+    //     }
+    //     ball.x = width/2;
+    //     ball.y = height/2;
+    // }
+    // if(ball.x >= width-ball.width/2){
+    //     x = x*-1
+    //     score++;
+    //     scored();
+    //     if(x>0){
+    //         x=width/4;
+    //     }else{
+    //         x=-1*width/4;
+    //     }
+    //     if(y>0){
+    //         y=height/5;
+    //     }else{
+    //         y=-1*height/5;
+    //     }
+    //     ball.x = width/2;
+    //     ball.y = height/2;
+    // }
+    // ball.setVelocityX(x);
+    // if(ball.y <= 0+ball.height/2||ball.y>=height-ball.height/2){
+    //     y = y*-1;
+    //     if(ball.y<=0+ball.height/2){
+    //         ball.setVelocityY(y);
+    //         ball.y+=ball.height/2;
+    //     }else{
+    //         ball.setVelocityY(y);
+    //         ball.y-=ball.height/2;
+    //     }
+    // }
+    // ball.setVelocityY(y);
+    // if(player.y<=0+player.height/2){
+    //     player.y = player.y+player.height/2;
+    // }
+    // if(player.y>=height-player.height/2){
+    //     player.y = player.y-player.height/2
+    // }
+    // if(player2.y<=0+player2.height/2){
+    //     player2.y = player2.y+player2.height/2;
+    // }
+    // if(player2.y>=height-player2.height/2){
+    //     player2.y = player2.y-player2.height/2;
+    // }
+    // scored();
+    lastX = head.x;
+    lastY = head.y;
+    if(head.y>=height||head.y<=0||head.x>=width||head.x<=0){
+        gameOver = true;
+    }
+}
+
+function scored ()
+{
+    if(gameOver){
+        return;
+    }
+    if(snake.length===15*17){
+        scoreText.setText('You Win!');
+        gameOver = true;
+        return;
+    }
+    score++;
+    scoreText.setText('Score: ' + score);
+    apple.x = width/17*(Math.floor(Math.random()*17))+width/34;
+    apple.y = height/15*(Math.floor(Math.random()*15))+height/30;
+    var xy;
+    var yx;
+    if(snake[snake.length-1].getVelocityX()>0){
+        var xy = snake[snake.length-1].x-head.length/2-5;
+    }else if(snake[snake.length-1].getVelocityX()<0){
+        var xy = snake[snake.length-1].x+head.length/2+5;
+    }else{
+        var xy = snake[snake.length-1].x;
+    }
+    if(snake[snake.length-1].getVelocityY()>0){
+        var yx = snake[snake.length-1].y-head.length/2-5;
+    }else if(snake[snake.length-1].getVelocityY()<0){
+        var yx = snake[snake.length-1].y+head.length/2+5;
+    }else{
+        var yx = snake[snake.length-1].y;
+    }
+    snake.push(this.physics.add.image(xy, yx, 'body'))
+    //  Add and update the score
+    // scoreText.setText('Score: ' + score+':'+score2);
+
+    // if (score === 7||score2===7){
+    //     if(score === 7){
+    //         scoreText.setText('You win');
+    //     }
+    //     if(score2 === 7){
+    //         scoreText.setText('Game wins!');
+    //     }
+    //     player2.setVelocityY(0);
+    //     player.setVelocityY(0);
+    //     ball.setVelocityY(0);
+    //     ball.setVelocityX(0);
+    //     gameOver = true;
+    // }
+
+}
+
+function changeDirection(){
+    lastX = head.getVelocityX();
+    lastY = head.getVelocityY();
+    if(cursors.up.isDown){
+        head.setVelocity(0, speed);
+    }
+    if(cursors.down.isDown){
+        head.setVelocity(0, -1*speed);
+    }
+    if(cursors.right.isDown){
+        head.setVelocity(speed, 0);
+    }
+    if(cursors.left.isDown){
+        head.setVelocity(-1*speed, 0);
+    }
+    for(var i = 0; i<snake.length; i++){
+        if(snake[i]!=head){
+            tempX = snake[i].getVelocityX();
+            tempY = snake[i].getVelocityY();
+            snake[i].setVelocty(lastX, lastY);
+            lastX = tempX;
+            lastY = tempY;
+        }
+    }
+}
+
+function hitSelf(){
+    gameOver = true;
+}
+
+// function ballOut(){
+//     if(ball.x<width/2){
+//         x = -1*x;
+//         ball.setVelocityX(width/4); 
+//     }
+//     player2.x = width/12*11;
+//     player2.setVelocityX(0);
+//     if(ball.x>width/2){
+//         x = -1*x;
+//         ball.setVelocityX(-1*width/4); 
+//     }
+//     if(x>0){
+//         x+=10;
+//     }else{
+//         x-=10;
+//     }
+//     if(y>0){
+//         y+=10;
+//     }else{
+//         y-=10;
+//     }
+//     player.x=width/12;
+//     player.setVelocityX(0);
+//     ball.setVelocityX(x);
+//     if(ball.x<0){
+//         score2++;
+//         scored();
+//     }
+//     if(ball.x>width){
+//         score++;
+//         scored();
+//     }
+// }
+</script>
+
+</body>
+</html>
