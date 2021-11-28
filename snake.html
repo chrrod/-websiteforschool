@@ -299,6 +299,7 @@ function scored ()
     scoreText.setText('Score: ' + score);
     apple.x = width/17*(Math.floor(Math.random()*17))+width/34;
     apple.y = height/15*(Math.floor(Math.random()*15))+height/30;
+    apple.setVelocity(0, 0);
     var xy;
     var yx;
     if(snake[snake.length-1].body.velocity[0]>0){
