@@ -73,10 +73,10 @@ function create ()
     // The player and its settings
     player = this.physics.add.image(width/12, height/2, 'paddle');
     player.setScale(height/3/player.height);
-    player2 = this.physics.add.image(width-(width/12), height/2, 'paddle');
+    player2 = this.physics.add.image(width*11, height/2, 'paddle');
     player2.setScale(height/3/this.height);
     ball = this.physics.add.image(width/2, height/2, 'ball');
-    ball.setScale(height/9/ball.height);
+    ball.setScale(height/9/ball.height/2);
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
 
@@ -225,7 +225,7 @@ function ballOut(){
     if(ball.x<width/2){
         ball.setVelocityX(80); 
     }
-    player2.x = width-(width/12);
+    player2.x = width*11;
     player2.setVelocityX(0);
     if(ball.x>width/2){
         ball.setVelocityX(-80); 
