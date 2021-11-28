@@ -107,10 +107,6 @@ function update ()
         ball.setVelocityX(0);
         return;
     }
-    if (gameOver)
-    {
-        return;
-    }
 
     if (cursors.up.isDown)
     {
@@ -198,10 +194,24 @@ function update ()
     if(player2.y>=height-player2.height/2){
         player2.y = player2.y-160;
     }
+    if(gameOver){
+        player2.setVelocityY(0);
+        player.setVelocityY(0);
+        ball.setVelocityY(0);
+        ball.setVelocityX(0);
+        return;
+    }
 }
 
 function scored ()
 {
+    if(gameOver){
+        player2.setVelocityY(0);
+        player.setVelocityY(0);
+        ball.setVelocityY(0);
+        ball.setVelocityX(0);
+        return;
+    }
     //  Add and update the score
     scoreText.setText('Score: ' + score+':'+score2);
 
@@ -219,10 +229,23 @@ function scored ()
         ball.x = width/2;
         ball.y = height/2;// = this.physics.add.image(400, 300, 'ball');   
     }
-    
+    if(gameOver){
+        player2.setVelocityY(0);
+        player.setVelocityY(0);
+        ball.setVelocityY(0);
+        ball.setVelocityX(0);
+        return;
+    }
 }
 
 function ballOut(){
+    if(gameOver){
+        player2.setVelocityY(0);
+        player.setVelocityY(0);
+        ball.setVelocityY(0);
+        ball.setVelocityX(0);
+        return;
+    }
     if(ball.x<width/2){
         ball.setVelocityX(320); 
     }
