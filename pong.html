@@ -7,6 +7,7 @@
     <style type="text/css">
         body {
             margin: 0;
+            background-color: black;
         }
     </style>
 </head>
@@ -37,7 +38,7 @@ const height = window.innerHeight|| document.documentElement.clientHeight|| docu
 var player;
 var player2;
 var ball;
-var background;
+//var background;
 var cursors;
 var score = 0;
 var score2 = 0;
@@ -48,7 +49,7 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('background', 'assets/background.jpg');
+    //this.load.image('background', 'assets/background.jpg');
     this.load.image('paddle', 'assets/paddle.png');
     this.load.image('ball', 'assets/ball.png');
     this.load.image('bomb', 'assets/bomb.png');
@@ -60,8 +61,8 @@ function create ()
     //platforms.create(400, 568, 'ground').setScale(2).refreshBody();
     //game.physics.setBoundsToWorld();
     //  The platforms group contains the ground and the 2 ledges we can jump on
-    background = this.physics.add.staticGroup();
-    background.create(width/2, height/2, 'background').setScale(width).refreshBody();
+    //background = this.physics.add.staticGroup();
+    //background.create(width/2, height/2, 'background').setScale(width).refreshBody();
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
     //platforms.create(400, 568, 'paddle').setScale(2).refreshBody();
