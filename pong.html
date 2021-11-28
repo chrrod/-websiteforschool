@@ -46,7 +46,7 @@ var score2 = 0;
 var gameOver = false;
 var scoreText
 var x = -320;
-var y = -160;
+var y = -170;
 
 var game = new Phaser.Game(config);
 
@@ -167,6 +167,16 @@ function update ()
         x = x*-1;
         score2++;
         scored();
+        if(x>0){
+            x=320;
+        }else{
+            x=-1*320;
+        }
+        if(y>0){
+            y=170;
+        }else{
+            y=-1*170;
+        }
         ball.x = width/2;
         ball.y = height/2;
     }
@@ -174,6 +184,16 @@ function update ()
         x = x*-1
         score++;
         scored();
+        if(x>0){
+            x=320;
+        }else{
+            x=-1*320;
+        }
+        if(y>0){
+            y=170;
+        }else{
+            y=-1*170;
+        }
         ball.x = width/2;
         ball.y = height/2;
     }
@@ -235,6 +255,16 @@ function ballOut(){
     if(ball.x>width/2){
         x = -1*x;
         ball.setVelocityX(-320); 
+    }
+    if(x>0){
+        x+=10;
+    }else{
+        x-=10;
+    }
+    if(y>0){
+        y+=10;
+    }else{
+        y-=10;
     }
     player.x=width/12;
     player.setVelocityX(0);
