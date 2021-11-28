@@ -57,6 +57,7 @@ var score = 0;
 var gameOver = false;
 var scoreText
 var speed = width/4
+var speedy = speed;
 // var x = -1*width/4;
 // var y = -1*height/5+10;
 
@@ -256,8 +257,8 @@ function update ()
     //     player2.y = player2.y-player2.height/2;
     // }
     // scored();
-    lastX = head.getVelocityX();
-    lastY = head.getVelocityY();
+    lastX = head.body.velocity;
+    //lastY = head.getVelocityY();
     if(cursors.up.isDown){
         head.setVelocity(0, speed);
     }
@@ -272,11 +273,11 @@ function update ()
     }
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
-            tempX = snake[i].getVelocityX();
-            tempY = snake[i].getVelocityY();
-            snake[i].setVelocty(lastX, lastY);
+            tempX = snake[i].body.velocity;
+            //tempY = snake[i].getVelocityY();
+            snake[i].setVelocty(lastX);
             lastX = tempX;
-            lastY = tempY;
+            //lastY = tempY;
         }
     }
     if(head.y>=height||head.y<=0||head.x>=width||head.x<=0){
@@ -300,16 +301,16 @@ function scored ()
     apple.y = height/15*(Math.floor(Math.random()*15))+height/30;
     var xy;
     var yx;
-    if(snake[snake.length-1].getVelocityX()>0){
+    if(snake[snake.length-1].body.velocity[0]>0){
         var xy = snake[snake.length-1].x-head.length/2-5;
-    }else if(snake[snake.length-1].getVelocityX()<0){
+    }else if(snake[snake.length-1].body.velocity[0]<0){
         var xy = snake[snake.length-1].x+head.length/2+5;
     }else{
         var xy = snake[snake.length-1].x;
     }
-    if(snake[snake.length-1].getVelocityY()>0){
+    if(snake[snake.length-1].body.velocity[1]>0){
         var yx = snake[snake.length-1].y-head.length/2-5;
-    }else if(snake[snake.length-1].getVelocityY()<0){
+    }else if(snake[snake.length-1].body.velocity[1]<0){
         var yx = snake[snake.length-1].y+head.length/2+5;
     }else{
         var yx = snake[snake.length-1].y;
@@ -335,8 +336,8 @@ function scored ()
 }
 
 function changeDirection(){
-    lastX = head.getVelocityX();
-    lastY = head.getVelocityY();
+    lastX = head.body.velocity;
+    //lastY = head.getVelocityY();
     if(cursors.up.isDown){
         head.setVelocity(0, speed);
     }
@@ -351,11 +352,11 @@ function changeDirection(){
     }
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
-            tempX = snake[i].getVelocityX();
-            tempY = snake[i].getVelocityY();
-            snake[i].setVelocty(lastX, lastY);
+            tempX = snake[i].body.velocity;
+            //tempY = snake[i].getVelocityY();
+            snake[i].setVelocty(lastX);
             lastX = tempX;
-            lastY = tempY;
+            //lastY = tempY;
         }
     }
 }
