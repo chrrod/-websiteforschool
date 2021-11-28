@@ -93,8 +93,8 @@ function create ()
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     //this.physics.add.overlap(0, ball, p2Score, null, this);
     //this.physics.add.overlap(600, ball, p1Score, null, this);
-    ball.setVelocityX(-160);
-    ball.setVelocityY(-80);
+    ball.setVelocityX(-320);
+    ball.setVelocityY(-160);
     //ball.events.onOutOfBounds.add(ballOut(), this);
 }
 
@@ -163,20 +163,20 @@ function update ()
     //     ball.setVelocityY(-1*ball.getVelocityY());
     // }
     if(ball.x <= 0){
-        ball.setVelocityX(80);
+        ball.setVelocityX(320);
         score2++;
         scored();
     }
     if(ball.x >= width){
-        ball.setVelocityX(-80);
+        ball.setVelocityX(-320);
         score++;
         scored();
     }
     if(ball.y <= 0||ball.y>=height){
         if(ball.y<=0){
-            ball.setVelocityY(80);
+            ball.setVelocityY(160);
         }else{
-            ball.setVelocityY(-80);
+            ball.setVelocityY(-160);
         }
     }
     if(player.y<=0){
@@ -227,12 +227,12 @@ function s (){
 }
 function ballOut(){
     if(ball.x<width/2){
-        ball.setVelocityX(80); 
+        ball.setVelocityX(320); 
     }
     player2.x = width/12*11;
     player2.setVelocityX(0);
     if(ball.x>width/2){
-        ball.setVelocityX(-80); 
+        ball.setVelocityX(-320); 
     }
     player.x=width/12;
     player.setVelocityX(0);
