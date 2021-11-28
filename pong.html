@@ -101,10 +101,6 @@ function create ()
 function update ()
 {
     if(gameOver){
-        player2.setVelocityY(0);
-        player.setVelocityY(0);
-        ball.setVelocityY(0);
-        ball.setVelocityX(0);
         return;
     }
 
@@ -195,22 +191,11 @@ function update ()
         player2.y = player2.y-160;
     }
     scored();
-    if(gameOver){
-        player2.setVelocityY(0);
-        player.setVelocityY(0);
-        ball.setVelocityY(0);
-        ball.setVelocityX(0);
-        return;
-    }
 }
 
 function scored ()
 {
     if(gameOver){
-        player2.setVelocityY(0);
-        player.setVelocityY(0);
-        ball.setVelocityY(0);
-        ball.setVelocityX(0);
         return;
     }
     //  Add and update the score
@@ -225,28 +210,18 @@ function scored ()
         if(score2 === 7){
             scoreText.setText('Game wins!');
         }
+        player2.setVelocityY(0);
+        player.setVelocityY(0);
+        ball.setVelocityY(0);
+        ball.setVelocityX(0);
         gameOver = true;
     }else{
         ball.x = width/2;
         ball.y = height/2;// = this.physics.add.image(400, 300, 'ball');   
     }
-    if(gameOver){
-        player2.setVelocityY(0);
-        player.setVelocityY(0);
-        ball.setVelocityY(0);
-        ball.setVelocityX(0);
-        return;
-    }
 }
 
 function ballOut(){
-    if(gameOver){
-        player2.setVelocityY(0);
-        player.setVelocityY(0);
-        ball.setVelocityY(0);
-        ball.setVelocityX(0);
-        return;
-    }
     if(ball.x<width/2){
         ball.setVelocityX(320); 
     }
