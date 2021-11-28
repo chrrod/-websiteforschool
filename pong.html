@@ -45,6 +45,8 @@ var score = 0;
 var score2 = 0;
 var gameOver = false;
 var scoreText
+var x = -320;
+var y = -160;
 
 var game = new Phaser.Game(config);
 
@@ -93,8 +95,8 @@ function create ()
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     //this.physics.add.overlap(0, ball, p2Score, null, this);
     //this.physics.add.overlap(600, ball, p1Score, null, this);
-    ball.setVelocityX(-320);
-    ball.setVelocityY(-160);
+    ball.setVelocityX(x);
+    ball.setVelocityY(y);
     //ball.events.onOutOfBounds.add(ballOut(), this);
 }
 
@@ -162,26 +164,29 @@ function update ()
     //     ball.setVelocityY(-1*ball.getVelocityY());
     // }
     if(ball.x <= 0+ball.width/2){
-        ball.setVelocityX(320);
+        x = x*-1;
         score2++;
         scored();
         ball.x = width/2;
         ball.y = height/2;
     }
     if(ball.x >= width-ball.width/2){
-        ball.setVelocityX(-320);
+        x = x*-1
         score++;
         scored();
         ball.x = width/2;
         ball.y = height/2;
     }
+    ball.setVelocityX(x);
     if(ball.y <= 0+ball.height/2||ball.y>=height-ball.height/2){
+        y = y*-1;
         if(ball.y<=0+ball.height/2){
-            ball.setVelocityY(160);
+            ball.setVelocityY(y);
         }else{
-            ball.setVelocityY(-160);
+            ball.setVelocityY(y);
         }
     }
+    ball.setVelocityY(y);
     if(player.y<=0+player.height/2){
         player.y = player.y+160;
     }
@@ -212,21 +217,28 @@ function scored ()
         if(score2 === 7){
             scoreText.setText('Game wins!');
         }
+        player2.setVelocityY(0);
+        player.setVelocityY(0);
+        ball.setVelocityY(0);
+        ball.setVelocityX(0);
         gameOver = true;
     }
 }
 
 function ballOut(){
     if(ball.x<width/2){
+        x = -1*x;
         ball.setVelocityX(320); 
     }
     player2.x = width/12*11;
     player2.setVelocityX(0);
     if(ball.x>width/2){
+        x = -1*x;
         ball.setVelocityX(-320); 
     }
     player.x=width/12;
     player.setVelocityX(0);
+    ball.setVelocityX(x);
     if(ball.x<0){
         score2++;
         scored();
