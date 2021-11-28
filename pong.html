@@ -194,6 +194,7 @@ function update ()
     if(player2.y>=height-player2.height/2){
         player2.y = player2.y-160;
     }
+    scored();
     if(gameOver){
         player2.setVelocityY(0);
         player.setVelocityY(0);
@@ -224,7 +225,7 @@ function scored ()
         if(score2 === 7){
             scoreText.setText('Game wins!');
         }
-        gameOver === true;
+        gameOver = true;
     }else{
         ball.x = width/2;
         ball.y = height/2;// = this.physics.add.image(400, 300, 'ball');   
