@@ -163,8 +163,8 @@ function scored ()
     apple.x = width/17*(Math.floor(Math.random()*17))+width/34;
     apple.y = height/15*(Math.floor(Math.random()*15))+height/30;
     apple.setVelocity(0, 0);
-    var xy;
-    var yx;
+    var xy = 50;
+    var yx = 50;
     var ne = speed*-1;
     if(snake[snake.length-1].body.velocity==={speed : 0}){
         var xy = snake[snake.length-1].x-head.length/2-5;
@@ -183,23 +183,6 @@ function scored ()
     var n = this.physics.add.image(xy, yx, 'body');
     n.setScale(width/17/head.height);
     snake.push(n);
-    //  Add and update the score
-    // scoreText.setText('Score: ' + score+':'+score2);
-
-    // if (score === 7||score2===7){
-    //     if(score === 7){
-    //         scoreText.setText('You win');
-    //     }
-    //     if(score2 === 7){
-    //         scoreText.setText('Game wins!');
-    //     }
-    //     player2.setVelocityY(0);
-    //     player.setVelocityY(0);
-    //     ball.setVelocityY(0);
-    //     ball.setVelocityX(0);
-    //     gameOver = true;
-    // }
-
 }
 
 function changeDirection(){
@@ -232,39 +215,6 @@ function hitSelf(){
     gameOver = true;
 }
 
-// function ballOut(){
-//     if(ball.x<width/2){
-//         x = -1*x;
-//         ball.setVelocityX(width/4); 
-//     }
-//     player2.x = width/12*11;
-//     player2.setVelocityX(0);
-//     if(ball.x>width/2){
-//         x = -1*x;
-//         ball.setVelocityX(-1*width/4); 
-//     }
-//     if(x>0){
-//         x+=10;
-//     }else{
-//         x-=10;
-//     }
-//     if(y>0){
-//         y+=10;
-//     }else{
-//         y-=10;
-//     }
-//     player.x=width/12;
-//     player.setVelocityX(0);
-//     ball.setVelocityX(x);
-//     if(ball.x<0){
-//         score2++;
-//         scored();
-//     }
-//     if(ball.x>width){
-//         score++;
-//         scored();
-//     }
-// }
 </script>
 
 </body>
