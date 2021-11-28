@@ -52,6 +52,7 @@ function preload ()
 {
     // this.load.image('background', 'assets/background.jpg');
     this.load.image('paddle', 'assets/paddle.png');
+    this.load.image('paddle2', 'assets/paddle.png');
     this.load.image('ball', 'assets/ball.png');
     this.load.image('bomb', 'assets/bomb.png');
 }
@@ -73,8 +74,8 @@ function create ()
     // The player and its settings
     player = this.physics.add.image(width/12, height/2, 'paddle');
     player.setScale(height/3/player.height);
-    player2 = this.physics.add.image(width*11, height/2, 'paddle');
-    player2.setScale(height/3/player2.height);
+    player2 = this.physics.add.image(width/12*11, height/2, 'paddle2');
+    player2.setScale(height/3/player.height);
     ball = this.physics.add.image(width/2, height/2, 'ball');
     ball.setScale(height/9/ball.height/2);
     //  Input Events
@@ -228,7 +229,7 @@ function ballOut(){
     if(ball.x<width/2){
         ball.setVelocityX(80); 
     }
-    player2.x = width*11;
+    player2.x = width/12*11;
     player2.setVelocityX(0);
     if(ball.x>width/2){
         ball.setVelocityX(-80); 
