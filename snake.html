@@ -121,7 +121,9 @@ function create ()
     // this.physics.add.collider(ball, player2, ballOut, null, this);
     this.physics.add.collider(apple, head, scored, null, this);
     this.physics.add.collider(head, body, hitSelf, null, this);
-    this.physics.add.collider(head, turn, changeDirection, null, this);
+    for(var i = 0; i<turn.length; i++){
+        this.physics.add.collider(head, turn[i], changeDirection, null, this);
+    }
     //this.input.keyboard.on('keydown_W', w, player2)
     //this.input.keyboard.on('keydown_S', s, player2)
     
@@ -137,9 +139,6 @@ function update ()
 {
     if(gameOver){
         return;
-    }
-    for(var i = 0; i<turn.length; i++){
-        this.physics.add.collider(head, turn[i], changeDirection, null, this);
     }
     // if (cursors.up.isDown)
     // {
