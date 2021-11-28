@@ -69,9 +69,12 @@ function create ()
     //  Now let's create some ledges
 
     // The player and its settings
-    player = this.physics.add.image(width/12, height/2, 'paddle').setScale(height/3/this.height);
-    player2 = this.physics.add.image(width-(width/12), height/2, 'paddle').setScale(height/3/this.height);
-    ball = this.physics.add.image(width/2, height/2, 'ball').setScale(height/9/this.height);
+    player = this.physics.add.image(width/12, height/2, 'paddle');
+    player.setScale(height/3/player.height);
+    player2 = this.physics.add.image(width-(width/12), height/2, 'paddle');
+    player2.setScale(height/3/this.height);
+    ball = this.physics.add.image(width/2, height/2, 'ball');
+    ball.setScale(height/9/ball.height);
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
 
