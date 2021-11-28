@@ -165,11 +165,15 @@ function update ()
         ball.setVelocityX(320);
         score2++;
         scored();
+        ball.x = width/2;
+        ball.y = height/2;
     }
     if(ball.x >= width-ball.width/2){
         ball.setVelocityX(-320);
         score++;
         scored();
+        ball.x = width/2;
+        ball.y = height/2;
     }
     if(ball.y <= 0+ball.height/2||ball.y>=height-ball.height/2){
         if(ball.y<=0+ball.height/2){
