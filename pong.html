@@ -173,7 +173,7 @@ function update ()
         scored();
     }
     if(ball.y <= 0+ball.height/2||ball.y>=height-ball.height/2){
-        if(ball.y<=0){
+        if(ball.y<=0+ball.height/2){
             ball.setVelocityY(160);
         }else{
             ball.setVelocityY(-160);
