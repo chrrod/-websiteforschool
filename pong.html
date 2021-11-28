@@ -100,6 +100,13 @@ function create ()
 
 function update ()
 {
+    if(gameOver){
+        player2.setVelocityY(0);
+        player.setVelocityY(0);
+        ball.setVelocityY(0);
+        ball.setVelocityX(0);
+        return;
+    }
     if (gameOver)
     {
         return;
@@ -191,18 +198,10 @@ function update ()
     if(player2.y>=height-player2.height/2){
         player2.y = player2.y-160;
     }
-    scored;
 }
 
 function scored ()
 {
-    if(gameOver){
-        player2.setVelocityY(0);
-        player.setVelocityY(0);
-        ball.setVelocityY(0);
-        ball.setVelocityY(0);
-        return;
-    }
     //  Add and update the score
     scoreText.setText('Score: ' + score+':'+score2);
 
@@ -223,13 +222,6 @@ function scored ()
     
 }
 
-function w (){
-    player2.setVelocityY(-160);
-}
-
-function s (){
-    player2.setVelocityY(160);
-}
 function ballOut(){
     if(ball.x<width/2){
         ball.setVelocityX(320); 
