@@ -162,40 +162,45 @@ function update ()
     //     ball.setVelocityX(-1*ball.getVelocityX());
     //     ball.setVelocityY(-1*ball.getVelocityY());
     // }
-    if(ball.x <= 0){
+    if(ball.x <= 0+ball.width/2){
         ball.setVelocityX(320);
         score2++;
         scored();
     }
-    if(ball.x >= width){
+    if(ball.x >= width-ball.widht/2){
         ball.setVelocityX(-320);
         score++;
         scored();
     }
-    if(ball.y <= 0||ball.y>=height){
+    if(ball.y <= 0+ball.height/2||ball.y>=height-ball.height/2){
         if(ball.y<=0){
             ball.setVelocityY(160);
         }else{
             ball.setVelocityY(-160);
         }
     }
-    if(player.y<=0){
+    if(player.y<=0+player.height/2){
         player.y = player.y+160;
     }
-    if(player.y>=height){
+    if(player.y>=height-player.height/2){
         player.y = player.y-160;
     }
-    if(player2.y<=0){
+    if(player2.y<=0+player2.height/2){
         player2.y = player2.y+160;
     }
-    if(player2.y>=height){
+    if(player2.y>=height-player2.height/2){
         player2.y = player2.y-160;
     }
+    scored;
 }
 
 function scored ()
 {
     if(gameOver){
+        player2.setVelocityY(0);
+        player.setVelocityY(0);
+        ball.setVelocityY(0);
+        ball.setVelocityY(0);
         return;
     }
     //  Add and update the score
