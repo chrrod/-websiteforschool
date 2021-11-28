@@ -202,8 +202,10 @@ function update ()
         y = y*-1;
         if(ball.y<=0+ball.height/2){
             ball.setVelocityY(y);
+            ball.y+=ball.height/2;
         }else{
             ball.setVelocityY(y);
+            ball.y-=ball.height/2;
         }
     }
     ball.setVelocityY(y);
