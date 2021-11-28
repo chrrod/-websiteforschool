@@ -75,26 +75,6 @@ function preload ()
 
 function create ()
 {
-    //  A simple background for our game
-    //platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-    //game.physics.setBoundsToWorld();
-    //  The platforms group contains the ground and the 2 ledges we can jump on
-    // background = this.physics.add.image(width/2, height/2, 'background');
-    // background.setScale(width);
-    //  Here we create the ground.
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    //platforms.create(400, 568, 'paddle').setScale(2).refreshBody();
-
-    //  Now let's create some ledges
-
-    // The player and its settings
-    // player = this.physics.add.image(width/12, height/2, 'paddle');
-    // player.setScale(height/3/player.height);
-    // player2 = this.physics.add.image(width/12*11, height/2, 'paddle2');
-    // player2.setScale(height/3/player.height);
-    // ball = this.physics.add.image(width/2, height/2, 'ball');
-    // ball.setScale(height/9/ball.height/2);
-    //snake board 15 by 17 just use 15
     head = this.physics.add.image(width/17*8, height/15*7, 'head');
     head.setScale(width/17/head.height);
     apple = this.physics.add.image(width/17*(Math.floor(Math.random()*17))+width/34, height/15*(Math.floor(Math.random()*15))+height/30, 'apple');
@@ -165,7 +145,7 @@ function update ()
             //lastY = tempY;
         }
     }
-    console.log(head.body.velocity[0]);
+    console.log(head.body.velocity);
     if(head.y>=height-head.height/2||head.y<=0+head.height/2||head.x>=width-head.height/2||head.x<=0+head.height/2){
         scoreText.setText('You Lose!');
         gameOver = true;
@@ -177,7 +157,8 @@ function update ()
 }
 
 function scored ()
-{
+{  
+    lastY = head.velocity;
     if(gameOver){
         return;
     }
@@ -213,6 +194,7 @@ function scored ()
     var n = this.physics.add.image(xy, yx, 'body');
     n.setScale(width/17/head.height);
     snake.push(n);
+    head.setVelocity(lastY);
     //  Add and update the score
     // scoreText.setText('Score: ' + score+':'+score2);
 
