@@ -281,7 +281,12 @@ function update ()
         }
     }
     if(head.y>=height-head.height/2||head.y<=0+head.height/2||head.x>=width-head.height/2||head.x<=0+head.height/2){
+        scoreText.setText('You Lose!');
         gameOver = true;
+        return;
+        for(var i = 0; i <snake.length; i++){
+            snake[i].setVelocity(0);
+        }
     }
 }
 
@@ -294,6 +299,9 @@ function scored ()
         scoreText.setText('You Win!');
         gameOver = true;
         return;
+        for(var i = 0; i <snake.length; i++){
+            snake[i].setVelocity(0);
+        }
     }
     score++;
     scoreText.setText('Score: ' + score);
@@ -316,7 +324,9 @@ function scored ()
     }else{
         var yx = snake[snake.length-1].y;
     }
-    snake.push(this.physics.add.image(xy, yx, 'body').setScale(width/17/head.height))
+    var n = this.physics.add.image(xy, yx, 'body');
+    n.setScale(width/17/head.height);
+    snake.push(n);
     //  Add and update the score
     // scoreText.setText('Score: ' + score+':'+score2);
 
