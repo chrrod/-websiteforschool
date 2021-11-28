@@ -221,13 +221,15 @@ function s (){
 }
 function ballOut(){
     if(ball.x<width/2){
-        ball.setVelocityX(80);
-        player2.x = width-(width/12);
+        ball.setVelocityX(80); 
     }
+    player2.x = width-(width/12);
+    player2.setVelocityX(0);
     if(ball.x>width/2){
-        ball.setVelocityX(-80);
-        player.x=width/12
+        ball.setVelocityX(-80); 
     }
+    player.x=width/12;
+    player.setVelocityX(0);
     if(ball.x<0){
         score2++;
         scored();
