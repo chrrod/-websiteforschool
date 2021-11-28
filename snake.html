@@ -94,7 +94,7 @@ function create ()
     // ball = this.physics.add.image(width/2, height/2, 'ball');
     // ball.setScale(height/9/ball.height/2);
     //snake board 15 by 17 just use 15
-    head = this.physics.add.image(width/2, height/2, 'head');
+    head = this.physics.add.image(width/17*8, height/15*7, 'head');
     head.setScale(width/17/head.height);
     apple = this.physics.add.image(width/17*(Math.floor(Math.random()*17))+width/34, height/15*(Math.floor(Math.random()*15))+height/30, 'apple');
     apple.setScale(width/17/head.height);
@@ -138,7 +138,9 @@ function update ()
     if(gameOver){
         return;
     }
-
+    for(var i = 0; i<turn.length; i++){
+        this.physics.add.collider(head, turn[i], changeDirection, null, this);
+    }
     // if (cursors.up.isDown)
     // {
     //     player.setVelocityY(-1*height/5);
