@@ -141,122 +141,7 @@ function update ()
     if(gameOver){
         return;
     }
-    // if (cursors.up.isDown)
-    // {
-    //     player.setVelocityY(-1*height/5);
-    // }
-    // else if (cursors.down.isDown)
-    // {
-    //     player.setVelocityY(height/5);
-    // }
-    // else
-    // {
-    //     player.setVelocityY(0);
-    // }
-    // this.input.keyboard.on('keydown', (event) => {
-    //     if (/*!keys.has(event.code)*/event ==='keydown_W') {
-    //         /*keys.add(event.code);
-    //         this.input.keyboard.emit(`keypress_${event.code}`);
-    //         // or / and
-    //         this.input.keyboard.emit(`keypress`, event.code);
-    //         */
-    //        player2.setVelocityY(-160);
-    //     } else if(event ==='keydown_S'){
-    //         player2.setVelocityY(160);
-    //     } else{
-    //         player2.setVelocityY(0);
-    //     }
-    // });
-    // if(ball.y>player2.y){
-    //     player2.setVelocityY(height/5);
-    // }else if(ball.y<player2.y){
-    //     player2.setVelocityY(-1*height/5);
-    // }else{
-    //     player2.setVelocityY(0);
-    // }
-
-    // code = this.event.KeyCodes;
-    // if (Phaser.Input.Keyboard.KeyCodes.W===code)
-    // {
-    //     player2.setVelocityY(-160);
-    // }
-    // else if (Phaser.Input.Keyboard.KeyCodes.S===code)
-    // {
-    //     player2.setVelocityY(160);
-    // }
-    // else
-    // {
-    //     player2.setVelocityY(0);
-    // }
-
-    //player2.setVelocityY(0);
-    // if(ball.x === player.x&&ball.y==player.y){
-    //     ball.setVelocityX(-1*ball.getVelocityX());
-    //     ball.setVelocityY(-1*ball.getVelocityY());
-    // }
-    // if(ball.x === player2.x&&ball.y==player2.y){
-    //     ball.setVelocityX(-1*ball.getVelocityX());
-    //     ball.setVelocityY(-1*ball.getVelocityY());
-    // }
-    // if(ball.x <= 0+ball.width/2){
-    //     x = x*-1;
-    //     score2++;
-    //     scored();
-    //     if(x>0){
-    //         x=width/4;
-    //     }else{
-    //         x=-1*width/4;
-    //     }
-    //     if(y>0){
-    //         y=height/5+10;
-    //     }else{
-    //         y=-1*height/5+10;
-    //     }
-    //     ball.x = width/2;
-    //     ball.y = height/2;
-    // }
-    // if(ball.x >= width-ball.width/2){
-    //     x = x*-1
-    //     score++;
-    //     scored();
-    //     if(x>0){
-    //         x=width/4;
-    //     }else{
-    //         x=-1*width/4;
-    //     }
-    //     if(y>0){
-    //         y=height/5;
-    //     }else{
-    //         y=-1*height/5;
-    //     }
-    //     ball.x = width/2;
-    //     ball.y = height/2;
-    // }
-    // ball.setVelocityX(x);
-    // if(ball.y <= 0+ball.height/2||ball.y>=height-ball.height/2){
-    //     y = y*-1;
-    //     if(ball.y<=0+ball.height/2){
-    //         ball.setVelocityY(y);
-    //         ball.y+=ball.height/2;
-    //     }else{
-    //         ball.setVelocityY(y);
-    //         ball.y-=ball.height/2;
-    //     }
-    // }
-    // ball.setVelocityY(y);
-    // if(player.y<=0+player.height/2){
-    //     player.y = player.y+player.height/2;
-    // }
-    // if(player.y>=height-player.height/2){
-    //     player.y = player.y-player.height/2
-    // }
-    // if(player2.y<=0+player2.height/2){
-    //     player2.y = player2.y+player2.height/2;
-    // }
-    // if(player2.y>=height-player2.height/2){
-    //     player2.y = player2.y-player2.height/2;
-    // }
-    // scored();
+    
     lastX = head.body.velocity;
     //lastY = head.getVelocityY();
     if(cursors.up.isDown){
@@ -280,7 +165,7 @@ function update ()
             //lastY = tempY;
         }
     }
-    console.log(head.body.velocity);
+    console.log(head.body.velocity[0]);
     if(head.y>=height-head.height/2||head.y<=0+head.height/2||head.x>=width-head.height/2||head.x<=0+head.height/2){
         scoreText.setText('You Lose!');
         gameOver = true;
@@ -296,7 +181,7 @@ function scored ()
     if(gameOver){
         return;
     }
-    if(snake.length===10/*15*17*/){
+    if(snake.length===15*17){
         scoreText.setText('You Win!');
         gameOver = true;
         for(var i = 0; i <snake.length; i++){
