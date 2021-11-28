@@ -74,7 +74,7 @@ function create ()
     player = this.physics.add.image(width/12, height/2, 'paddle');
     player.setScale(height/3/player.height);
     player2 = this.physics.add.image(width*11, height/2, 'paddle');
-    player2.setScale(height/3/this.height);
+    player2.setScale(height/3/player2.height);
     ball = this.physics.add.image(width/2, height/2, 'ball');
     ball.setScale(height/9/ball.height/2);
     //  Input Events
@@ -194,6 +194,9 @@ function update ()
 
 function scored ()
 {
+    if(gameOver){
+        return;
+    }
     //  Add and update the score
     scoreText.setText('Score: ' + score+':'+score2);
 
