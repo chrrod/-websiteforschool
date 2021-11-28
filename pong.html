@@ -60,7 +60,7 @@ function create ()
     //platforms.create(400, 568, 'ground').setScale(2).refreshBody();
     //game.physics.setBoundsToWorld();
     //  The platforms group contains the ground and the 2 ledges we can jump on
-    background = this.physics.add.image(width/2, height/2);
+    background = this.physics.add.image(width/2, height/2, 'background');
     background.setScale(width);
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
@@ -226,7 +226,7 @@ function ballOut(){
     }
     if(ball.x>width/2){
         ball.setVelocityX(-80);
-        player2.x=width/12
+        player.x=width/12
     }
     if(ball.x<0){
         score2++;
