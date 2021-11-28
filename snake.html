@@ -180,6 +180,7 @@ function scored ()
     }else{
         var yx = snake[snake.length-1].y;
     }
+    console.log(head.x+" "+head.y+" : "+xy+" " + yx);
     var n = this.physics.add.image(xy, yx, 'body');
     n.setScale(width/17/head.height);
     snake.push(n);
