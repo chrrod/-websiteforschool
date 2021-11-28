@@ -256,8 +256,29 @@ function update ()
     //     player2.y = player2.y-player2.height/2;
     // }
     // scored();
-    lastX = head.x;
-    lastY = head.y;
+    lastX = head.getVelocityX();
+    lastY = head.getVelocityY();
+    if(cursors.up.isDown){
+        head.setVelocity(0, speed);
+    }
+    if(cursors.down.isDown){
+        head.setVelocity(0, -1*speed);
+    }
+    if(cursors.right.isDown){
+        head.setVelocity(speed, 0);
+    }
+    if(cursors.left.isDown){
+        head.setVelocity(-1*speed, 0);
+    }
+    for(var i = 0; i<snake.length; i++){
+        if(snake[i]!=head){
+            tempX = snake[i].getVelocityX();
+            tempY = snake[i].getVelocityY();
+            snake[i].setVelocty(lastX, lastY);
+            lastX = tempX;
+            lastY = tempY;
+        }
+    }
     if(head.y>=height||head.y<=0||head.x>=width||head.x<=0){
         gameOver = true;
     }
