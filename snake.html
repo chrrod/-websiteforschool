@@ -165,23 +165,31 @@ function scored ()
     apple.setVelocity(0, 0);
     var xy = 50;
     var yx = 50;
+    var u = this.physics.add.image(width+100, height+100, 'turn');
+    u.setVelocity(0, -1*speed);
+    var d = this.physics.add.image(width+50, height+100, 'turn');
+    d.setVelocity(0, speed);
+    var l = this.physics.add.image(width+100, height+50, 'turn');
+    l.setVelocity(-1*speed, 0);
+    var r = this.physics.add.image(width+50, height+50, 'turn');
+    r.setVelocity(speed, 0);
     var ne = speed*-1;
     console.log(head.x+" "+head.y);
     //console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length+" "+head.height);
-    if(snake[snake.length-1].body.velocity==={speed : 0}){
+    if(snake[snake.length-1].body.velocity===r.body.velocity){
         xy = snake[snake.length-1].x-head.height-5;
         console.log(xy);
-    }else if(snake[snake.length-1].body.velocity==={ne : 0}){
+    }else if(snake[snake.length-1].body.velocity===l.body.velocity){
         xy = snake[snake.length-1].x+head.height/2+5;
         console.log(xy);
     }else{
         xy = snake[snake.length-1].x;
         console.log(xy);
     }
-    if(snake[snake.length-1].body.velocity==={0 : speed}){
+    if(snake[snake.length-1].body.velocity===d.body.velocity){
         yx = snake[snake.length-1].y-head.height-5;
         console.log(yx);
-    }else if(snake[snake.length-1].body.velocity==={0 : ne}){
+    }else if(snake[snake.length-1].body.velocity===u.body.velocity){
         yx = snake[snake.length-1].y+head.height+5;
         console.log(yx);
     }else{
