@@ -117,18 +117,15 @@ function update ()
         head.setVelocity(0, -1*speed);
         lastY = 0;
         tempY = -1;
-    }
-    if(cursors.down.isDown){
+    }else if(cursors.down.isDown){
         head.setVelocity(0, speed);
         lastY = 0;
         tempY = 1;
-    }
-    if(cursors.right.isDown){
+    }else if(cursors.right.isDown){
         head.setVelocity(speed, 0);
         lastY = 1;
         tempY = 0;
-    }
-    if(cursors.left.isDown){
+    }else if(cursors.left.isDown){
         head.setVelocity(-1*speed, 0);
         lastY = -1;
         tempY = 0;
@@ -186,19 +183,19 @@ function scored ()
     console.log(head.x+" "+head.y);
     console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
     if(lastY>0){
-        xy = snake[snake.length-1].x-2*head.height-5;
+        xy = snake[snake.length-1].x-4*head.height-5;
         console.log('worked');
     }else if(lastY<0){
-        xy = snake[snake.length-1].x+2*head.height+5;
+        xy = snake[snake.length-1].x+4*head.height+5;
         console.log('worked');
     }else{
         xy = snake[snake.length-1].x;
     }
     if(tempY>0){
-        yx = snake[snake.length-1].y-2*head.height-5;
+        yx = snake[snake.length-1].y-4*head.height-5;
         console.log('worked');
     }else if(tempY<0){
-        yx = snake[snake.length-1].y+2*head.height+5;
+        yx = snake[snake.length-1].y+4*head.height+5;
         console.log('worked');
     }else{
         yx = snake[snake.length-1].y;
