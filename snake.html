@@ -81,6 +81,7 @@ function create ()
     apple.setScale(width/17/apple.height);
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
+    body = physics.add.group();
 
     //  The score
     scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
@@ -196,11 +197,11 @@ function scored ()
         yx = snake[snake.length-1].y;
         console.log(yx);
     }
+    var bod = body.create(xy, yx, 'body');
     //console.log(head.x+" "+head.y+" : "+xy+" " + yx);
     //console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length);
-    var n = this.physics.add.image(xy, yx, 'body');
-    n.setScale(width/17/head.height);
-    snake.push(n);
+    bod.setScale(width/17/head.height);
+    snake.push(bod);
 }
 
 function changeDirection(){
