@@ -115,21 +115,29 @@ function update ()
     //lastY = head.getVelocityY();
     if(cursors.up.isDown){
         head.setVelocity(0, -1*speed);
+        lastY = 0;
+        tempY = -1;
     }
     if(cursors.down.isDown){
         head.setVelocity(0, speed);
+        lastY = 0;
+        tempY = 1;
     }
     if(cursors.right.isDown){
         head.setVelocity(speed, 0);
+        lastY = 1;
+        tempY = 0;
     }
     if(cursors.left.isDown){
         head.setVelocity(-1*speed, 0);
+        lastY = -1;
+        tempY = 0;
     }
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
             tempX = snake[i].body.velocity;
             //tempY = snake[i].getVelocityY();
-            snake[i].setVelocity(lastX);
+            snake[i].body.velocity = lastX;
             lastX = tempX;
             //lastY = tempY;
         }
@@ -177,27 +185,27 @@ function scored ()
     var ne = speed*-1;
     console.log(head.x+" "+head.y);
     console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
-    // if(snake[snake.length-1].body.velocity===r.body.velocity){
-    //     xy = snake[snake.length-1].x-head.height-5;
-    //     console.log(xy);
-    // }else if(snake[snake.length-1].body.velocity===l.body.velocity){
-    //     xy = snake[snake.length-1].x+head.height/2+5;
-    //     console.log(xy);
-    // }else{
-    //     xy = snake[snake.length-1].x;
-    //     console.log(xy);
-    // }
-    // if(snake[snake.length-1].body.velocity===d.body.velocity){
-    //     yx = snake[snake.length-1].y-head.height-5;
-    //     console.log(yx);
-    // }else if(snake[snake.length-1].body.velocity===u.body.velocity){
-    //     yx = snake[snake.length-1].y+head.height+5;
-    //     console.log(yx);
-    // }else{
-    //     yx = snake[snake.length-1].y;
-    //     console.log(yx);
-    // }
-    var bod = body.create(snake[snake.length-1].x, snake[snake.length-1].y, 'body');
+    if(lastY===1){
+        xy = snake[snake.length-1].x-head.height-5;
+        console.log(xy);
+    }else if(lastY===-1){
+        xy = snake[snake.length-1].x+head.height/2+5;
+        console.log(xy);
+    }else{
+        xy = snake[snake.length-1].x;
+        console.log(xy);
+    }
+    if(tempY===1){
+        yx = snake[snake.length-1].y-head.height-5;
+        console.log(yx);
+    }else if(tempY===-1){
+        yx = snake[snake.length-1].y+head.height+5;
+        console.log(yx);
+    }else{
+        yx = snake[snake.length-1].y;
+        console.log(yx);
+    }
+    var bod = body.create(xy, yx, 'body');
     //console.log(head.x+" "+head.y+" : "+xy+" " + yx);
     //console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length);
     bod.setScale(width/17/head.height);
