@@ -167,18 +167,18 @@ function scored ()
     var yx = 50;
     var ne = speed*-1;
     if(snake[snake.length-1].body.velocity==={speed : 0}){
-        var xy = snake[snake.length-1].x-head.length/2-5;
+        xy = snake[snake.length-1].x-head.length/2-5;
     }else if(snake[snake.length-1].body.velocity==={ne : 0}){
-        var xy = snake[snake.length-1].x+head.length/2+5;
+        xy = snake[snake.length-1].x+head.length/2+5;
     }else{
-        var xy = snake[snake.length-1].x;
+        xy = snake[snake.length-1].x;
     }
     if(snake[snake.length-1].body.velocity==={0 : speed}){
-        var yx = snake[snake.length-1].y-head.length/2-5;
+        yx = snake[snake.length-1].y-head.length/2-5;
     }else if(snake[snake.length-1].body.velocity==={0 : ne}){
-        var yx = snake[snake.length-1].y+head.length/2+5;
+        yx = snake[snake.length-1].y+head.length/2+5;
     }else{
-        var yx = snake[snake.length-1].y;
+        yx = snake[snake.length-1].y;
     }
     //console.log(head.x+" "+head.y+" : "+xy+" " + yx);
     console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length);
