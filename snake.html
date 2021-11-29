@@ -81,7 +81,7 @@ function create ()
     apple.setScale(width/17/apple.height);
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
-    body = physics.add.group();
+    body = this.physics.add.group();
 
     //  The score
     scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
