@@ -181,7 +181,7 @@ function scored ()
         var yx = snake[snake.length-1].y;
     }
     //console.log(head.x+" "+head.y+" : "+xy+" " + yx);
-    console.log(snake[snake.length-1].y+" + " +head.y);
+    console.log(snake[snake.length-1].y+" + " +head.y+" "+snake.length);
     var n = this.physics.add.image(xy, yx, 'body');
     n.setScale(width/17/head.height);
     snake.push(n);
