@@ -187,23 +187,21 @@ function scored ()
     console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
     if(lastY===1){
         xy = snake[snake.length-1].x-2*head.height-5;
-        console.log(xy);
+        console.log('worked');
     }else if(lastY===-1){
         xy = snake[snake.length-1].x+2*head.height+5;
-        console.log(xy);
+        console.log('worked');
     }else{
         xy = snake[snake.length-1].x;
-        console.log(xy);
     }
     if(tempY===1){
         yx = snake[snake.length-1].y-2*head.height-5;
-        console.log(yx);
+        console.log('worked');
     }else if(tempY===-1){
         yx = snake[snake.length-1].y+2*head.height+5;
-        console.log(yx);
+        console.log('worked');
     }else{
         yx = snake[snake.length-1].y;
-        console.log(yx);
     }
     var bod = body.create(xy, yx, 'body');
     //console.log(head.x+" "+head.y+" : "+xy+" " + yx);
