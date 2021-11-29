@@ -197,7 +197,7 @@ function scored ()
     //     yx = snake[snake.length-1].y;
     //     console.log(yx);
     // }
-    var bod = body.create(snake[-1].x, snake[-1].y, 'body');
+    var bod = body.create(snake[snake.length-1].x, snake[snake.length-1].y, 'body');
     //console.log(head.x+" "+head.y+" : "+xy+" " + yx);
     //console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length);
     bod.setScale(width/17/head.height);
