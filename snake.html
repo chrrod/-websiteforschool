@@ -166,6 +166,7 @@ function scored ()
     var xy = 50;
     var yx = 50;
     var ne = speed*-1;
+    console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length+" "+head.height);
     if(snake[snake.length-1].body.velocity==={speed : 0}){
         xy = snake[snake.length-1].x-head.height-5;
     }else if(snake[snake.length-1].body.velocity==={ne : 0}){
@@ -181,7 +182,7 @@ function scored ()
         yx = snake[snake.length-1].y;
     }
     //console.log(head.x+" "+head.y+" : "+xy+" " + yx);
-    console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length);
+    //console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length);
     var n = this.physics.add.image(xy, yx, 'body');
     n.setScale(width/17/head.height);
     snake.push(n);
