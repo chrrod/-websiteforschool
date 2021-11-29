@@ -116,12 +116,12 @@ function update ()
     if(cursors.up.isDown){
         head.setVelocity(0, -1*speed);
         lastY = 0;
-        tempY = -1;
+        tempY = 1;
     }
     if(cursors.down.isDown){
         head.setVelocity(0, speed);
         lastY = 0;
-        tempY = 1;
+        tempY = -1;
     }
     if(cursors.right.isDown){
         head.setVelocity(speed, 0);
