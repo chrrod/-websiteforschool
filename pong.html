@@ -213,15 +213,19 @@ function update ()
     ball.setVelocityY(y);
     if(player.y<=0+player.height){
         player.setVelocity(0, 0);
+        player.y = player.y+5;
     }
     if(player.y>=height-player.height){
         player.setVelocity(0, 0);
+        player.y = player.y-5;
     }
     if(player2.y<=0+player2.height){
         player2.setVelocity(0, 0);
+        player2.y = player2.y+5;
     }
     if(player2.y>=height-player2.height/2){
         player2.setVelocity(0, 0);
+        player2.y = player2.y-5;
     }
     scored();
     player2.x = width/12*11;
