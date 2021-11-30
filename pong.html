@@ -63,19 +63,6 @@ function preload ()
 
 function create ()
 {
-    //  A simple background for our game
-    //platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-    //game.physics.setBoundsToWorld();
-    //  The platforms group contains the ground and the 2 ledges we can jump on
-    // background = this.physics.add.image(width/2, height/2, 'background');
-    // background.setScale(width);
-    //  Here we create the ground.
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    //platforms.create(400, 568, 'paddle').setScale(2).refreshBody();
-
-    //  Now let's create some ledges
-
-    // The player and its settings
     player = this.physics.add.image(width/12, height/2, 'paddle');
     player.setScale(height/3/player.height);
     player2 = this.physics.add.image(width/12*11, height/2, 'paddle2');
@@ -85,21 +72,13 @@ function create ()
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
 
-    //  The score
     scoreText = this.add.text(16, 16, 'score: 0:0', { fontSize: '32px', fill: '#ffffff' });
 
-    //  Collide the player and the stars with the platforms
     this.physics.add.collider(ball, player, ballOut, null, this);
     this.physics.add.collider(ball, player2, ballOut, null, this);
-    //this.input.keyboard.on('keydown_W', w, player2)
-    //this.input.keyboard.on('keydown_S', s, player2)
-
-    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    //this.physics.add.overlap(0, ball, p2Score, null, this);
-    //this.physics.add.overlap(600, ball, p1Score, null, this);
+    
     ball.setVelocityX(x);
     ball.setVelocityY(y);
-    //ball.events.onOutOfBounds.add(ballOut(), this);
 }
 
 function update ()
@@ -120,20 +99,7 @@ function update ()
     {
         player.setVelocityY(0);
     }
-    // this.input.keyboard.on('keydown', (event) => {
-    //     if (/*!keys.has(event.code)*/event ==='keydown_W') {
-    //         /*keys.add(event.code);
-    //         this.input.keyboard.emit(`keypress_${event.code}`);
-    //         // or / and
-    //         this.input.keyboard.emit(`keypress`, event.code);
-    //         */
-    //        player2.setVelocityY(-160);
-    //     } else if(event ==='keydown_S'){
-    //         player2.setVelocityY(160);
-    //     } else{
-    //         player2.setVelocityY(0);
-    //     }
-    // });
+
     if(ball.y>player2.y){
         player2.setVelocityY(height/5);
     }else if(ball.y<player2.y){
@@ -141,30 +107,6 @@ function update ()
     }else{
         player2.setVelocityY(0);
     }
-
-    // code = this.event.KeyCodes;
-    // if (Phaser.Input.Keyboard.KeyCodes.W===code)
-    // {
-    //     player2.setVelocityY(-160);
-    // }
-    // else if (Phaser.Input.Keyboard.KeyCodes.S===code)
-    // {
-    //     player2.setVelocityY(160);
-    // }
-    // else
-    // {
-    //     player2.setVelocityY(0);
-    // }
-
-    //player2.setVelocityY(0);
-    // if(ball.x === player.x&&ball.y==player.y){
-    //     ball.setVelocityX(-1*ball.getVelocityX());
-    //     ball.setVelocityY(-1*ball.getVelocityY());
-    // }
-    // if(ball.x === player2.x&&ball.y==player2.y){
-    //     ball.setVelocityX(-1*ball.getVelocityX());
-    //     ball.setVelocityY(-1*ball.getVelocityY());
-    // }
     if(ball.x <= 0+ball.width/2){
         x = x*-1;
         score2++;
@@ -205,9 +147,11 @@ function update ()
         if(ball.y<=0+ball.height/2){
             ball.setVelocityY(y);
             ball.y+=ball.height/2;
+            ball.y+=5;
         }else{
             ball.setVelocityY(y);
             ball.y-=ball.height/2;
+            ball.y-=5;
         }
     }
     ball.setVelocityY(y);
