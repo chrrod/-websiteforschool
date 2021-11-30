@@ -165,22 +165,22 @@ function update ()
     //touchTrue = false;
     for(var i = 0; i<snake.length; i++){
         if(i==1){
-            if(pos == 0){//up
+            if(p == 0){//up
                 snake[i].x = head.x;
                 snake[i].y = head.y+(width/17)+5;
                 xlast = snake[i].x;
                 ylast = snake[i].y;
-            }else if(pos == 1){//down
+            }else if(p == 1){//down
                 snake[i].x = head.x;
                 snake[i].y = head.y-(width/17)-5;
                 xlast = snake[i].x;
                 ylast = snake[i].y;
-            }else if(pos == 2){//right
+            }else if(p == 2){//right
                 snake[i].x = head.x-(width/17)-5;
                 snake[i].y = head.y;
                 xlast = snake[i].x;
                 ylast = snake[i].y;
-            }else if(pos == 3){//left
+            }else if(p == 3){//left
                 snake[i].x = head.x+(width/17)+5;
                 snake[i].y = head.y;
                 xlast = snake[i].x;
