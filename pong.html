@@ -200,7 +200,7 @@ function update ()
         ball.y = height/2;
     }
     ball.setVelocityX(x);
-    if(ball.y <= 0+ball.height/2||ball.y>=height-ball.height/2){
+    if(ball.y <= 0+ball.height||ball.y>=height-ball.height){
         y = y*-1;
         if(ball.y<=0+ball.height/2){
             ball.setVelocityY(y);
@@ -211,19 +211,21 @@ function update ()
         }
     }
     ball.setVelocityY(y);
-    if(player.y<=0+player.height/2){
-        player.y = player.y+player.height/2;
+    if(player.y<=0+player.height){
+        player.setVelocity(0, 0);
     }
-    if(player.y>=height-player.height/2){
-        player.y = player.y-player.height/2
+    if(player.y>=height-player.height){
+        player.setVelocity(0, 0);
     }
-    if(player2.y<=0+player2.height/2){
-        player2.y = player2.y+player2.height/2;
+    if(player2.y<=0+player2.height){
+        player2.setVelocity(0, 0);
     }
     if(player2.y>=height-player2.height/2){
-        player2.y = player2.y-player2.height/2;
+        player2.setVelocity(0, 0);
     }
     scored();
+    player2.x = width/12*11;
+    player.x=width/12;
 }
 
 function scored ()
