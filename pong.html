@@ -144,14 +144,12 @@ function update ()
     ball.setVelocityX(x);
     if(ball.y <= 0+ball.height||ball.y>=height-ball.height){
         y = y*-1;
-        if(ball.y<=0+ball.height/2){
+        if(ball.y<=0+ball.height){
             ball.setVelocityY(y);
-            ball.y+=ball.height/2;
-            ball.y+=5;
+            ball.y+=ball.height;
         }else{
             ball.setVelocityY(y);
-            ball.y-=ball.height/2;
-            ball.y-=5;
+            ball.y-=ball.height;
         }
     }
     ball.setVelocityY(y);
