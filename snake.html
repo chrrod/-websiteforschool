@@ -146,7 +146,7 @@ function update ()
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
             xtemp = snake[i].x;
-            ytemp = ylast[i].y;
+            ytemp = snake[i].y;
             snake[i].x = xlast;
             snake[i].y = ylast;
             xlast = xtemp;
