@@ -207,6 +207,7 @@ function scored ()
     bod.setScale(width/17/head.height);
     bod.setVelocity(0,0);
     snake.push(bod);
+    console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
 }
 
 function changeDirection(){
