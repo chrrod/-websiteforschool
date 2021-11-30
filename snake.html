@@ -185,19 +185,15 @@ function scored ()
     console.log(lastY+ " : " + tempY);
     if(lastY>0){
         xy = snake[snake.length-1].x-(width/17/head.height)-5;
-        console.log('worked');
     }else if(lastY<0){
         xy = snake[snake.length-1].x+(width/17/head.height)+5;
-        console.log('worked');
     }else{
         xy = snake[snake.length-1].x;
     }
     if(tempY>0){
         yx = snake[snake.length-1].y-(width/17/head.height)-5;
-        console.log('worked');
     }else if(tempY<0){
         yx = snake[snake.length-1].y+(width/17/head.height)+5;
-        console.log('worked');
     }else{
         yx = snake[snake.length-1].y;
     }
@@ -207,6 +203,7 @@ function scored ()
     bod.setScale(width/17/head.height);
     bod.setVelocity(0,0);
     snake.push(bod);
+    console.log(width/17/head.height);
     console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
 }
 
