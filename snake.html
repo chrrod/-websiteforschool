@@ -43,11 +43,16 @@ var turn = [];
 var head;
 var body;
 var apple;
+var touchTrue = true;
 // var player;
 // var player2;
 // var ball;
 // var background;
 var lastX;
+var ylast;
+var ytemp;
+var xlast;
+var xtemp;
 var lastY;
 var tempX;
 var tempY;
@@ -107,7 +112,14 @@ function create ()
 
 function update ()
 {
+    touchTrue = true;
     if(gameOver){
+        scoreText.setText('You Lose!');
+        gameOver = true;
+        for(var i = 0; i <snake.length; i++){
+            snake[i].setVelocity(0);
+        }
+        apple.setVelocity(0);
         return;
     }
     
@@ -130,13 +142,15 @@ function update ()
         lastY = -1;
         tempY = 0;
     }
+    touchTrue = false;
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
-            tempX = snake[i].body.velocity;
-            //tempY = snake[i].getVelocityY();
-            snake[i].body.velocity = lastX;
-            lastX = tempX;
-            //lastY = tempY;
+            xtemp = snake[i].x;
+            ytemp = ylast[i].y;
+            snake[i].x = xlast;
+            snake[i].y = ylast;
+            xlast = xtemp;
+            ylast = ytemp;
         }
     }
     //console.log(head.body.velocity);{x:y}
@@ -148,6 +162,8 @@ function update ()
         }
         return;
     }
+    ylast = head.y;
+    xlast = head.x;
 }
 
 function scored ()
@@ -234,6 +250,10 @@ function changeDirection(){
 }
 
 function hitSelf(){
+    if(!touchTrue){
+        touchTrue = true;
+        return;
+    }
     gameOver = true;
 }
 
