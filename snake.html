@@ -184,16 +184,16 @@ function scored ()
     console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
     console.log(lastY+ " : " + tempY);
     if(lastY>0){
-        xy = snake[snake.length-1].x-(width/17/head.height)-5;
+        xy = snake[snake.length-1].x-(width/17)-5;
     }else if(lastY<0){
-        xy = snake[snake.length-1].x+(width/17/head.height)+5;
+        xy = snake[snake.length-1].x+(width/17)+5;
     }else{
         xy = snake[snake.length-1].x;
     }
     if(tempY>0){
-        yx = snake[snake.length-1].y-(width/17/head.height)-5;
+        yx = snake[snake.length-1].y-(width/17)-5;
     }else if(tempY<0){
-        yx = snake[snake.length-1].y+(width/17/head.height)+5;
+        yx = snake[snake.length-1].y+(width/17)+5;
     }else{
         yx = snake[snake.length-1].y;
     }
