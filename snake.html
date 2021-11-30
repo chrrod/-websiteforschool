@@ -53,6 +53,8 @@ var ylast;
 var ytemp;
 var xlast;
 var xtemp;
+var xp;
+var yp;
 var lastY;
 var tempX;
 var tempY;
@@ -112,7 +114,7 @@ function create ()
 
 function update ()
 {
-    touchTrue = true;
+    //touchTrue = true;
     if(gameOver){
         scoreText.setText('You Lose!');
         gameOver = true;
@@ -142,11 +144,28 @@ function update ()
         lastY = -1;
         tempY = 0;
     }
-    touchTrue = false;
+    //touchTrue = false;
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
-            xtemp = snake[i].x;
-            ytemp = snake[i].y;
+            if(snake[i].x === snake[i-1].x){
+                if(snake[i].y<snake[i-1].y){
+                    xp = 0;
+                    yp = snake[snake.length-1].y-(width/17)-5;
+                }else{
+                    xp = 0;
+                    yp = snake[snake.length-1].y+(width/17)+5;
+                }
+            }else{
+                if(snake[i].x<snake[i-1].x){
+                    xp = snake[snake.length-1].x-(width/17)-5;
+                    yp = 0;
+                }else{
+                    xp == snake[snake.length-1].x+(width/17)+5;
+                    yp = 0;
+                }
+            }
+            xtemp = snake[i].x+xp;
+            ytemp = snake[i].y+yp;
             snake[i].x = xlast;
             snake[i].y = ylast;
             xlast = xtemp;
