@@ -139,23 +139,19 @@ function update ()
         //p = 0;
         vertical = true;
         horizontal = false;
-    }
-    if(cursors.down.isDown&&!vertical){
+    }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
         tempY = width/17+5;
         vertical = true;
         horizontal = false;
-    }
-    if(cursors.right.isDown&&!horizontal){
+    }else if(cursors.right.isDown&&!horizontal){
         //head.setVelocity(speed, 0);
         lastY = width/17+5;
         tempY = 0;
         //p = 2;
         vertical = false;
         horizontal = true;
-    }
-    if(cursors.left.isDown&&!horizontal){
-        //head.setVelocity(-1*speed, 0);
+    }else if(cursors.left.isDown&&!horizontal){
         lastY = -1*(width/17)-5;
         tempY = 0;
         //p = 3;
