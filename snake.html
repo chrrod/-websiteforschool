@@ -58,6 +58,8 @@ var vertical = false;
 // var p;
 // var xp;
 // var yp;
+const d = new Date();
+var j = 0;
 var lastY = 0;
 var tempX = 0;
 var tempY = 0;
@@ -129,9 +131,9 @@ function update ()
         // apple.setVelocity(0);
         return;
     }
-    var d = new Date();
-    var j = d.getSeconds;
-    while(d.getSeconds!=j+1){
+    
+    j = d.getSeconds();
+    while(d.getSeconds===j){
     }
     // setTimeout(function(){
              //console.log("waiting a little bit");
