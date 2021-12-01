@@ -140,14 +140,18 @@ function update ()
             if(xlast === snake[i].x){
                 if(ylast>snake[i].y){
                     ylast-=5;
+                    xlast = snake[i-1].x;
                 }else{
                     ylast+=5;
+                    xlast = snake[i-1].x;
                 }
             }else{
                 if(xlast>snake[i].x){
                     xlast-=5;
+                    ylast = snake[i-1].y;
                 }else{
                     xlast+=5;
+                    ylast = snake[i-1].y;
                 }
             }
             snake[i].x = xlast;
