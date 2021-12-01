@@ -212,7 +212,7 @@ function update ()
             // snake[i].x = snake[i-1].x-(xlast-snake[i].x);
             // snake[i].y = snake[i-1].y-(ylast-snake[i].y);
             if(Math.abs(ylast-ytemp)<Math.abs(xlast-xtemp)&&Math.abs(ylast-ytemp)!=0||Math.abs(xlast-xtemp)==0){
-                if(ylast<ytemp){
+                if(ylast>ytemp){
                     //snake[i].setVelocity(0, speed);
                     snake[i].y = snake[i-1].y-(width/17)-5
                     snake[i].x = snake[i-1].x;
@@ -222,7 +222,7 @@ function update ()
                     snake[i].x = snake[i-1].x;
                 }
             }else if(Math.abs(xlast-xtemp)<Math.abs(ylast-ytemp)&&Math.abs(xlast-xtemp)!=0||Math.abs(ylast-ytemp)==0){
-                if(xlast<xtemp){
+                if(xlast>xtemp){
                     //snake[i].setVelocity(speed, 0);
                     snake[i].x = snake[i-1].x-(width/17)-5
                     snake[i].y = snake[i-1].y;
