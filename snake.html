@@ -108,21 +108,25 @@ function update ()
     }
     if(cursors.up.isDown&&!vertical){
         lastY = 0;
-        tempY = -1*(width/17)-head.length;
+        tempY = -1*(width/17)/*-5*/;
+        ylast+=5;//
         vertical = true;
         horizontal = false;
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
-        tempY = width/17+head.length;
+        tempY = width/17/*+5*/;
+        ylast-=5;//
         vertical = true;
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
-        lastY = width/17+head.length;
+        lastY = width/17/*+5*/;
+        xlast-=5;
         tempY = 0;
         vertical = false;
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
-        lastY = -1*(width/17)-head.length;
+        lastY = -1*(width/17)/*-5*/;
+        xlast+=5;
         tempY = 0;
         vertical = false;
         horizontal = true;
