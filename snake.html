@@ -209,19 +209,25 @@ function update ()
             ytemp = snake[i].y;
             // snake[i].x = xlast+xp;
             // snake[i].y = ylast+yp;
-            snake[i].x = snake[i-1].x-(xlast-snake[i].x);
-            snake[i].y = snake[i-1].y-(ylast-snake[i].y);
+            // snake[i].x = snake[i-1].x-(xlast-snake[i].x);
+            // snake[i].y = snake[i-1].y-(ylast-snake[i].y);
             if(Math.abs(ylast-ytemp)>Math.abs(xlast-xtemp)){
                 if(ylast>ytemp){
-                    snake[i].setVelocity(0, speed);
+                    //snake[i].setVelocity(0, speed);
+                    snake[i].y = snake[i-1].y-(width/17)-5
                 }else{
-                    snake[i].setVelocity(0, (-1*speed));
+                    //snake[i].setVelocity(0, (-1*speed));
+                    snake[i].y = snake[i-1].y+(width/17)+5
                 }
             }else{
                 if(xlast>xtemp){
-                    snake[i].setVelocity(speed, 0);
+                    //snake[i].setVelocity(speed, 0);
+                    snake[i].x = snake[i-1].x-(width/17)-5
+
                 }else{
-                    snake[i].setVelocity((-1*speed), 0);
+                    //snake[i].setVelocity((-1*speed), 0);
+                    snake[i].x = snake[i-1].x+(width/17)+5
+
                 }
             }
             xlast = xtemp;
