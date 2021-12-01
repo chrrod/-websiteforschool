@@ -133,11 +133,9 @@ function update ()
     t = -1;
     var d = new Date();
     var j = d.getMilliseconds();
-    console.log(j);
-    while(t!=j-1){
+    while(t!=((j+500)%1000)){
         var s = new Date()
         t = s.getMilliseconds();
-        console.log(t);
     }
     // setTimeout(function(){
              //console.log("waiting a little bit");
