@@ -132,11 +132,11 @@ function update ()
     }
     t = -1;
     var d = new Date();
-    var j = d.getSeconds();
+    var j = d.getMilliseconds();
     console.log(j);
     while(d.getSeconds()===j){
         var s = new Date()
-        t = s.getSeconds();
+        t = s.getMilliseconds();
         console.log(t);
     }
     // setTimeout(function(){
