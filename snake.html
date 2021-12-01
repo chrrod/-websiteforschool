@@ -48,19 +48,19 @@ var touchTrue = true;
 // var player2;
 // var ball;
 // var background;
-var lastX;
-var ylast;
-var ytemp;
-var xlast;
-var xtemp;
+var lastX= 0;
+var ylast= 0;
+var ytemp= 0;
+var xlast= 0;
+var xtemp= 0;
 var horizontal = false;
 var vertical = false;
-var p;
-var xp;
-var yp;
-var lastY;
-var tempX;
-var tempY;
+// var p;
+// var xp;
+// var yp;
+var lastY = 0;
+var tempX = 0;
+var tempY = 0;
 var cursors;
 var score = 0;
 // var score2 = 0;
@@ -110,9 +110,9 @@ function create ()
 
     this.physics.add.collider(apple, head, scored, null, this);
     this.physics.add.collider(head, body, hitSelf, null, this);
-    for(var i = 0; i<turn.length; i++){
-        this.physics.add.collider(head, turn[i], changeDirection, null, this);
-    }
+    // for(var i = 0; i<turn.length; i++){
+    //     this.physics.add.collider(head, turn[i], changeDirection, null, this);
+    // }
 }
 
 function update ()
@@ -128,10 +128,10 @@ function update ()
         return;
     }
     window.setInterval(function(){
-            console.log("waiting a little bit");
-        }, 1000);
+            //console.log("waiting a little bit");
+    }, 1000);
     console.log("waitied");
-    lastX = head.body.velocity;
+    //lastX = head.body.velocity;
     //lastY = head.getVelocityY();
     if(cursors.up.isDown&&!vertical){
         //head.setVelocity(0, -1*speed);
