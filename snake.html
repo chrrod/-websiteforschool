@@ -59,8 +59,6 @@ var vertical = false;
 // var xp;
 // var yp;
 const d = new Date();
-var j = 0;
-var t = -1;
 var lastY = 0;
 var tempX = 0;
 var tempY = 0;
@@ -133,10 +131,12 @@ function update ()
         return;
     }
     t = -1;
-    j = d.getSeconds();
+    var d = new Date();
+    var j = d.getSeconds();
     console.log(j);
     while(d.getSeconds()===j){
-        t = d.getSeconds();
+        var s = new Date()
+        t = s.getSeconds();
         console.log(t);
     }
     // setTimeout(function(){
