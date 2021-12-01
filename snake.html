@@ -10,7 +10,7 @@
         }
     </style>
 </head>
-    <p><small>A link to the Home page</small> <a href = ./index.html><small>Home</small></a></p>
+    <!-- <p><small>A link to the Home page</small> <a href = ./index.html><small>Home</small></a></p> -->
 <body>
 
 <script type="text/javascript">
@@ -86,7 +86,7 @@ function preload ()
 
 function create ()
 {
-    head = this.physics.add.image(width/17*8, height/15*7, 'head');
+    head = this.physics.add.image(width/17*8+width/34, height/15*7+height/30, 'head');
     head.setScale(width/17/head.height);
     apple = this.physics.add.image(width/17*(Math.floor(Math.random()*17))+width/34, height/15*(Math.floor(Math.random()*15))+height/30, 'apple');
     apple.setScale(width/17/apple.height);
@@ -111,16 +111,12 @@ function create ()
 
     this.physics.add.collider(apple, head, scored, null, this);
     this.physics.add.collider(head, body, hitSelf, null, this);
-    // for(var i = 0; i<turn.length; i++){
-    //     this.physics.add.collider(head, turn[i], changeDirection, null, this);
-    // }
     xlast = head.x;
     ylast = head.y;
 }
 
 function update ()
 {
-    //touchTrue = true;
     if(gameOver){
         scoreText.setText('You Lose!');
         gameOver = true;
@@ -136,7 +132,6 @@ function update ()
     if(cursors.up.isDown&&!vertical){
         lastY = 0;
         tempY = -1*(width/17)-5;
-        //p = 0;
         vertical = true;
         horizontal = false;
     }else if(cursors.down.isDown&&!vertical){
@@ -145,22 +140,18 @@ function update ()
         vertical = true;
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
-        //head.setVelocity(speed, 0);
         lastY = width/17+5;
         tempY = 0;
-        //p = 2;
         vertical = false;
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
         lastY = -1*(width/17)-5;
         tempY = 0;
-        //p = 3;
         vertical = false;
         horizontal = true;
     }
     head.x+=lastY;
     head.y+=tempY;
-    //touchTrue = false;
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
             xtemp = snake[i].x;
@@ -172,13 +163,9 @@ function update ()
             
         }
     }
-    //console.log(head.body.velocity);{x:y}
-    if(head.y>=height-head.height/2||head.y<=0+head.height/2||head.x>=width-head.height/2||head.x<=0+head.height/2){
+    if(head.y>height-head.height/2||head.y<0+head.height/2||head.x>width-head.height/2||head.x<0+head.height/2){
         scoreText.setText('You Lose!');
         gameOver = true;
-        // for(var i = 0; i <snake.length; i++){
-        //     snake[i].setVelocity(0);
-        // }
         return;
     }
     ylast = head.y;
@@ -188,16 +175,12 @@ function update ()
 
 function scored ()
 {  
-    //lastY = head.velocity;
     if(gameOver){
         return;
     }
     if(snake.length===15*17){
         scoreText.setText('You Win!');
         gameOver = true;
-        // for(var i = 0; i <snake.length; i++){
-        //     snake[i].setVelocity(0);
-        // }
         return;
     }
     score++;
@@ -205,54 +188,11 @@ function scored ()
     apple.x = width/17*(Math.floor(Math.random()*17))+width/34;
     apple.y = height/15*(Math.floor(Math.random()*15))+height/30;
     apple.setVelocity(0, 0);
-    // var xy = 50;
-    // var yx = 50;
-    // var u = this.physics.add.image(width+100, height+100, 'turn');
-    // u.setVelocity(0, -1*speed);
-    // var d = this.physics.add.image(width+50, height+100, 'turn');
-    // d.setVelocity(0, speed);
-    // var l = this.physics.add.image(width+100, height+50, 'turn');
-    // l.setVelocity(-1*speed, 0);
-    // var r = this.physics.add.image(width+50, height+50, 'turn');
-    // r.setVelocity(speed, 0);
-    // var ne = speed*-1;
-    // console.log(head.x+" "+head.y);
-    // console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
-    // console.log(lastY+ " : " + tempY);
-    // if(lastY>0){
-    //     xy = snake[snake.length-1].x-(width/17)-5;
-    // }else if(lastY<0){
-    //     xy = snake[snake.length-1].x+(width/17)+5;
-    // }else{
-    //     xy = snake[snake.length-1].x;
-    // }
-    // if(tempY>0){
-    //     yx = snake[snake.length-1].y-(width/17)-5;
-    // }else if(tempY<0){
-    //     yx = snake[snake.length-1].y+(width/17)+5;
-    // }else{
-    //     yx = snake[snake.length-1].y;
-    // }
     var bod = body.create(snake[snake.length-1].x, snake[snake.length-1].y, 'body');
-    //console.log(head.x+" "+head.y+" : "+xy+" " + yx);
-    //console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length);
     bod.setScale(width/17/head.height);
-    // bod.setVelocity(0,0);
     snake.push(bod);
     console.log(width/17/head.height+" : "+ head.height);
     console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
-    // if(p===0){
-    //     head.setVelocity(0, -1*speed);
-    // }
-    // if(p===1){
-    //     head.setVelocity(0, speed);
-    // }
-    // if(p===2){
-    //     head.setVelocity(speed, 0);
-    // }
-    // if(p===3){
-    //     head.setVelocity(-1*speed, 0);
-    // }
 }
 
 function changeDirection(){
