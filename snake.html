@@ -60,6 +60,7 @@ var vertical = false;
 // var yp;
 const d = new Date();
 var j = 0;
+var t = -1;
 var lastY = 0;
 var tempX = 0;
 var tempY = 0;
@@ -131,10 +132,13 @@ function update ()
         // apple.setVelocity(0);
         return;
     }
-    
-    // j = d.getSeconds();
-    // while(d.getSeconds()===j){
-    // }
+    t = -1;
+    j = d.getSeconds();
+    console.log(j);
+    while(d.getSeconds()===j){
+        t = d.getSeconds();
+        console.log(t);
+    }
     // setTimeout(function(){
              //console.log("waiting a little bit");
     // }, 10000);
