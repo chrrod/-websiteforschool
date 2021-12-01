@@ -211,8 +211,22 @@ function update ()
             // snake[i].y = ylast+yp;
             snake[i].x = snake[i-1].x-(xlast-snake[i].x);
             snake[i].y = snake[i-1].y-(ylast-snake[i].y);
+            if(Math.abs(ylast-ytemp)>Math.abs(xlast-xtemp)){
+                if(ylast>ytemp){
+                    snake[i].setVelocity(0, speed);
+                }else{
+                    snake[i].setVelocity(0, (-1*speed));
+                }
+            }else{
+                if(xlast>xtemp){
+                    snake[i].setVelocity(speed, 0);
+                }else{
+                    snake[i].setVelocity((-1*speed), 0);
+                }
+            }
             xlast = xtemp;
             ylast = ytemp;
+            
         }
     }
     //console.log(head.body.velocity);{x:y}
@@ -283,6 +297,18 @@ function scored ()
     snake.push(bod);
     console.log(width/17/head.height+" : "+ head.height);
     console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
+    if(p===0){
+        head.setVelocity(0, -1*speed);
+    }
+    if(p===1){
+        head.setVelocity(0, speed);
+    }
+    if(p===2){
+        head.setVelocity(speed, 0);
+    }
+    if(p===3){
+        head.setVelocity(-1*speed, 0);
+    }
 }
 
 function changeDirection(){
