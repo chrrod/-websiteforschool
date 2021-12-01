@@ -110,21 +110,21 @@ function update ()
     }
     if(cursors.up.isDown&&!vertical){
         lastY = 0;
-        tempY = -1*(width/17)/*-5*/;
+        tempY = -1*(width/17)-5;
         vertical = true;
         horizontal = false;
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
-        tempY = width/17/*+5*/;
+        tempY = width/17+5;
         vertical = true;
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
-        lastY = width/17/*+5*/;
+        lastY = width/17+5;
         tempY = 0;
         vertical = false;
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
-        lastY = -1*(width/17)/*-5*/;
+        lastY = -1*(width/17)-5;
         tempY = 0;
         vertical = false;
         horizontal = true;
