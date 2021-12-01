@@ -207,8 +207,8 @@ function update ()
             console.log(xp+ " : "+yp)
             xtemp = snake[i].x;
             ytemp = snake[i].y;
-            snake[i].x = xlast+xp;
-            snake[i].y = ylast+yp;
+            snake[i].x = xlast-xp;
+            snake[i].y = ylast-yp;
             xlast = xtemp;
             ylast = ytemp;
         }
