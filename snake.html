@@ -215,18 +215,22 @@ function update ()
                 if(ylast>ytemp){
                     //snake[i].setVelocity(0, speed);
                     snake[i].y = snake[i-1].y-(width/17)-5
+                    snake[i].x = snake[i-1].x;
                 }else{
                     //snake[i].setVelocity(0, (-1*speed));
                     snake[i].y = snake[i-1].y+(width/17)+5
+                    snake[i].x = snake[i-1].x;
                 }
             }else{
                 if(xlast>xtemp){
                     //snake[i].setVelocity(speed, 0);
                     snake[i].x = snake[i-1].x-(width/17)-5
+                    snake[i].y = snake[i-1].y;
 
                 }else{
                     //snake[i].setVelocity((-1*speed), 0);
                     snake[i].x = snake[i-1].x+(width/17)+5
+                    snake[i].y = snake[i-1].y;
 
                 }
             }
