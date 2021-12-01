@@ -121,72 +121,77 @@ function update ()
     if(gameOver){
         scoreText.setText('You Lose!');
         gameOver = true;
-        for(var i = 0; i <snake.length; i++){
-            snake[i].setVelocity(0);
-        }
-        apple.setVelocity(0);
+        // for(var i = 0; i <snake.length; i++){
+        //     snake[i].setVelocity(0);
+        // }
+        // apple.setVelocity(0);
         return;
     }
-    
+    window.setInterval(function(){
+            console.log("waiting a little bit");
+        }, 1000);
+    console.log("waitied");
     lastX = head.body.velocity;
     //lastY = head.getVelocityY();
     if(cursors.up.isDown&&!vertical){
-        head.setVelocity(0, -1*speed);
+        //head.setVelocity(0, -1*speed);
         lastY = 0;
-        tempY = -1;
-        p = 0;
+        tempY = -1*(width/17);
+        //p = 0;
         vertical = true;
         horizontal = false;
     }
     if(cursors.down.isDown&&!vertical){
-        head.setVelocity(0, speed);
+        //head.setVelocity(0, speed);
         lastY = 0;
-        tempY = 1;
-        p = 1;
+        tempY = width/17;
+       // p = 1;
         vertical = true;
         horizontal = false;
     }
     if(cursors.right.isDown&&!horizontal){
-        head.setVelocity(speed, 0);
-        lastY = 1;
+        //head.setVelocity(speed, 0);
+        lastY = width/17;
         tempY = 0;
-        p = 2;
+        //p = 2;
         vertical = false;
         horizontal = true;
     }
     if(cursors.left.isDown&&!horizontal){
-        head.setVelocity(-1*speed, 0);
-        lastY = -1;
+        //head.setVelocity(-1*speed, 0);
+        lastY = -1*(width/17);
         tempY = 0;
-        p = 3;
+        //p = 3;
         vertical = false;
         horizontal = true;
     }
+    head.x+=lastY;
+    head.y+=tempY;
     //touchTrue = false;
     for(var i = 0; i<snake.length; i++){
-        if(i==1){
-            if(p == 0){//up
-                snake[i].x = head.x;
-                snake[i].y = head.y+(width/17)+5;
-                xlast = snake[i].x;
-                ylast = snake[i].y;
-            }else if(p == 1){//down
-                snake[i].x = head.x;
-                snake[i].y = head.y-(width/17)-5;
-                xlast = snake[i].x;
-                ylast = snake[i].y;
-            }else if(p == 2){//right
-                snake[i].x = head.x-(width/17)-5;
-                snake[i].y = head.y;
-                xlast = snake[i].x;
-                ylast = snake[i].y;
-            }else if(p == 3){//left
-                snake[i].x = head.x+(width/17)+5;
-                snake[i].y = head.y;
-                xlast = snake[i].x;
-                ylast = snake[i].y;
-            }
-        }else if(snake[i]!=head){
+        // if(i==1){
+        //     if(p == 0){//up
+        //         snake[i].x = head.x;
+        //         snake[i].y = head.y+(width/17)+5;
+        //         xlast = snake[i].x;
+        //         ylast = snake[i].y;
+        //     }else if(p == 1){//down
+        //         snake[i].x = head.x;
+        //         snake[i].y = head.y-(width/17)-5;
+        //         xlast = snake[i].x;
+        //         ylast = snake[i].y;
+        //     }else if(p == 2){//right
+        //         snake[i].x = head.x-(width/17)-5;
+        //         snake[i].y = head.y;
+        //         xlast = snake[i].x;
+        //         ylast = snake[i].y;
+        //     }else if(p == 3){//left
+        //         snake[i].x = head.x+(width/17)+5;
+        //         snake[i].y = head.y;
+        //         xlast = snake[i].x;
+        //         ylast = snake[i].y;
+        //     }
+        /*}else*/ if(snake[i]!=head){
             // if(Math.abs(snake[i].y-snake[i-1].y)>Math.abs(snake[i].x-snake[i-1].x)/*snake[i].x === snake[i-1].x*/){
             //     if(snake[i].y<snake[i-1].y/*snake[i].y<snake[i-1].y*/){
             //         xp = 0;
@@ -205,58 +210,60 @@ function update ()
             //     }
             // }
             // console.log(xp+ " : "+yp)
-            xtemp = snake[i].x;
-            ytemp = snake[i].y;
             // snake[i].x = xlast+xp;
             // snake[i].y = ylast+yp;
             // snake[i].x = snake[i-1].x-(xlast-snake[i].x);
             // snake[i].y = snake[i-1].y-(ylast-snake[i].y);
-            if(Math.abs(ylast-ytemp)<Math.abs(xlast-xtemp)&&Math.abs(ylast-ytemp)!=0){
-                if(ylast<ytemp){
-                    //snake[i].setVelocity(0, speed);
-                    snake[i].y = snake[i-1].y-(width/17)-5
-                    snake[i].x = snake[i-1].x;
-                }else{
-                    //snake[i].setVelocity(0, (-1*speed));
-                    snake[i].y = snake[i-1].y+(width/17)+5
-                    snake[i].x = snake[i-1].x;
-                }
-            }else if(Math.abs(xlast-xtemp)<Math.abs(ylast-ytemp)&&Math.abs(xlast-xtemp)!=0){
-                if(xlast<xtemp){
-                    //snake[i].setVelocity(speed, 0);
-                    snake[i].x = snake[i-1].x-(width/17)-5
-                    snake[i].y = snake[i-1].y;
+            // if(Math.abs(ylast-ytemp)<Math.abs(xlast-xtemp)&&Math.abs(ylast-ytemp)!=0){
+            //     if(ylast<ytemp){
+            //         //snake[i].setVelocity(0, speed);
+            //         snake[i].y = snake[i-1].y-(width/17)-5
+            //         snake[i].x = snake[i-1].x;
+            //     }else{
+            //         //snake[i].setVelocity(0, (-1*speed));
+            //         snake[i].y = snake[i-1].y+(width/17)+5
+            //         snake[i].x = snake[i-1].x;
+            //     }
+            // }else if(Math.abs(xlast-xtemp)<Math.abs(ylast-ytemp)&&Math.abs(xlast-xtemp)!=0){
+            //     if(xlast<xtemp){
+            //         //snake[i].setVelocity(speed, 0);
+            //         snake[i].x = snake[i-1].x-(width/17)-5
+            //         snake[i].y = snake[i-1].y;
 
-                }else{
-                    //snake[i].setVelocity((-1*speed), 0);
-                    snake[i].x = snake[i-1].x+(width/17)+5
-                    snake[i].y = snake[i-1].y;
+            //     }else{
+            //         //snake[i].setVelocity((-1*speed), 0);
+            //         snake[i].x = snake[i-1].x+(width/17)+5
+            //         snake[i].y = snake[i-1].y;
 
-                }
-            }else if(Math.abs(xlast-xtemp)==0){
-                if(ylast>ytemp){
-                    //snake[i].setVelocity(0, speed);
-                    snake[i].y = snake[i-1].y-(width/17)-5
-                    snake[i].x = snake[i-1].x;
-                }else{
-                    //snake[i].setVelocity(0, (-1*speed));
-                    snake[i].y = snake[i-1].y+(width/17)+5
-                    snake[i].x = snake[i-1].x;
-                }
-            }else if(Math.abs(ylast-ytemp)==0){
-                if(xlast>xtemp){
-                    //snake[i].setVelocity(speed, 0);
-                    snake[i].x = snake[i-1].x-(width/17)-5
-                    snake[i].y = snake[i-1].y;
+            //     }
+            // }else if(Math.abs(xlast-xtemp)==0){
+            //     if(ylast>ytemp){
+            //         //snake[i].setVelocity(0, speed);
+            //         snake[i].y = snake[i-1].y-(width/17)-5
+            //         snake[i].x = snake[i-1].x;
+            //     }else{
+            //         //snake[i].setVelocity(0, (-1*speed));
+            //         snake[i].y = snake[i-1].y+(width/17)+5
+            //         snake[i].x = snake[i-1].x;
+            //     }
+            // }else if(Math.abs(ylast-ytemp)==0){
+            //     if(xlast>xtemp){
+            //         //snake[i].setVelocity(speed, 0);
+            //         snake[i].x = snake[i-1].x-(width/17)-5
+            //         snake[i].y = snake[i-1].y;
 
-                }else{
-                    //snake[i].setVelocity((-1*speed), 0);
-                    snake[i].x = snake[i-1].x+(width/17)+5
-                    snake[i].y = snake[i-1].y;
-                }
-            }else{
-                console.log("failed");
-            }
+            //     }else{
+            //         //snake[i].setVelocity((-1*speed), 0);
+            //         snake[i].x = snake[i-1].x+(width/17)+5
+            //         snake[i].y = snake[i-1].y;
+            //     }
+            // }else{
+            //     console.log("failed");
+            // }
+            xtemp = snake[i].x;
+            ytemp = snake[i].y;
+            snake[i].x = xlast;
+            snake[i].y = ylast;
             xlast = snake[i].x;
             ylast = snake[i].y;
             
@@ -266,9 +273,9 @@ function update ()
     if(head.y>=height-head.height/2||head.y<=0+head.height/2||head.x>=width-head.height/2||head.x<=0+head.height/2){
         scoreText.setText('You Lose!');
         gameOver = true;
-        for(var i = 0; i <snake.length; i++){
-            snake[i].setVelocity(0);
-        }
+        // for(var i = 0; i <snake.length; i++){
+        //     snake[i].setVelocity(0);
+        // }
         return;
     }
     ylast = head.y;
@@ -284,9 +291,9 @@ function scored ()
     if(snake.length===15*17){
         scoreText.setText('You Win!');
         gameOver = true;
-        for(var i = 0; i <snake.length; i++){
-            snake[i].setVelocity(0);
-        }
+        // for(var i = 0; i <snake.length; i++){
+        //     snake[i].setVelocity(0);
+        // }
         return;
     }
     score++;
@@ -294,80 +301,80 @@ function scored ()
     apple.x = width/17*(Math.floor(Math.random()*17))+width/34;
     apple.y = height/15*(Math.floor(Math.random()*15))+height/30;
     apple.setVelocity(0, 0);
-    var xy = 50;
-    var yx = 50;
-    var u = this.physics.add.image(width+100, height+100, 'turn');
-    u.setVelocity(0, -1*speed);
-    var d = this.physics.add.image(width+50, height+100, 'turn');
-    d.setVelocity(0, speed);
-    var l = this.physics.add.image(width+100, height+50, 'turn');
-    l.setVelocity(-1*speed, 0);
-    var r = this.physics.add.image(width+50, height+50, 'turn');
-    r.setVelocity(speed, 0);
-    var ne = speed*-1;
-    console.log(head.x+" "+head.y);
-    console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
-    console.log(lastY+ " : " + tempY);
-    if(lastY>0){
-        xy = snake[snake.length-1].x-(width/17)-5;
-    }else if(lastY<0){
-        xy = snake[snake.length-1].x+(width/17)+5;
-    }else{
-        xy = snake[snake.length-1].x;
-    }
-    if(tempY>0){
-        yx = snake[snake.length-1].y-(width/17)-5;
-    }else if(tempY<0){
-        yx = snake[snake.length-1].y+(width/17)+5;
-    }else{
-        yx = snake[snake.length-1].y;
-    }
-    var bod = body.create(xy, yx, 'body');
+    // var xy = 50;
+    // var yx = 50;
+    // var u = this.physics.add.image(width+100, height+100, 'turn');
+    // u.setVelocity(0, -1*speed);
+    // var d = this.physics.add.image(width+50, height+100, 'turn');
+    // d.setVelocity(0, speed);
+    // var l = this.physics.add.image(width+100, height+50, 'turn');
+    // l.setVelocity(-1*speed, 0);
+    // var r = this.physics.add.image(width+50, height+50, 'turn');
+    // r.setVelocity(speed, 0);
+    // var ne = speed*-1;
+    // console.log(head.x+" "+head.y);
+    // console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
+    // console.log(lastY+ " : " + tempY);
+    // if(lastY>0){
+    //     xy = snake[snake.length-1].x-(width/17)-5;
+    // }else if(lastY<0){
+    //     xy = snake[snake.length-1].x+(width/17)+5;
+    // }else{
+    //     xy = snake[snake.length-1].x;
+    // }
+    // if(tempY>0){
+    //     yx = snake[snake.length-1].y-(width/17)-5;
+    // }else if(tempY<0){
+    //     yx = snake[snake.length-1].y+(width/17)+5;
+    // }else{
+    //     yx = snake[snake.length-1].y;
+    // }
+    var bod = body.create(snake[snake.length-1].x, snake[snake.length-1].y, 'body');
     //console.log(head.x+" "+head.y+" : "+xy+" " + yx);
     //console.log(snake[snake.length-1].y+" + " +snake[0].y+" "+snake.length);
     bod.setScale(width/17/head.height);
-    bod.setVelocity(0,0);
+    // bod.setVelocity(0,0);
     snake.push(bod);
     console.log(width/17/head.height+" : "+ head.height);
     console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
-    if(p===0){
-        head.setVelocity(0, -1*speed);
-    }
-    if(p===1){
-        head.setVelocity(0, speed);
-    }
-    if(p===2){
-        head.setVelocity(speed, 0);
-    }
-    if(p===3){
-        head.setVelocity(-1*speed, 0);
-    }
+    // if(p===0){
+    //     head.setVelocity(0, -1*speed);
+    // }
+    // if(p===1){
+    //     head.setVelocity(0, speed);
+    // }
+    // if(p===2){
+    //     head.setVelocity(speed, 0);
+    // }
+    // if(p===3){
+    //     head.setVelocity(-1*speed, 0);
+    // }
 }
 
 function changeDirection(){
-    lastX = head.body.velocity;
-    //lastY = head.getVelocityY();
-    if(cursors.up.isDown){
-        head.setVelocity(0, speed);
-    }
-    if(cursors.down.isDown){
-        head.setVelocity(0, -1*speed);
-    }
-    if(cursors.right.isDown){
-        head.setVelocity(speed, 0);
-    }
-    if(cursors.left.isDown){
-        head.setVelocity(-1*speed, 0);
-    }
-    for(var i = 0; i<snake.length; i++){
-        if(snake[i]!=head){
-            tempX = snake[i].body.velocity;
-            //tempY = snake[i].getVelocityY();
-            snake[i].setVelocity(lastX);
-            lastX = tempX;
-            //lastY = tempY;
-        }
-    }
+    // lastX = head.body.velocity;
+    // //lastY = head.getVelocityY();
+    // if(cursors.up.isDown){
+    //     head.setVelocity(0, speed);
+    // }
+    // if(cursors.down.isDown){
+    //     head.setVelocity(0, -1*speed);
+    // }
+    // if(cursors.right.isDown){
+    //     head.setVelocity(speed, 0);
+    // }
+    // if(cursors.left.isDown){
+    //     head.setVelocity(-1*speed, 0);
+    // }
+    // for(var i = 0; i<snake.length; i++){
+    //     if(snake[i]!=head){
+    //         tempX = snake[i].body.velocity;
+    //         //tempY = snake[i].getVelocityY();
+    //         snake[i].setVelocity(lastX);
+    //         lastX = tempX;
+    //         //lastY = tempY;
+    //     }
+    // }
 }
 
 function hitSelf(){
