@@ -184,7 +184,7 @@ function scored ()
     score++;
     scoreText.setText('Score: ' + score);
     apple.x = width/17*(Math.floor(Math.random()*17))+width/34;
-    apple.y = height/15*(Math.floor(Math.random()*15))+height/30;
+    apple.y = height/15*(Math.floor(Math.random()*15))+height/15;
     apple.setVelocity(0, 0);
     var bod = body.create(snake[snake.length-1].x, snake[snake.length-1].y, 'body');
     bod.setScale(width/17/head.height);
