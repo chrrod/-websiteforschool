@@ -109,24 +109,24 @@ function update ()
     if(cursors.up.isDown&&!vertical){
         lastY = 0;
         tempY = -1*(width/17);//-5;
-        //ylast+=5;
+        ylast+=5;
         vertical = true;
         horizontal = false;
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
         tempY = width/17;//+5;
-        //ylast-=5;
+        ylast-=5;
         vertical = true;
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
         lastY = width/17;//+5;
-        //xlast-=5
+        xlast-=5
         tempY = 0;
         vertical = false;
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
         lastY = -1*(width/17);//-5;
-        //xlast+=5;
+        xlast+=5;
         tempY = 0;
         vertical = false;
         horizontal = true;
@@ -137,6 +137,9 @@ function update ()
         if(snake[i]!=head){
             xtemp = snake[i].x;
             ytemp = snake[i].y;
+            
+            snake[i].x = xlast;
+            snake[i].y = ylast;
             if(xlast === snake[i].x){
                 if(ylast>snake[i].y){
                     ylast-=5;
@@ -150,10 +153,10 @@ function update ()
                     xlast+=5;
                 }
             }
-            snake[i].x = xlast;
-            snake[i].y = ylast;
             xlast = xtemp;
             ylast = ytemp;
+            
+
             
         }
     }
