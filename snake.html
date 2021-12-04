@@ -68,7 +68,7 @@ function preload ()
 
 function create ()
 {
-    head = this.physics.add.image(width/17*8+width/34, height/15*7+height/30, 'body');
+    head = this.physics.add.image(width/17*8+width/34, height/15*7, 'body');
     head.setScale(width/17/head.height);
     apple = this.physics.add.image(width/17*(Math.floor(Math.random()*17))+width/34, height/15*(Math.floor(Math.random()*15))+height/30, 'apple');
     apple.setScale(width/17/apple.height);
@@ -108,13 +108,13 @@ function update ()
     }
     if(cursors.up.isDown&&!vertical){
         lastY = 0;
-        tempY = -1*(height/15);//-5;
+        tempY = -2*(height/15);//-5;
         ylast+=5;
         vertical = true;
         horizontal = false;
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
-        tempY = height/15;//+5;
+        tempY = 2*(height/15);//+5;
         ylast-=5;
         vertical = true;
         horizontal = false;
@@ -140,6 +140,8 @@ function update ()
             
             snake[i].x = xlast;
             snake[i].y = ylast;
+            xlast = xtemp;
+            ylast = ytemp;
             if(xlast === snake[i].x){
                 if(ylast>snake[i].y){
                     ylast-=5;
@@ -153,8 +155,6 @@ function update ()
                     xlast+=5;
                 }
             }
-            xlast = xtemp;
-            ylast = ytemp;
             
 
             
