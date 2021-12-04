@@ -148,16 +148,15 @@ function update ()
                 }else{
                     ylast+=5;
                 }
+                xlast = snake[i].x;
             }else{
                 if(xlast>snake[i].x){
-                    xlast-=5;
+                    xlast-=width/68;
                 }else{
-                    xlast+=5;
+                    xlast+=width/68;
                 }
+                ylast = snake[y].last;
             }
-            
-
-            
         }
     }
     if(head.y>height-head.height/2||head.y<0+head.height/2||head.x>width-head.height/2||head.x<0+head.height/2){
