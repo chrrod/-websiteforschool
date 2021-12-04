@@ -108,13 +108,13 @@ function update ()
     }
     if(cursors.up.isDown&&!vertical){
         lastY = 0;
-        tempY = -1*(height/15);//-5;
+        tempY = -2*(height/15);//-5;
         ylast+=5;
         vertical = true;
         horizontal = false;
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
-        tempY = height/15;//+5;
+        tempY = 2*(height/15);//+5;
         ylast-=5;
         vertical = true;
         horizontal = false;
