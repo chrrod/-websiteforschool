@@ -141,8 +141,12 @@ function update ()
             snake[i].x = xlast;
             snake[i].y = ylast;
             if(snake[i].x!=snake[i-1].x&&snake[i].y-snake[i-1].y>10||snake[i].y-snake[i-1].y<-10){
+                var dif = snake[i].x-snake[i-1].x;
                 snake[i].x = snake[i-1].x;
                 //snake[i-1].y = snake[i].y;
+                for(var j = i+1; j<snake.length; i++){
+                    snake[j].x+=dif;
+                }
             }  
             
             xlast = xtemp;
