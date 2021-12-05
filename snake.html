@@ -164,9 +164,9 @@ function update ()
             }
             if(snake[i].x-snake[i-1].x<(width/17)&&snake[i].x-snake[i-1].x>-1*((width/17)/2)&&snake[i].y-snake[i-1].y>width/17+5||snake[i].y-snake[i-1].y<-1*((width/17)-5)){
                 if(snake[i].y-snake[i-1].y<0){
-                    snake[i].y = snake[i].y-(width/17)-5;//snake[i].y+(width/17)+5;
+                    snake[i].y = /*snake[i-1].y-(width/17)-5;*/snake[i].y+(width/17)+5;
                 }else if(snake[i].y-snake[i-1].y>0){
-                    snake[i].y = snake[i].y+(width/17)+5;//snake[i].y-(width/17)-5;
+                    snake[i].y = /*snake[i-1].y+(width/17)+5;*/snake[i].y-(width/17)-5;
                 }
             }
             // if(snake[i].x!=snake[i-1].x&&snake[i].y-snake[i-1].y>10||snake[i].y-snake[i-1].y<-10){
