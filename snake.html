@@ -251,6 +251,8 @@ function update ()
                     ylast=1;
                     xlast = 0;
                 }
+            }else{
+                console.log("An error occured");
             }
             // if(i==1){
             //     if(snake[i].x<snake[0].x){
@@ -259,9 +261,6 @@ function update ()
             //         snake[i].x+=5;
             //     }
             // }
-            if(i===2){
-                console.log(xlast+" : "+ylast)//problem when moving up and down then back to side, check to see if the problem is with the position of third/last pice being non exist
-            }
         }
     }
     if(head.y>height-(width/17)/2+1||head.y<0+(width/17)/2-1||head.x>width-(width/17)/2+1||head.x<0+(width/17)/2-1){
