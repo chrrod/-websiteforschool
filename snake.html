@@ -87,8 +87,8 @@ function create ()
 
     this.physics.add.collider(apple, head, scored, null, this);
     // this.physics.add.collider(head, body, hitSelf, null, this);
-    // xlast = head.x;
-    // ylast = head.y;
+    xlast = head.x;
+    ylast = head.y;
 }
 
 function update ()
@@ -112,9 +112,9 @@ function update ()
     }
     if(cursors.up.isDown&&!vertical){
         lastY = 0;
-        tempY = -2*(height/15);//-5;
-        xlast = 0;//
-        ylast =5//ylast+=5;
+        tempY = -2*(height/15)-5;
+        // xlast = 0;//
+        // ylast =5//ylast+=5;
         up = true;
         down = false;
         left = false;
@@ -123,9 +123,9 @@ function update ()
         horizontal = false;
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
-        tempY = 2*(height/15);//+5;
-        ylast=-5//ylast-=5;
-        xlast = 0;
+        tempY = 2*(height/15)+5;
+        // ylast=-5//ylast-=5;
+        // xlast = 0;
         up = false;
         down = true;
         left = false;
@@ -133,9 +133,9 @@ function update ()
         vertical = true;
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
-        lastY = width/17;//+5;
-        xlast=-5//xlast-=5
-        ylast=0;
+        lastY = width/17+5;
+        // xlast=-5//xlast-=5
+        // ylast=0;
         tempY = 0;
         up = false;
         down = false;
@@ -144,9 +144,9 @@ function update ()
         vertical = false;
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
-        lastY = -1*(width/17);//-5;
-        xlast=5//xlast+=5;
-        ylast = 0;
+        lastY = -1*(width/17)-5;
+        // xlast=5//xlast+=5;
+        // ylast = 0;
         tempY = 0;
         up = false;
         down = false;
@@ -155,33 +155,33 @@ function update ()
         vertical = false;
         horizontal = true;
     }
-    head.x+=lastY+xlast;
-    head.y+=tempY+ylast;
+    head.x+=lastY;
+    head.y+=tempY;
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
             
             xtemp = snake[i].x;
             ytemp = snake[i].y;
             
-            //snake[i].x = xlast;
-            //snake[i].y = ylast;
+            snake[i].x = xlast;
+            snake[i].y = ylast;
 
-            if(ylast >0){
-                snake[i].y = snake[i-1].y+width/17+5;
-                snake[i].x = snake[i-1].x;
-            }
-            if (ylast < 0){
-                snake[i].y = snake[i-1].y-width/17-5
-                snake[i].x = snake[i-1].x;
-            }
-            if (xlast > 0){
-                snake[i].x = snake[i-1].x+width/17+5;
-                snake[i].y = snake[i-1].y;
-            }
-            if (xlast < 0){
-                snake[i].x = snake[i-1].x-width/17-5
-                snake[i].y = snake[i-1].y;
-            }
+            // if(ylast >0){
+            //     snake[i].y = snake[i-1].y+width/17+5;
+            //     snake[i].x = snake[i-1].x;
+            // }
+            // if (ylast < 0){
+            //     snake[i].y = snake[i-1].y-width/17-5
+            //     snake[i].x = snake[i-1].x;
+            // }
+            // if (xlast > 0){
+            //     snake[i].x = snake[i-1].x+width/17+5;
+            //     snake[i].y = snake[i-1].y;
+            // }
+            // if (xlast < 0){
+            //     snake[i].x = snake[i-1].x-width/17-5
+            //     snake[i].y = snake[i-1].y;
+            // }
 
             // if(snake[i].y-snake[i-1].y<(width/17)/2&&snake[i].y-snake[i-1].y>-1*((width/17)/2)){
             //     snake[i].y = snake[i-1].y;
@@ -233,41 +233,37 @@ function update ()
             //     }
             // }  
             
-           // xlast = xtemp;
-            //ylast = ytemp;
-            if(ytemp === snake[i].y){
+            xlast = xtemp;
+            ylast = ytemp;
+            if(ylast === snake[i].y){
                 if(xtemp<snake[i].x){
-                    ylast = 0;
-                    xlast = -1;
+                    xlast -= 5;
                 }else{
-                    ylast = 0;
-                    xlast = 1;
+                    xlast += 5;
                 }
-            }else if (xtemp === snake[i].x){
+            }else if (xlast === snake[i].x){
                 if(ytemp<snake[i].y){
-                    ylast = -1;
-                    xlast = 0;
+                    ylast -= 5;
                 }else{
-                    ylast = 1;
-                    xlast = 0;
+                    ylast += 5;
                 }
-            }else if(snake[i].x === snake[i-1].x){
-                if(xtemp<snake[i].x){
-                    xlast = -1;
-                    ylast = 0;
-                }else{
-                    xlast= 1;
-                    ylast = 0;
-                }
-            }else if(snake[i].y === snake[i-1].y){
-                if(ytemp<snake[i].y){
-                    ylast= -1;
-                    xlast = 0;
-                }else{
-                    ylast = 1;
-                    xlast = 0;
-                }
-            }//else{
+            }//else if(snake[i].x === snake[i-1].x){
+            //     if(xtemp<snake[i].x){
+            //         xlast = -1;
+            //         ylast = 0;
+            //     }else{
+            //         xlast= 1;
+            //         ylast = 0;
+            //     }
+            // }else if(snake[i].y === snake[i-1].y){
+            //     if(ytemp<snake[i].y){
+            //         ylast= -1;
+            //         xlast = 0;
+            //     }else{
+            //         ylast = 1;
+            //         xlast = 0;
+            //     }
+            // }//else{
             //     if(Math.abs(ytemp-snake[i].y)>Math.abs(xtemp-snake[i].x)){
             //         if(ytemp<snake[i].y){
             //             ylast=-1;
@@ -302,22 +298,24 @@ function update ()
         gameOver = true;
         return;
     }
-    if(up){
-        ylast = 5;
-        xlast = 0;
-    }
-    if(down){
-        ylast = -5;
-        xlast = 0;
-    }
-    if(right){
-        ylast = 0;
-        xlast = -5;
-    }
-    if (left){
-        ylast = 0;
-        xlast = 5;
-    }
+    ylast = head.y;
+    xlast = head.x;
+    // if(up){
+    //     ylast = 5;
+    //     xlast = 0;
+    // }
+    // if(down){
+    //     ylast = -5;
+    //     xlast = 0;
+    // }
+    // if(right){
+    //     ylast = 0;
+    //     xlast = -5;
+    // }
+    // if (left){
+    //     ylast = 0;
+    //     xlast = 5;
+    // }
     
 }
 
