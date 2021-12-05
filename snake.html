@@ -168,19 +168,19 @@ function update ()
 
             if(snake[i].x-snake[i-1].x<((width/17)/4&&snake[i].x-snake[i-1].x<(-1*(width/17)/4))){
                 snake[i].x = snake[i-1].x;
-                if(snake[i].y-snake[i-1].y>0){
-                    snake.y = snake[i-1].y+width/17+5
-                }else{
-                    snake.y = snake[i-1].y-width/17-5
-                }
+                // if(snake[i].y-snake[i-1].y>0){
+                //     snake.y = snake[i-1].y+width/17+5
+                // }else{
+                //     snake.y = snake[i-1].y-width/17-5
+                // }
             }
             if(snake[i].y-snake[i-1].y<((width/17)/4&&snake[i].y-snake[i-1].y<(-1*(width/17)/4))){
                 snake[i].y = snake[i-1].y;
-                if(snake[i].x-snake[i-1].x>0){
-                    snake.x = snake[i-1].x+width/17+5
-                }else{
-                    snake.x = snake[i-1].x-width/17-5
-                }
+                // if(snake[i].x-snake[i-1].x>0){
+                //     snake.x = snake[i-1].x+width/17+5
+                // }else{
+                //     snake.x = snake[i-1].x-width/17-5
+                // }
             }
 
             xlast = xtemp;
