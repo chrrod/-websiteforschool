@@ -76,7 +76,7 @@ function create ()
     head.setScale(width/17/head.height);
     var rx = 0;
     var rh = Math.floor(Math.random()*8)
-    while(rh%2===0){
+    while(rh%2===1){
         rh = Math.floor(Math.random()*15);
     }
     if(Math.floor(Math.random()*2)==1){
@@ -91,7 +91,7 @@ function create ()
     }
     while(rx === 8 && ry === 7){
         rh = Math.floor(Math.random()*8)
-        while(rh%2===0){
+        while(rh%2===1){
             rh = Math.floor(Math.random()*15);
         }
         if(Math.floor(Math.random()*2)==1){
@@ -219,7 +219,7 @@ function scored ()
     if(gameOver){
         return;
     }
-    if(snake.length===15*17){
+    if(snake.length===15*7){
         scoreText.setText('You Won!');
         gameOver = true;
         won = true;
@@ -229,7 +229,7 @@ function scored ()
     scoreText.setText('Score: ' + score);
     var rx = 0;
     var rh = Math.floor(Math.random()*8)
-    while(rh%2===0){
+    while(rh%2===1){
         rh = Math.floor(Math.random()*15);
     }
     if(Math.floor(Math.random()*2)==1){
@@ -260,7 +260,7 @@ function hitSelf(){
 function newRandom(){
     var rx = 0;
     var rh = Math.floor(Math.random()*8)
-    while(rh%2===0){
+    while(rh%2===1){
         rh = Math.floor(Math.random()*15);
     }
     if(Math.floor(Math.random()*2)==1){
