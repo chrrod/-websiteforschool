@@ -237,10 +237,10 @@ function update ()
             //ylast = ytemp;
             if(xtemp === snake[i].x){
                 if(ytemp>snake[i].y){
-                    ylast=-1;
+                    ylast=1;
                     xlast = 0;
                 }else{
-                    ylast=1;
+                    ylast=-1;
                     xlast = 0;
                 }
             }else if (ytemp === snake[i].y){
