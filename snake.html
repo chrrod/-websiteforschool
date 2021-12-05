@@ -140,26 +140,32 @@ function update ()
             ytemp = snake[i].y;
             snake[i].x = xlast;
             snake[i].y = ylast;
-            if(snake[i].x!=snake[i-1].x&&snake[i].y-snake[i-1].y>10||snake[i].y-snake[i-1].y<-10){
-                //var dif = snake[i].x-snake[i-1].x;
-                snake[i].x = snake[i-1].x;
-                //snake[i-1].y = snake[i].y;
-                for(var j = i+1; j<snake.length-1; j++){
-                    if(snake[j-1].y == snake[j+1].y){
-                        snake[j].x=(snake[j-1].x+snake[j+1].x)/2;   
-                    }
-                    
-                }
-            }else if(snake[i].y!=snake[i-1].y&&snake[i].x-snake[i-1].x>10||snake[i].x-snake[i-1].x<-10){
-                //var dif = snake[i].y-snake[i-1].y;
+            if(snake[i].y-snake[i-1].y>10||snake[i].y-snake[i-1].y<-10){
                 snake[i].y = snake[i-1].y;
-                //snake[i-1].y = snake[i].y;
-                for(var j = i+1; j<snake.length-1; j++){
-                    if(snake[j-1].x == snake[j+1].x){
-                        snake[j].y=(snake[j-1].y+snake[j+1].y)/2;    
-                    }
-                }
-            }  
+            }
+            if(snake[i].x-snake[i-1].x>10||snake[i].x-snake[i-1].x<-10){
+                snake[i].x = snake[i=1].x;
+            }
+            // if(snake[i].x!=snake[i-1].x&&snake[i].y-snake[i-1].y>10||snake[i].y-snake[i-1].y<-10){
+            //     //var dif = snake[i].x-snake[i-1].x;
+            //     snake[i].x = snake[i-1].x;
+            //     //snake[i-1].y = snake[i].y;
+            //     for(var j = i+1; j<snake.length-1; j++){
+            //         if(snake[j-1].y == snake[j+1].y){
+            //             snake[j].x=(snake[j-1].x+snake[j+1].x)/2;   
+            //         }
+                    
+            //     }
+            // }else if(snake[i].y!=snake[i-1].y&&snake[i].x-snake[i-1].x>10||snake[i].x-snake[i-1].x<-10){
+            //     //var dif = snake[i].y-snake[i-1].y;
+            //     snake[i].y = snake[i-1].y;
+            //     //snake[i-1].y = snake[i].y;
+            //     for(var j = i+1; j<snake.length-1; j++){
+            //         if(snake[j-1].x == snake[j+1].x){
+            //             snake[j].y=(snake[j-1].y+snake[j+1].y)/2;    
+            //         }
+            //     }
+            // }  
             
             xlast = xtemp;
             ylast = ytemp;
