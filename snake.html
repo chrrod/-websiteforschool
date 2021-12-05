@@ -214,7 +214,7 @@ function update ()
             }
         }
     }
-    if(head.y>height-(width/17)/2||head.y<0+(width/17)/2||head.x>width-(width/17)/2||head.x<0+(width/17)/2){
+    if(head.y>height-(width/17)/2+1||head.y<0+(width/17)/2-1||head.x>width-(width/17)/2+1||head.x<0+(width/17)/2-1){
         scoreText.setText('You Lose!');
         gameOver = true;
         return;
