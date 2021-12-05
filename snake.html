@@ -106,39 +106,45 @@ function update ()
         var s = new Date()
         t = s.getMilliseconds();
     }
+    var tx = 0;
+    var ty = 0;
     if(cursors.up.isDown&&!vertical){
         lastY = 0;
         tempY = -2*(height/15);//-5;
         ylast+=5;
+        ty=5;
         vertical = true;
         horizontal = false;
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
         tempY = 2*(height/15);//+5;
         ylast-=5;
+        ty= -5;
         vertical = true;
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
         lastY = width/17;//+5;
         xlast-=5
         tempY = 0;
+        tx = -5;
         vertical = false;
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
         lastY = -1*(width/17);//-5;
         xlast+=5;
         tempY = 0;
+         tx = 5;
         vertical = false;
         horizontal = true;
     }
     head.x+=lastY;
     head.y+=tempY;
-    if(snake.length>1){
-        snake[1].x = xlast;
-        snake[1].y = ylast;
-    }
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head**i!=1){
+            if(i==1){
+                xlast+=tx;
+                ylast+=ty;
+            }
             xtemp = snake[i].x;
             ytemp = snake[i].y;
             
