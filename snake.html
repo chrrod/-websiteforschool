@@ -214,7 +214,7 @@ function update ()
             }
         }
     }
-    if(head.y>height-head.height/2||head.y<0+head.height/2||head.x>width-head.height/2||head.x<0+head.height/2){
+    if(head.y>height-(width/17)/2||head.y<0+(width/17)/2||head.x>width-(width/17)/2||head.x<0+(width/17)/2){
         scoreText.setText('You Lose!');
         gameOver = true;
         return;
@@ -243,8 +243,6 @@ function scored ()
     var bod = body.create(snake[snake.length-1].x, snake[snake.length-1].y, 'body');
     bod.setScale(width/17/head.height);
     snake.push(bod);
-    console.log(width/17/head.height+" : "+ head.height);
-    console.log(snake[snake.length-1].y+" + " +snake[snake.length-1].x+" "+snake.length+" "+head.height);
 }
 
 function hitSelf(){
