@@ -74,13 +74,30 @@ function create ()
 {
     head = this.physics.add.image(width/17*8+width/34, height/15*7+height/15, 'body');
     head.setScale(width/17/head.height);
-    var rx = Math.floor(Math.random()*17);
-    var ry = Math.floor(Math.random()*15);
-    while(rx === 8 && ry === 7){
-        var rx = Math.floor(Math.random()*17);
-        var ry = Math.floor(Math.random()*15);
+    var rx = 0;;
+    if(Math.floor(Math.random()*2)==1){
+        rx = (width/17*8)+(height/15*Math.floor(Math.random()*8));    
+    }else{
+        rx = (width/17*8)-(height/15*Math.floor(Math.random()*8));   
     }
-    apple = this.physics.add.image(width/17*(rx)+width/34, height/15*(ry)+height/15, 'apple');
+    
+    var ry = Math.floor(Math.random()*15);
+    while(ry%2===0){
+        ry = Math.floor(Math.random()*15);
+    }
+    while(rx === 8 && ry === 7){
+        if(Math.floor(Math.random()*2)==1){
+            rx = (width/17*8)+(height/15*Math.floor(Math.random()*8));    
+        }else{
+            rx = (width/17*8)-(height/15*Math.floor(Math.random()*8));   
+        }
+            ry = Math.floor(Math.random()*15);
+            while(ry%2===0){
+            ry = Math.floor(Math.random()*15);
+        }
+    }
+    
+    apple = this.physics.add.image(rx+width/34, height/15*(ry)+height/15, 'apple');
     apple.setScale(width/17/apple.height);
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
@@ -106,7 +123,7 @@ function update ()
         gameOver = true;
         return; 
         }
-        scoreText.setText('You Lose!');
+        scoreText.setText('You Lose! Score: '+score);
         gameOver = true;
         return;
     }
@@ -202,8 +219,18 @@ function scored ()
     }
     score++;
     scoreText.setText('Score: ' + score);
-    apple.x = width/17*(Math.floor(Math.random()*17))+width/34;
-    apple.y = height/15*(Math.floor(Math.random()*15))+height/15;
+    var rx
+    if(Math.floor(Math.random()*2)==1){
+        rx = (width/17*8)+(height/15*Math.floor(Math.random()*8));    
+    }else{
+        rx = (width/17*8)-(height/15*Math.floor(Math.random()*8));   
+    }
+    var ry = Math.floor(Math.random()*15);
+    while(ry%2===0){
+        ry = Math.floor(Math.random()*15);
+    }
+    apple.x = rx+width/34;
+    apple.y = height/15*(ry)+height/15;
     apple.setVelocity(0, 0);
     var bod = body.create(snake[snake.length-1].x, snake[snake.length-1].y, 'body');
     bod.setScale(width/17/head.height);
@@ -219,8 +246,18 @@ function hitSelf(){
 }
 
 function newRandom(){
-    apple.x = width/17*(Math.floor(Math.random()*17))+width/34;
-    apple.y = height/15*(Math.floor(Math.random()*15))+height/15;
+    var rx
+    if(Math.floor(Math.random()*2)==1){
+        rx = (width/17*8)+(height/15*Math.floor(Math.random()*8));    
+    }else{
+        rx = (width/17*8)-(height/15*Math.floor(Math.random()*8));   
+    }
+    var ry = Math.floor(Math.random()*15);
+    while(ry%2===0){
+        ry = Math.floor(Math.random()*15);
+    }
+    apple.x = rx+width/34;
+    apple.y = height/15*(ry)+height/15;
     apple.setVelocity(0, 0);
 }
 
