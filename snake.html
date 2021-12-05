@@ -236,21 +236,21 @@ function update ()
             
            // xlast = xtemp;
             //ylast = ytemp;
-            if(xtemp === snake[i].x){
-                if(ytemp>snake[i].y){
-                    ylast=1;
-                    xlast = 0;
-                }else{
-                    ylast=-1;
-                    xlast = 0;
-                }
-            }else if (ytemp === snake[i].y){
+            if(xtemp != snake[i].x){
                 if(xtemp<snake[i].x){
                     xlast=-1;
                     ylast = 0;
                 }else{
                     xlast=1;
                     ylast = 0;
+                }
+            }else if (ytemp != snake[i].y){
+                if(ytemp>snake[i].y){
+                    ylast=1;
+                    xlast = 0;
+                }else{
+                    ylast=-1;
+                    xlast = 0;
                 }
             }
             // if(i==1){
@@ -261,7 +261,7 @@ function update ()
             //     }
             // }
             console.log(ylast+" : "+xlast);
-            console.log(xtemp+" : "+snake[i].x+"   "+ytemp+snake[i].y)
+            console.log(xtemp+" : "+snake[i].x+"   "+ytemp+" : "+snake[i].y)
         }
     }
     if(head.y>height-(width/17)/2+1||head.y<0+(width/17)/2-1||head.x>width-(width/17)/2+1||head.x<0+(width/17)/2-1){
