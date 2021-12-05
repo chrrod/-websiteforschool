@@ -182,6 +182,9 @@ function update ()
         gameOver = true;
         return;
     }
+    if(apple.y>height-(width/17)/2+1||apple.y<0+(width/17)/2-1||apple.x>width-(width/17)/2+1||apple.x<0+(width/17)/2-1){
+        newRandom();
+    }
     ylast = head.y;
     xlast = head.x;    
 }
