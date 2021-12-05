@@ -149,7 +149,7 @@ function update ()
                 }else{
                     ylast+=5;
                 }
-            }else{
+            }else if (ylast === snake[i].y){
                 if(xlast<snake[i].x){
                     xlast-=5;
                 }else{
