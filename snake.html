@@ -268,7 +268,6 @@ function update ()
                     xlast = 0;
                 }
             }else{
-                console.log("An error occured");
                 if(ytemp<snake[i].y){
                     ylast=-1;
                     xlast = 0;
@@ -281,6 +280,8 @@ function update ()
                 }else if(xtemp>snake[i].x){
                     xlast=1;
                     ylast = 0;
+                }else{
+                    console.log("An error occured"); 
                 }
             }
             // if(i==1){
