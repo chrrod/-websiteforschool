@@ -74,7 +74,13 @@ function create ()
 {
     head = this.physics.add.image(width/17*8+width/34, height/15*7+height/15, 'body');
     head.setScale(width/17/head.height);
-    apple = this.physics.add.image(width/17*(Math.floor(Math.random()*17))+width/34, height/15*(Math.floor(Math.random()*15))+height/15, 'apple');
+    var rx = Math.floor(Math.random()*17);
+    var ry = Math.floor(Math.random()*15);
+    while(rx === 8 && ry === 7){
+        var rx = Math.floor(Math.random()*17);
+        var ry = Math.floor(Math.random()*15);
+    }
+    apple = this.physics.add.image(width/17*(rx)+width/34, height/15*(ry)+height/15, 'apple');
     apple.setScale(width/17/apple.height);
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
@@ -87,6 +93,7 @@ function create ()
 
     this.physics.add.collider(apple, head, scored, null, this);
     this.physics.add.collider(head, body, hitSelf, null, this);
+    this.physics.add.collider(apple, body, newRandom, null, this);
     xlast = head.x;
     ylast = head.y;
 }
@@ -168,34 +175,7 @@ function update ()
 
             xlast = xtemp;
             ylast = ytemp;
-            // if(ylast === snake[i].y){
-            //     if(xtemp<snake[i].x){
-            //         xlast -= 5;
-            //     }else{
-            //         xlast += 5;
-            //     }
-            // }else if (xlast === snake[i].x){
-            //     if(ytemp<snake[i].y){
-            //         ylast -= 5;
-            //     }else{
-            //         ylast += 5;
-            //     }
-            // }
         }
-        // if(i == 1){
-        //     if(up){
-        //         snake[i].y+=5;
-        //     }
-        //     if(down){
-        //         snake[i].y-=5;
-        //     }
-        //     if(right){
-        //         snake[i].x-=5;
-        //     }
-        //     if(left){
-        //         snake[i].x+=5;
-        //     }
-        // }
     }
     if(head.y>height-(width/17)/2+1||head.y<0+(width/17)/2-1||head.x>width-(width/17)/2+1||head.x<0+(width/17)/2-1){
         scoreText.setText('You Lose!');
@@ -233,6 +213,12 @@ function hitSelf(){
         return;
     }
     gameOver = true;
+}
+
+function newRandom(){
+    apple.x = width/17*(Math.floor(Math.random()*17))+width/34;
+    apple.y = height/15*(Math.floor(Math.random()*15))+height/15;
+    apple.setVelocity(0, 0);
 }
 
 </script>
