@@ -133,7 +133,7 @@ function update ()
         vertical = true;
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
-        lastY = 1.5*width/17;//+5
+        lastY = 0.5*width/17;//+5
         xlast-=5// xlast=-5//
         // ylast=0;
         tempY = 0;
@@ -144,7 +144,7 @@ function update ()
         vertical = false;
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
-        lastY = -1.5*(width/17);//-5
+        lastY = -0.5*(width/17);//-5
         xlast += 5;// xlast=5//
         // ylast = 0;
         tempY = 0;
