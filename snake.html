@@ -144,7 +144,7 @@ function update ()
                 var dif = snake[i].x-snake[i-1].x;
                 snake[i].x = snake[i-1].x;
                 //snake[i-1].y = snake[i].y;
-                for(var j = i+1; j<snake.length; i++){
+                for(var j = i+1; j<snake.length; j++){
                     snake[j].x+=dif;
                 }
             }  
