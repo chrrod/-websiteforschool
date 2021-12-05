@@ -114,7 +114,7 @@ function update ()
         lastY = 0;
         tempY = -2*(height/15)-5;
         // xlast = 0;//
-        // ylast =5//ylast+=5;
+        ylast+=5;// ylast =5//
         up = true;
         down = false;
         left = false;
@@ -124,7 +124,7 @@ function update ()
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
         tempY = 2*(height/15)+5;
-        // ylast=-5//ylast-=5;
+        ylast-=5;// ylast=-5//
         // xlast = 0;
         up = false;
         down = true;
@@ -134,7 +134,7 @@ function update ()
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
         lastY = width/17+5;
-        // xlast=-5//xlast-=5
+        xlast-=5// xlast=-5//
         // ylast=0;
         tempY = 0;
         up = false;
@@ -145,7 +145,7 @@ function update ()
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
         lastY = -1*(width/17)-5;
-        // xlast=5//xlast+=5;
+        xlast += 5;// xlast=5//
         // ylast = 0;
         tempY = 0;
         up = false;
@@ -166,73 +166,6 @@ function update ()
             snake[i].x = xlast;
             snake[i].y = ylast;
 
-            // if(ylast >0){
-            //     snake[i].y = snake[i-1].y+width/17+5;
-            //     snake[i].x = snake[i-1].x;
-            // }
-            // if (ylast < 0){
-            //     snake[i].y = snake[i-1].y-width/17-5
-            //     snake[i].x = snake[i-1].x;
-            // }
-            // if (xlast > 0){
-            //     snake[i].x = snake[i-1].x+width/17+5;
-            //     snake[i].y = snake[i-1].y;
-            // }
-            // if (xlast < 0){
-            //     snake[i].x = snake[i-1].x-width/17-5
-            //     snake[i].y = snake[i-1].y;
-            // }
-
-            // if(snake[i].y-snake[i-1].y<(width/17)/2&&snake[i].y-snake[i-1].y>-1*((width/17)/2)){
-            //     snake[i].y = snake[i-1].y;
-            // }
-            // if(snake[i].x-snake[i-1].x<(width/17)/2&&snake[i].x-snake[i-1].x>-1*((width/17)/2)){
-            //     snake[i].x = snake[i=1].x;
-            // }
-            // if(i!=snake.length-1){
-            //     if(snake[i].y-snake[i+1].y<(width/17)/2&&snake[i].y-snake[i+1].y>-1*((width/17)/2)){
-            //         snake[i].y = snake[i+1].y;
-            //     }
-            //     if(snake[i].x-snake[i+1].x<(width/17)/2&&snake[i].x-snake[i+1].x>-1*((width/17)/2)){
-            //         snake[i].x = snake[i+1].x;
-            //     }
-            // }
-            // if(snake[i].y-snake[i-1].y<(width/17)&&snake[i].y-snake[i-1].y>-1*((width/17)/2)&&snake[i].x-snake[i-1].x>width/17+5||snake[i].X-snake[i-1].x<-1*((width/17)-5)){
-            //     if(snake[i].x-snake[i-1].x<0){
-            //         snake[i].x = snake[i].x+(width/17)+5;
-            //     }else if(snake[i].x-snake[i-1].x>0){
-            //         snake[i].x = snake[i].x-(width/17)-5;
-            //     }
-            // }
-            // if(snake[i].x-snake[i-1].x<(width/17)&&snake[i].x-snake[i-1].x>-1*((width/17)/2)&&snake[i].y-snake[i-1].y>width/17+5||snake[i].y-snake[i-1].y<-1*((width/17)-5)){
-            //     if(snake[i].y-snake[i-1].y<0){
-            //         snake[i].y = snake[i-1].y-(width/17)-5;//snake[i].y+(width/17)+5;
-            //     }else if(snake[i].y-snake[i-1].y>0){
-            //         snake[i].y = snake[i-1].y+(width/17)+5;//snake[i].y-(width/17)-5;
-            //     }
-            // }
-
-            // if(snake[i].x!=snake[i-1].x&&snake[i].y-snake[i-1].y>10||snake[i].y-snake[i-1].y<-10){
-            //     //var dif = snake[i].x-snake[i-1].x;
-            //     snake[i].x = snake[i-1].x;
-            //     //snake[i-1].y = snake[i].y;
-            //     for(var j = i+1; j<snake.length-1; j++){
-            //         if(snake[j-1].y == snake[j+1].y){
-            //             snake[j].x=(snake[j-1].x+snake[j+1].x)/2;   
-            //         }
-                    
-            //     }
-            // }else if(snake[i].y!=snake[i-1].y&&snake[i].x-snake[i-1].x>10||snake[i].x-snake[i-1].x<-10){
-            //     //var dif = snake[i].y-snake[i-1].y;
-            //     snake[i].y = snake[i-1].y;
-            //     //snake[i-1].y = snake[i].y;
-            //     for(var j = i+1; j<snake.length-1; j++){
-            //         if(snake[j-1].x == snake[j+1].x){
-            //             snake[j].y=(snake[j-1].y+snake[j+1].y)/2;    
-            //         }
-            //     }
-            // }  
-            
             xlast = xtemp;
             ylast = ytemp;
             if(ylast === snake[i].y){
@@ -247,50 +180,7 @@ function update ()
                 }else{
                     ylast += 5;
                 }
-            }//else if(snake[i].x === snake[i-1].x){
-            //     if(xtemp<snake[i].x){
-            //         xlast = -1;
-            //         ylast = 0;
-            //     }else{
-            //         xlast= 1;
-            //         ylast = 0;
-            //     }
-            // }else if(snake[i].y === snake[i-1].y){
-            //     if(ytemp<snake[i].y){
-            //         ylast= -1;
-            //         xlast = 0;
-            //     }else{
-            //         ylast = 1;
-            //         xlast = 0;
-            //     }
-            // }//else{
-            //     if(Math.abs(ytemp-snake[i].y)>Math.abs(xtemp-snake[i].x)){
-            //         if(ytemp<snake[i].y){
-            //             ylast=-1;
-            //             xlast = 0;
-            //         }else if(ytemp>snake[i].y){
-            //             ylast=1;
-            //             xlast = 0;
-            //         }    
-            //     }else if(Math.abs(xtemp-snake[i].x)>Math.abs(ytemp-snake[i].y)){
-            //         if(xtemp<snake[i].x){
-            //             xlast=-1;
-            //             ylast = 0;
-            //         }else if(xtemp>snake[i].x){
-            //             xlast=1;
-            //             ylast = 0;
-            //         }    
-            //     }else{
-            //         console.log("An error occured"); 
-            //     }
-            //}
-            // if(i==1){
-            //     if(snake[i].x<snake[0].x){
-            //         snake[i].x-=5;
-            //     }else if (snake[i].x>snake[0].x){
-            //         snake[i].x+=5;
-            //     }
-            // }
+            }
         }
     }
     if(head.y>height-(width/17)/2+1||head.y<0+(width/17)/2-1||head.x>width-(width/17)/2+1||head.x<0+(width/17)/2-1){
@@ -299,24 +189,7 @@ function update ()
         return;
     }
     ylast = head.y;
-    xlast = head.x;
-    // if(up){
-    //     ylast = 5;
-    //     xlast = 0;
-    // }
-    // if(down){
-    //     ylast = -5;
-    //     xlast = 0;
-    // }
-    // if(right){
-    //     ylast = 0;
-    //     xlast = -5;
-    // }
-    // if (left){
-    //     ylast = 0;
-    //     xlast = 5;
-    // }
-    
+    xlast = head.x;    
 }
 
 function scored ()
