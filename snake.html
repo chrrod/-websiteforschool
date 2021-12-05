@@ -154,20 +154,20 @@ function update ()
                     snake[i].x = snake[i+1].x;
                 }
             }
-            // if(snake[i].y-snake[i-1].y<head.height&&snake[i].y-snake[i-1].y>-1*(head.height/2)&&snake[i].x-snake[i-1].x>head.height+5&&snake[i].X-snake[i-1].x>-1*(head.height+5)){
-            //     if(snake[i].x-snake[i-1].x<0){
-            //         snake[i].x = snake[i].x+head.height+5;
-            //     }else if(snake[i].x-snake[i-1].x>0){
-            //         snake[i].x = snake[i].x-head.height-5;
-            //     }
-            // }
-            // if(snake[i].x-snake[i-1].x<head.height&&snake[i].x-snake[i-1].x>-1*(head.height/2)&&snake[i].y-snake[i-1].y>head.height+5&&snake[i].y-snake[i-1].y>-1*(head.height+5)){
-            //     if(snake[i].y-snake[i-1].y<0){
-            //         snake[i].y = snake[i].y+head.height+5;
-            //     }else if(snake[i].y-snake[i-1].y>0){
-            //         snake[i].y = snake[i].y-head.height-5;
-            //     }
-            // }
+            if(snake[i].y-snake[i-1].y<head.height&&snake[i].y-snake[i-1].y>-1*(head.height/2)&&snake[i].x-snake[i-1].x>head.height+5||snake[i].X-snake[i-1].x<-1*(head.height+5)){
+                if(snake[i].x-snake[i-1].x<0){
+                    snake[i].x = snake[i].x+head.height+5;
+                }else if(snake[i].x-snake[i-1].x>0){
+                    snake[i].x = snake[i].x-head.height-5;
+                }
+            }
+            if(snake[i].x-snake[i-1].x<head.height&&snake[i].x-snake[i-1].x>-1*(head.height/2)&&snake[i].y-snake[i-1].y>head.height+5||snake[i].y-snake[i-1].y<-1*(head.height+5)){
+                if(snake[i].y-snake[i-1].y<0){
+                    snake[i].y = snake[i].y+head.height+5;
+                }else if(snake[i].y-snake[i-1].y>0){
+                    snake[i].y = snake[i].y-head.height-5;
+                }
+            }
             // if(snake[i].x!=snake[i-1].x&&snake[i].y-snake[i-1].y>10||snake[i].y-snake[i-1].y<-10){
             //     //var dif = snake[i].x-snake[i-1].x;
             //     snake[i].x = snake[i-1].x;
