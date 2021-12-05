@@ -269,6 +269,13 @@ function update ()
                 }
             }else{
                 console.log("An error occured");
+                if(ytemp<snake[i].y){
+                    ylast=-1;
+                    xlast = 0;
+                }else{
+                    ylast=1;
+                    xlast = 0;
+                }
             }
             // if(i==1){
             //     if(snake[i].x<snake[0].x){
