@@ -140,9 +140,11 @@ function update ()
             ytemp = snake[i].y;
             snake[i].x = xlast;
             snake[i].y = ylast;
-            if(snake[i].x!=snake[i-1].x&&snake[i].y!=snake[i-1].y){
+            if(snake[i].x!=snake[i-1].x&&snake[i].y-snake[i-1].y>10||snake[i].y-snake[i-1].y<-10){
                 snake[i].x = snake[i-1].x;
-            }
+                //snake[i-1].y = snake[i].y;
+            }  
+            
             xlast = xtemp;
             ylast = ytemp;
             if(xlast === snake[i].x){
