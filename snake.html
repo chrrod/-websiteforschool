@@ -168,13 +168,16 @@ function update ()
             if(ylast >0){
                 snake[i].y = snake[i-1].y+width/17+5;
                 snake[i].x = snake[i-1].x;
-            }else if (ylast > 0){
+            }
+            if (ylast > 0){
                 snake[i].y = snake[i-1].y-width/17-5
                 snake[i].x = snake[i-1].x;
-            }else if (xlast > 0){
+            }
+            if (xlast > 0){
                 snake[i].x = snake[i-1].x+width/17+5;
                 snake[i].y = snake[i-1].y;
-            }else if (xlast < 0){
+            }
+            if (xlast < 0){
                 snake[i].x = snake[i-1].x-width/17-5
                 snake[i].y = snake[i-1].y;
             }
