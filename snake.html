@@ -112,7 +112,7 @@ function update ()
     }
     if(cursors.up.isDown&&!vertical){
         lastY = 0;
-        tempY = -3*(height/15);//-5
+        tempY = -2*(height/15);//-5
         // xlast = 0;//
         ylast+=5;// ylast =5//
         up = true;
@@ -123,7 +123,7 @@ function update ()
         horizontal = false;
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
-        tempY = 3*(height/15);//+5
+        tempY = 2*(height/15);//+5
         ylast-=5;// ylast=-5//
         // xlast = 0;
         up = false;
@@ -133,7 +133,7 @@ function update ()
         vertical = true;
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
-        lastY = 1*width/17;//+5
+        lastY = 1.5*width/17;//+5
         xlast-=5// xlast=-5//
         // ylast=0;
         tempY = 0;
@@ -144,7 +144,7 @@ function update ()
         vertical = false;
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
-        lastY = -1*(width/17);//-5
+        lastY = -1.5*(width/17);//-5
         xlast += 5;// xlast=5//
         // ylast = 0;
         tempY = 0;
