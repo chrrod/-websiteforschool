@@ -141,20 +141,20 @@ function update ()
             ytemp = snake[i].y;
             snake[i].x = xlast;
             snake[i].y = ylast;
-            if(snake[i].y-snake[i-1].y<(width/17)/2&&snake[i].y-snake[i-1].y>-1*((width/17)/2)){
-                snake[i].y = snake[i-1].y;
-            }
-            if(snake[i].x-snake[i-1].x<(width/17)/2&&snake[i].x-snake[i-1].x>-1*((width/17)/2)){
-                snake[i].x = snake[i=1].x;
-            }
-            if(i!=snake.length-1){
-                if(snake[i].y-snake[i+1].y<(width/17)/2&&snake[i].y-snake[i+1].y>-1*((width/17)/2)){
-                    snake[i].y = snake[i+1].y;
-                }
-                if(snake[i].x-snake[i+1].x<(width/17)/2&&snake[i].x-snake[i+1].x>-1*((width/17)/2)){
-                    snake[i].x = snake[i+1].x;
-                }
-            }
+            // if(snake[i].y-snake[i-1].y<(width/17)/2&&snake[i].y-snake[i-1].y>-1*((width/17)/2)){
+            //     snake[i].y = snake[i-1].y;
+            // }
+            // if(snake[i].x-snake[i-1].x<(width/17)/2&&snake[i].x-snake[i-1].x>-1*((width/17)/2)){
+            //     snake[i].x = snake[i=1].x;
+            // }
+            // if(i!=snake.length-1){
+            //     if(snake[i].y-snake[i+1].y<(width/17)/2&&snake[i].y-snake[i+1].y>-1*((width/17)/2)){
+            //         snake[i].y = snake[i+1].y;
+            //     }
+            //     if(snake[i].x-snake[i+1].x<(width/17)/2&&snake[i].x-snake[i+1].x>-1*((width/17)/2)){
+            //         snake[i].x = snake[i+1].x;
+            //     }
+            // }
             if(snake[i].y-snake[i-1].y<(width/17)&&snake[i].y-snake[i-1].y>-1*((width/17)/2)&&snake[i].x-snake[i-1].x>width/17+5|snake[i].X-snake[i-1].x<-1*((width/17)-5)){
                 if(snake[i].x-snake[i-1].x<0){
                     snake[i].x = snake[i].x+(width/17)+5;
