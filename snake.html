@@ -156,6 +156,7 @@ function update ()
     }
     head.x+=lastY;
     head.y+=tempY;
+    console.log(ylast+" : "+xlast);
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
             
@@ -169,7 +170,7 @@ function update ()
                 snake[i].y = snake[i-1].y+width/17+5;
                 snake[i].x = snake[i-1].x;
             }
-            if (ylast > 0){
+            if (ylast < 0){
                 snake[i].y = snake[i-1].y-width/17-5
                 snake[i].x = snake[i-1].x;
             }
