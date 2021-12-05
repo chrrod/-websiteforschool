@@ -86,7 +86,7 @@ function create ()
     snake.push(head);
 
     this.physics.add.collider(apple, head, scored, null, this);
-    // this.physics.add.collider(head, body, hitSelf, null, this);
+    this.physics.add.collider(head, body, hitSelf, null, this);
     xlast = head.x;
     ylast = head.y;
 }
@@ -180,6 +180,20 @@ function update ()
                 }else{
                     ylast += 5;
                 }
+            }
+        }
+        if(i == 1){
+            if(up){
+                snake[i].y+=5;
+            }
+            if(down){
+                snake[i].y-=5;
+            }
+            if(right){
+                snake[i].x-=5;
+            }
+            if(left){
+                snake[i].x+=5;
             }
         }
     }
