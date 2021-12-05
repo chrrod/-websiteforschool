@@ -268,18 +268,22 @@ function update ()
                     xlast = 0;
                 }
             }else{
-                if(ytemp<snake[i].y){
-                    ylast=-1;
-                    xlast = 0;
-                }else if(ytemp>snake[i].y){
-                    ylast=1;
-                    xlast = 0;
-                }else if(xtemp<snake[i].x){
-                    xlast=-1;
-                    ylast = 0;
-                }else if(xtemp>snake[i].x){
-                    xlast=1;
-                    ylast = 0;
+                if(Math.abs(ytemp-snake[i].y)>Math.abs(xtemp-snake[i].x)){
+                    if(ytemp<snake[i].y){
+                        ylast=-1;
+                        xlast = 0;
+                    }else if(ytemp>snake[i].y){
+                        ylast=1;
+                        xlast = 0;
+                    }    
+                }else if(Math.abs(xtemp-snake[i].x)>Math.abs(ytemp-snake[i].y)){
+                    if(xtemp<snake[i].x){
+                        xlast=-1;
+                        ylast = 0;
+                    }else if(xtemp>snake[i].x){
+                        xlast=1;
+                        ylast = 0;
+                    }    
                 }else{
                     console.log("An error occured"); 
                 }
