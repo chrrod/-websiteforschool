@@ -114,7 +114,7 @@ function update ()
         lastY = 0;
         tempY = -2*(height/15);//-5;
         xlast = 0;//
-        ylast =1//ylast+=5;
+        ylast =5//ylast+=5;
         up = true;
         down = false;
         left = false;
@@ -124,7 +124,7 @@ function update ()
     }else if(cursors.down.isDown&&!vertical){
         lastY = 0;
         tempY = 2*(height/15);//+5;
-        ylast=-1//ylast-=5;
+        ylast=-5//ylast-=5;
         xlast = 0;
         up = false;
         down = true;
@@ -134,7 +134,7 @@ function update ()
         horizontal = false;
     }else if(cursors.right.isDown&&!horizontal){
         lastY = width/17;//+5;
-        xlast=-1//xlast-=5
+        xlast=-5//xlast-=5
         ylast=0;
         tempY = 0;
         up = false;
@@ -145,7 +145,7 @@ function update ()
         horizontal = true;
     }else if(cursors.left.isDown&&!horizontal){
         lastY = -1*(width/17);//-5;
-        xlast=1//xlast+=5;
+        xlast=5//xlast+=5;
         ylast = 0;
         tempY = 0;
         up = false;
@@ -155,8 +155,8 @@ function update ()
         vertical = false;
         horizontal = true;
     }
-    head.x+=lastY;
-    head.y+=tempY;
+    head.x+=lastY+xlast;
+    head.y+=tempY+ylast;
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
             
@@ -259,6 +259,9 @@ function update ()
             //         snake[i].x+=5;
             //     }
             // }
+            if(i===3){
+                console.log(snake[i].x+" : "+snake[i].y)//problem when moving up and down then back to side, check to see if the problem is with the position of third/last pice being non exist
+            }
         }
     }
     if(head.y>height-(width/17)/2+1||head.y<0+(width/17)/2-1||head.x>width-(width/17)/2+1||head.x<0+(width/17)/2-1){
@@ -267,20 +270,20 @@ function update ()
         return;
     }
     if(up){
-        ylast = 1;
+        ylast = 5;
         xlast = 0;
     }
     if(down){
-        ylast = -1;
+        ylast = -5;
         xlast = 0;
     }
     if(right){
         ylast = 0;
-        xlast = -1;
+        xlast = -5;
     }
     if (left){
         ylast = 0;
-        xlast = 1;
+        xlast = 5;
     }
     
 }
