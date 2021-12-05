@@ -266,18 +266,21 @@ function update ()
         gameOver = true;
         return;
     }
-    if(head){
+    if(up){
         ylast = 1;
         xlast = 0;
-    }else if(down){
+    }
+    if(down){
         ylast = -1;
         xlast = 0;
-    }else if(right){
-        ylast = 0;
-        xlast = 1;
-    }else if (left){
+    }
+    if(right){
         ylast = 0;
         xlast = -1;
+    }
+    if (left){
+        ylast = 0;
+        xlast = 1;
     }
     
 }
