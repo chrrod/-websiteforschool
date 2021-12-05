@@ -157,7 +157,6 @@ function update ()
     }
     head.x+=lastY;
     head.y+=tempY;
-    console.log(ylast+" : "+xlast);
     for(var i = 0; i<snake.length; i++){
         if(snake[i]!=head){
             
@@ -169,19 +168,19 @@ function update ()
 
             if(ylast >0){
                 snake[i].y = snake[i-1].y+width/17+5;
-                snake[i].x = snake[i-1].x;
+                //snake[i].x = snake[i-1].x;
             }
             if (ylast < 0){
                 snake[i].y = snake[i-1].y-width/17-5
-                snake[i].x = snake[i-1].x;
+                //snake[i].x = snake[i-1].x;
             }
             if (xlast > 0){
                 snake[i].x = snake[i-1].x+width/17+5;
-                snake[i].y = snake[i-1].y;
+                //snake[i].y = snake[i-1].y;
             }
             if (xlast < 0){
                 snake[i].x = snake[i-1].x-width/17-5
-                snake[i].y = snake[i-1].y;
+                //snake[i].y = snake[i-1].y;
             }
 
             // if(snake[i].y-snake[i-1].y<(width/17)/2&&snake[i].y-snake[i-1].y>-1*((width/17)/2)){
@@ -245,11 +244,11 @@ function update ()
                     ylast = 0;
                 }
             }else if (ytemp != snake[i].y){
-                if(ytemp>snake[i].y){
-                    ylast=1;
+                if(ytemp<snake[i].y){
+                    ylast=-1;
                     xlast = 0;
                 }else{
-                    ylast=-1;
+                    ylast=1;
                     xlast = 0;
                 }
             }
@@ -260,8 +259,6 @@ function update ()
             //         snake[i].x+=5;
             //     }
             // }
-            console.log(ylast+" : "+xlast);
-            console.log(xtemp+" : "+snake[i].x+"   "+ytemp+" : "+snake[i].y)
         }
     }
     if(head.y>height-(width/17)/2+1||head.y<0+(width/17)/2-1||head.x>width-(width/17)/2+1||head.x<0+(width/17)/2-1){
