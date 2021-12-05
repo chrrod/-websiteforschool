@@ -251,6 +251,22 @@ function update ()
                     ylast=1;
                     xlast = 0;
                 }
+            }else if(snake[i].x === snake[i-1].x){
+                if(xtemp<snake[i].x){
+                    xlast=-1;
+                    ylast = 0;
+                }else{
+                    xlast=1;
+                    ylast = 0;
+                }
+            }else if(snake[i.y === snake[i-1].y]){
+                if(ytemp<snake[i].y){
+                    ylast=-1;
+                    xlast = 0;
+                }else{
+                    ylast=1;
+                    xlast = 0;
+                }
             }else{
                 console.log("An error occured");
             }
