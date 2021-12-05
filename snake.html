@@ -272,9 +272,15 @@ function update ()
                 if(ytemp<snake[i].y){
                     ylast=-1;
                     xlast = 0;
-                }else{
+                }else if(ytemp>snake[i].y){
                     ylast=1;
                     xlast = 0;
+                }else if(xtemp<snake[i].x){
+                    xlast=-1;
+                    ylast = 0;
+                }else if(xtemp>snake[i].x){
+                    xlast=1;
+                    ylast = 0;
                 }
             }
             // if(i==1){
