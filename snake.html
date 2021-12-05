@@ -74,11 +74,15 @@ function create ()
 {
     head = this.physics.add.image(width/17*8+width/34, height/15*7+height/15, 'body');
     head.setScale(width/17/head.height);
-    var rx = 0;;
+    var rx = 0;
+    var rh = Math.floor(Math.random()*8)
+    while(rh%2===0){
+        rh = Math.floor(Math.random()*15);
+    }
     if(Math.floor(Math.random()*2)==1){
-        rx = (width/17*8)+(height/15*Math.floor(Math.random()*8));    
+        rx = (width/17*8)+(height/15*rh);    
     }else{
-        rx = (width/17*8)-(height/15*Math.floor(Math.random()*8));   
+        rx = (width/17*8)-(height/15*rh);   
     }
     
     var ry = Math.floor(Math.random()*15);
@@ -86,13 +90,17 @@ function create ()
         ry = Math.floor(Math.random()*15);
     }
     while(rx === 8 && ry === 7){
-        if(Math.floor(Math.random()*2)==1){
-            rx = (width/17*8)+(height/15*Math.floor(Math.random()*8));    
-        }else{
-            rx = (width/17*8)-(height/15*Math.floor(Math.random()*8));   
+        rh = Math.floor(Math.random()*8)
+        while(rh%2===0){
+            rh = Math.floor(Math.random()*15);
         }
-            ry = Math.floor(Math.random()*15);
-            while(ry%2===0){
+        if(Math.floor(Math.random()*2)==1){
+            rx = (width/17*8)+(height/15*rh);    
+        }else{
+            rx = (width/17*8)-(height/15*rh);   
+        }
+        ry = Math.floor(Math.random()*15);
+        while(ry%2===0){
             ry = Math.floor(Math.random()*15);
         }
     }
@@ -219,11 +227,15 @@ function scored ()
     }
     score++;
     scoreText.setText('Score: ' + score);
-    var rx
+    var rx = 0;
+    var rh = Math.floor(Math.random()*8)
+    while(rh%2===0){
+        rh = Math.floor(Math.random()*15);
+    }
     if(Math.floor(Math.random()*2)==1){
-        rx = (width/17*8)+(height/15*Math.floor(Math.random()*8));    
+        rx = (width/17*8)+(height/15*rh);    
     }else{
-        rx = (width/17*8)-(height/15*Math.floor(Math.random()*8));   
+        rx = (width/17*8)-(height/15*rh);   
     }
     var ry = Math.floor(Math.random()*15);
     while(ry%2===0){
@@ -246,11 +258,15 @@ function hitSelf(){
 }
 
 function newRandom(){
-    var rx
+    var rx = 0;
+    var rh = Math.floor(Math.random()*8)
+    while(rh%2===0){
+        rh = Math.floor(Math.random()*15);
+    }
     if(Math.floor(Math.random()*2)==1){
-        rx = (width/17*8)+(height/15*Math.floor(Math.random()*8));    
+        rx = (width/17*8)+(height/15*rh);    
     }else{
-        rx = (width/17*8)-(height/15*Math.floor(Math.random()*8));   
+        rx = (width/17*8)-(height/15*rh);   
     }
     var ry = Math.floor(Math.random()*15);
     while(ry%2===0){
